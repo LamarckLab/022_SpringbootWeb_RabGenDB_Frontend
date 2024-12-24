@@ -2,7 +2,7 @@
   <div class="loginBody">
     <div class="loginDiv">
       <div class="login-content">
-        <h2 class="login-title">Lamarck's Frontend System</h2>
+        <h2 class="login-title">Welcome to RabGenDB</h2>
 
         <!--登录页面的表单-->
         <el-form :model="loginForm" label-width="100px"
@@ -99,19 +99,33 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #B3C0D1;
+  background: url('@/assets/images/background-login.png') no-repeat center center;
+  background-size: contain; /* 使用 contain 让图片完整显示 */
+  background-color: #000; /* 给背景填充黑色，避免图片边缘露出空白 */
+  overflow: hidden; /* 防止内容超出容器 */
+  margin-left: -8px;
+  margin-top: -8px;
+}
+.loginBody::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* 黑色蒙版，透明度为40% */
+  z-index: 0; /* 保证蒙版在背景图片上层 */
 }
 .loginDiv {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -200px;
-  margin-left: -250px;
+  transform: translate(-50%, -50%);
   width: 450px;
   height: 330px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.8); /* 添加透明背景以便表单可见 */
   border-radius: 5%;
-
+  z-index: 1; /* 确保表单内容在蒙版之上 */
 }
 .login-title {
   margin: 20px 0;
@@ -124,5 +138,4 @@ export default {
   top: 25px;
   left: 25px;
 }
-
 </style>

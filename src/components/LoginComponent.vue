@@ -8,9 +8,9 @@
         <el-form :model="loginForm" label-width="100px"
                  :rules="rules" ref="loginForm">
 
-          <!--ID输入框-->
-          <el-form-item label="ID" prop="no">
-            <el-input style="width: 200px" type="text" v-model="loginForm.no"
+          <!--Username输入框-->
+          <el-form-item label="Username" prop="username">
+            <el-input style="width: 200px" type="text" v-model="loginForm.username"
                       autocomplete="off" size="small"></el-input>
           </el-form-item>
 
@@ -41,12 +41,12 @@ export default {
     return{
       confirm_disabled:false,
       loginForm:{
-        no:'',
+        username:'',
         password:''
       },
       rules:{
-        no: [
-          { required: true, message: 'Enter your ID number please', trigger: 'blur' }
+        username: [
+          { required: true, message: 'Enter your username number please', trigger: 'blur' }
         ],
         password: [
           { required: true, message: 'Enter your password please', trigger: 'blur' }
@@ -64,7 +64,7 @@ export default {
           this.confirm_disabled = true;
           // 向Controller中的login接口发送请求
           axios.post("http://localhost:9090/login", {
-            no: this.loginForm.no,
+            username: this.loginForm.username,
             password: this.loginForm.password,
           })
               .then((response) => {

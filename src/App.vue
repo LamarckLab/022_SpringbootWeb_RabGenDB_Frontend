@@ -1,28 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  name: 'App',  // 该组件的名称
+  methods:{  // 该组件的方法
+    loadGet(){
+      this.$axios.get('http://localhost:9090/list').then(res=>res.data).then(res=>{
+        console.log(res)
+      })
+    },
+    loadPost(){
+      this.$axios.post('http://localhost:9090/save',{}).then(res=>res.data).then(res=>{
+        console.log(res)
+      })
+    }
+  },
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>This is SuperAdminHome</span>
+    <span>This is UserHome</span>
   </div>
 </template>
 

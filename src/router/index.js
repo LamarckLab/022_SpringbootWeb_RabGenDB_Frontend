@@ -7,6 +7,22 @@ const routes = [
         component: () => import('../components/LoginComponent'),
     },
     {
+        path: '/SuperAdmin/Home',
+        name: 'SuperAdminHome',
+        component: () => import('../components/superAdmin/SuperAdminHome.vue'),
+    },
+    {
+        path: '/Admin/Home',
+        name: 'AdminHome',
+        component: () => import('../components/admin/AdminHome.vue'),
+    },
+    {
+        path: '/User/Home',
+        name: 'UserHome',
+        component: () => import('../components/user/UserHome.vue'),
+    },
+
+    {
         path: '/main',
         name: 'main',
         component: () => import('../components/MainComponent'),

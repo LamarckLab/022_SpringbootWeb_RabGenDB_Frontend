@@ -73,8 +73,13 @@ export default {
                   this.$message.success(res.message);
                   // 将用户完整信息存入 sessionStorage
                   sessionStorage.setItem("userInfo", JSON.stringify(res.user));
-                  // 跳转到 /main 页面
-                  this.$router.push("/main");
+                  if(res.user.role=='0'){
+                    this.$router.push("/SuperAdmin/Home");
+                  }else if(res.user.role=='1'){
+                    this.$router.push("/Admin/Home");
+                  }else{
+                    this.$router.push("/User/Home");
+                  }
                 } else {
                   this.$message.error(res.message);
                   this.confirm_disabled = false;

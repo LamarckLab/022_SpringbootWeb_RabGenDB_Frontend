@@ -9,17 +9,17 @@ const routes = [
     {
         path: '/SuperAdmin/Home',
         name: 'SuperAdminHome',
-        component: () => import('../components/superAdmin/SuperAdminHome.vue'),
+        component: () => import('../components/superAdmin/SuperAdminHomeComponent.vue'),
     },
     {
         path: '/Admin/Home',
         name: 'AdminHome',
-        component: () => import('../components/admin/AdminHome.vue'),
+        component: () => import('../components/admin/AdminHomeComponent.vue'),
     },
     {
         path: '/User/Home',
         name: 'UserHome',
-        component: () => import('../components/user/UserHome.vue'),
+        component: () => import('../components/user/UserHomeComponent.vue'),
     },
 
     {
@@ -41,7 +41,7 @@ const routes = [
                 meta:{
                     title:'Admin Management'
                 },
-                component: () => import('../components/admin/AdminManage'),
+                component: () => import('../components/admin/AdminManageComponent.vue'),
             },
             {
                 path: '/User',
@@ -49,7 +49,7 @@ const routes = [
                 meta:{
                     title:'User Management'
                 },
-                component: () => import('../components/user/UserManage'),
+                component: () => import('../components/user/UserManageComponent.vue'),
             }
         ]
     },

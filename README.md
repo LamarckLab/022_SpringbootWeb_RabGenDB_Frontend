@@ -1,24 +1,9 @@
-# rabies-web
+如果IDEA中无法push到github中，可能是登录权限过期了,在终端输入：
+> git push origin master
 
-## Project setup
+或者直接走猫猫的7890端口代理：
 ```
-yarn install
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy http://127.0.0.1:7890
+git push origin master
 ```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

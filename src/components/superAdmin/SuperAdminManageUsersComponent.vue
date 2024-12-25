@@ -376,7 +376,6 @@ export default {
     },
     // Delete按钮绑定的事件，用于删除用户
     delUser(id){
-      console.log(id);
       this.$axios.get('http://localhost:9090/del?id='+id);
       this.$message({
         type:'success',

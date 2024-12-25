@@ -14,7 +14,7 @@
           router>
 
         <!--导航栏 1-->
-        <el-menu-item index="/One">
+        <el-menu-item index="/SuperAdmin/Manage">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Option One</span>
         </el-menu-item>
@@ -46,7 +46,7 @@
 
           <!--页面正上方的介绍字体-->
           <div style="flex:1; text-align: center; font-size: 26px">
-            <span>RabGenDB HomePage</span>
+            <span>RABV Genome DataBase</span>
           </div>
 
           <!--页面右上角的下拉菜单-->

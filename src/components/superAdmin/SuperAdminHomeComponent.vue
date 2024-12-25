@@ -51,12 +51,47 @@
         </div>
       </el-header>
 
-
-
-
+      <div style="text-align: center;height: 100%;padding: 0px;margin: 0px;">
+        <h1 style="font-size: 50px;">{{'Welcome！'+user.username}}</h1>
+        <el-descriptions  title="Personal Info Sheet" :column="2" size="40" border>
+          <!--Username-->
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-s-custom"></i>
+              Username
+            </template>
+            {{user.username}}
+          </el-descriptions-item>
+          <!--Telephone-->
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-mobile-phone"></i>
+              Telephone
+            </template>
+            {{user.telephone}}
+          </el-descriptions-item>
+          <!--Country-->
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-location-outline"></i>
+              Country
+            </template>
+            {{user.country}}
+          </el-descriptions-item>
+          <!--Role-->
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-tickets"></i>
+              Role
+            </template>
+            <el-tag
+                type="success"
+                disable-transitions>{{user.role==0?"Super Administrator":(user.role==1?"Administrator":"User")}}</el-tag>
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
     </el-container>
   </el-container>
-
 </template>
 
 <script>
@@ -85,11 +120,21 @@ export default {
         this.aside_width = '200px';
         this.collapseIcon = 'el-icon-s-fold';
       }
+    },
+    init(){
+      this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     }
+  },
+  created(){
+    this.init()
   }
 }
 </script>
 
-<style>
-
+<style  scoped>
+.el-descriptions {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
 </style>

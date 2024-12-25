@@ -82,10 +82,10 @@
           <!--Telephone-->
           <el-descriptions-item>
             <template slot="label">
-              <i class="el-icon-mobile-phone"></i>
-              Telephone
+              <i class="el-icon-message"></i>
+              Email
             </template>
-            {{user.telephone}}
+            {{user.email}}
           </el-descriptions-item>
 
           <!--Country-->

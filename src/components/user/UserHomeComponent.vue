@@ -7,28 +7,28 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
-          default-active="/SuperAdmin/Home"
+          default-active="/User/Home"
           style="height: 100%"
           :collapse="isCollapse"
           :collapse-transition="false"
           router>
 
         <!--导航栏 1-->
-        <el-menu-item index="/SuperAdmin/Home">
+        <el-menu-item index="/User/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
         <!--导航栏 2-->
-        <el-menu-item index="/SuperAdmin/Manage">
+        <el-menu-item index="/User/RABV Overview">
           <i class="el-icon-user-solid"></i>
-          <span slot="title" style="font-size: 16px">Account Manage</span>
+          <span slot="title" style="font-size: 16px">RABV Overview</span>
         </el-menu-item>
 
         <!--导航栏 3-->
-        <el-menu-item index="/SuperAdmin/Authority">
+        <el-menu-item index="/User/Search Sequence">
           <i class="el-icon-s-custom"></i>
-          <span slot="title" style="font-size: 16px">Authority Manage</span>
+          <span slot="title" style="font-size: 16px">Search Sequence</span>
         </el-menu-item>
       </el-menu>
     </el-aside>

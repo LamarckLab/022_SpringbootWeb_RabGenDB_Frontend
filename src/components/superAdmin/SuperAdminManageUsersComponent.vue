@@ -268,7 +268,7 @@ export default {
       collapseIcon: 'el-icon-s-fold',
       tableData: [],
       pageNum: 1,
-      pageSize: 50,
+      pageSize: 5,
       total: 0,
       searchUsername:'',
       searchCountry:'',
@@ -352,7 +352,7 @@ export default {
     },
     // Reset按钮绑定的事件，用于重置参数
     resetParam(){
-      this.searchName = '';
+      this.searchUsername = '';
       this.searchCountry = '';
     },
     // New按钮绑定的事件，用于弹出新增角色表单

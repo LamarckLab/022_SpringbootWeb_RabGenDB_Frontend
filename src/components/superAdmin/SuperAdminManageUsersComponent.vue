@@ -96,30 +96,21 @@
           <el-table-column prop="username" label="Username" width="200">
           </el-table-column>
           <!--Name-->
-          <el-table-column prop="name" label="Name" width="160">
+          <el-table-column prop="telephone" label="Telephone" width="200">
           </el-table-column>
           <!--Age-->
-          <el-table-column prop="age" label="Age" width="160">
+          <el-table-column prop="email" label="Email" width="200">
           </el-table-column>
-          <!--Sex-->
-          <el-table-column prop="sex" label="Sex" width="160">
-            <!--两种性别分别映射为两种彩色标签-->
-            <template slot-scope="scope">
-              <el-tag
-                  :type="scope.row.sex == '1' ? 'primary' : 'success'"
-                  disable-transitions>{{scope.row.sex == '1' ? 'Male' : 'Female'}}</el-tag>
-            </template>
-          </el-table-column>
-          <!--Tel-->
-          <el-table-column prop="phone" label="Tel" width="200">
+          <!--Country-->
+          <el-table-column prop="country" label="Country" width="200">
           </el-table-column>
           <!--Role-->
-          <el-table-column prop="roleId" label="Role" width="150">
+          <el-table-column prop="role" label="Role" width="150">
             <!--三种角色类型分别映射成为三种彩色标签-->
             <template slot-scope="scope">
               <el-tag
-                  :type="scope.row.roleId == '0' ? 'danger' : (scope.row.roleId == '1' ? 'warning' : 'info')"
-                  disable-transitions>{{scope.row.roleId == '0' ? 'Super Admin' : (scope.row.roleId == '1' ? 'Admin' : 'User')}}</el-tag>
+                  :type="scope.row.role == '0' ? 'danger' : (scope.row.role == '1' ? 'warning' : 'info')"
+                  disable-transitions>{{scope.row.role == '0' ? 'Super Admin' : (scope.row.role == '1' ? 'Admin' : 'User')}}</el-tag>
             </template>
           </el-table-column>
 
@@ -277,16 +268,8 @@ export default {
       pageNum: 1,
       pageSize: 50,
       total: 0,
-      searchName:'',
-      sex:'',
-      sexes:[{
-        value: '1',
-        label: 'Male'
-      }, {
-        value: '2',
-        label: 'Female'
-      }
-      ],
+      searchUsername:'',
+      searchCountry:'',
       centerDialogVisible: false,
       centerDialogVisible2: false,
       form:{
@@ -368,7 +351,7 @@ export default {
     // Reset按钮绑定的事件，用于重置参数
     resetParam(){
       this.searchName = '';
-      this.sex = '';
+      this.searchCountry = '';
     },
     // New按钮绑定的事件，用于弹出新增角色表单
     addUser(){

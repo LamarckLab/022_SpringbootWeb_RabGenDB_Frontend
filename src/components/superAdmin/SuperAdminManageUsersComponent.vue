@@ -197,9 +197,9 @@
             <!--表单的属性部分-->
             <el-form ref="form" :model="editForm" label-width="100px">
               <!--Username输入框-->
-              <el-form-item label="Username">
+              <el-form-item label="Username :">
                 <el-col :span="18">
-                  <el-input v-model="editForm.username"></el-input>
+                  <span>{{this.editForm.username}}</span>
                 </el-col>
               </el-form-item>
               <!--Password输入框-->
@@ -358,7 +358,7 @@ export default {
     // Edit按钮绑定的事件，用于读取当前行信息，赋值到Edit表单
     editUser(row){
       this.editForm.username = row.username;
-      this.editForm.password = '******';
+      this.editForm.password = row.password;
       this.editForm.telephone = row.telephone;
       this.editForm.email = row.email;
       this.editForm.country = row.country;

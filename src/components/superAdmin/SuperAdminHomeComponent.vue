@@ -7,22 +7,22 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
-          default-active="/Home"
+          default-active="/SuperAdmin/Home"
           style="height: 100%"
           :collapse="isCollapse"
           :collapse-transition="false"
           router>
 
         <!--导航栏 1-->
-        <el-menu-item index="/SuperAdmin/Manage">
+        <el-menu-item index="/SuperAdmin/Home">
           <i class="el-icon-s-home"></i>
-          <span slot="title" style="font-size: 16px">Option One</span>
+          <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
         <!--导航栏 2-->
-        <el-menu-item index="/Two">
+        <el-menu-item index="/SuperAdmin/Manage">
           <i class="el-icon-user-solid"></i>
-          <span slot="title" style="font-size: 16px">Option two</span>
+          <span slot="title" style="font-size: 16px">Account Manage</span>
         </el-menu-item>
 
         <!--导航栏 3-->
@@ -123,7 +123,7 @@ export default {
     return{
       aside_width: '200px',
       isCollapse: false,
-      collapseIcon: 'el-icon-s-fold'
+      collapseIcon: 'el-icon-s-fold',
     }
   },
   props:{

@@ -192,20 +192,14 @@
           <el-dialog
               title="User Information Edit Sheet"
               :visible.sync="centerDialogVisible2"
-              width="30%"
+              width="40%"
               center>
             <!--表单的属性部分-->
-            <el-form ref="form" :model="editForm" label-width="80px">
-              <!--No输入框-->
-              <el-form-item label="Account">
+            <el-form ref="form" :model="editForm" label-width="100px">
+              <!--Username输入框-->
+              <el-form-item label="Username">
                 <el-col :span="18">
-                  <el-input v-model="editForm.no"></el-input>
-                </el-col>
-              </el-form-item>
-              <!--Name输入框-->
-              <el-form-item label="Name">
-                <el-col :span="18">
-                  <el-input v-model="editForm.name"></el-input>
+                  <el-input v-model="editForm.username"></el-input>
                 </el-col>
               </el-form-item>
               <!--Password输入框-->
@@ -214,23 +208,22 @@
                   <el-input v-model="editForm.password"></el-input>
                 </el-col>
               </el-form-item>
-              <!--Age输入框-->
-              <el-form-item label="Age">
+              <!--Telephone输入框-->
+              <el-form-item label="Telephone">
                 <el-col :span="18">
-                  <el-input v-model="editForm.age"></el-input>
+                  <el-input v-model="editForm.telephone"></el-input>
                 </el-col>
               </el-form-item>
-              <!--Sex选择输入框-->
-              <el-form-item label="Sex">
-                <el-radio-group v-model="editForm.sex">
-                  <el-radio label="1">Male</el-radio>
-                  <el-radio label="2">Female</el-radio>
-                </el-radio-group>
-              </el-form-item>
-              <!--Phone输入框-->
-              <el-form-item label="Phone">
+              <!--Email输入框-->
+              <el-form-item label="Email">
                 <el-col :span="18">
-                  <el-input v-model="editForm.phone"></el-input>
+                  <el-input v-model="editForm.email"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Country输入框-->
+              <el-form-item label="Country">
+                <el-col :span="18">
+                  <el-input v-model="editForm.country"></el-input>
                 </el-col>
               </el-form-item>
             </el-form>
@@ -276,14 +269,11 @@ export default {
         role:'2',
       },
       editForm:{
-        id:'',
-        name:'',
-        no:'',
+        username:'',
         password:'',
-        age:'',
-        phone:'',
-        sex:'0',
-        roleId:'2',
+        telephone:'',
+        email:'',
+        country:'',
       },
     }
   },
@@ -367,14 +357,11 @@ export default {
     },
     // Edit按钮绑定的事件，用于读取当前行信息，赋值到Edit表单
     editUser(row){
-      this.editForm.id = row.id;
-      this.editForm.name = row.name;
-      this.editForm.no = row.no;
-      this.editForm.password = '********';
-      this.editForm.sex = row.sex+'';
-      this.editForm.age = row.age;
-      this.editForm.phone = row.phone;
-      this.editForm.roleId = row.roleId;
+      this.editForm.username = row.username;
+      this.editForm.password = '******';
+      this.editForm.telephone = row.telephone;
+      this.editForm.email = row.email;
+      this.editForm.country = row.country;
       this.centerDialogVisible2 = true;
     },
     // Edit表单中Submit按钮绑定的事件，用于修改用户信息

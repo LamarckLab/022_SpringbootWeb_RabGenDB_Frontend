@@ -81,7 +81,7 @@
             <!--重置按钮-->
             <el-button type="success" @click="resetParam">Reset</el-button>
             <!--新增用户按钮-->
-            <el-button type="warning" style="margin-left: 50px" @click="addUser">New</el-button>
+            <el-button type="warning" style="margin-left: 10px" @click="addUser">Create User</el-button>
           </div>
 
           <!--表格主体部分-->
@@ -140,49 +140,42 @@
               :total="total">
           </el-pagination>
 
-          <!--点击New按钮后弹出来的表单-->
+          <!--点击Create User按钮后弹出来的表单-->
           <el-dialog
               title="User Information Sheet"
               :visible.sync="centerDialogVisible"
-              width="30%"
+              width="40%"
               center>
             <!--表单中的值绑定到form变量中-->
-            <el-form ref="form" :model="form" label-width="80px">
-              <!--No输入框-->
-              <el-form-item label="Account">
+            <el-form ref="form" :model="form" label-width="120px">
+              <!--Username输入框-->
+              <el-form-item label="Username">
                 <el-col :span="18">
-                  <el-input v-model="form.no"></el-input>
+                  <el-input v-model="form.username"></el-input>
                 </el-col>
-                <!--Name输入框-->
+                <!--Password输入框-->
               </el-form-item>
-              <el-form-item label="Name">
-                <el-col :span="18">
-                  <el-input v-model="form.name"></el-input>
-                </el-col>
-              </el-form-item>
-              <!--Password输入框-->
               <el-form-item label="Password">
                 <el-col :span="18">
                   <el-input v-model="form.password"></el-input>
                 </el-col>
               </el-form-item>
-              <!--Age输入框-->
-              <el-form-item label="Age">
+              <!--Telephone输入框-->
+              <el-form-item label="Telephone">
                 <el-col :span="18">
-                  <el-input v-model="form.age"></el-input>
+                  <el-input v-model="form.telephone"></el-input>
                 </el-col>
               </el-form-item>
-              <!--Sex选择输入框-->
-              <el-form-item label="Sex">
-                <el-radio-group v-model="form.sex">
-                  <el-radio label="1">Male</el-radio>
-                  <el-radio label="2">Female</el-radio>
-                </el-radio-group>
-              </el-form-item>
-              <!--Phone输入框-->
-              <el-form-item label="Phone">
+              <!--Email输入框-->
+              <el-form-item label="Email">
                 <el-col :span="18">
-                  <el-input v-model="form.phone"></el-input>
+                  <el-input v-model="form.email"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Country输入框-->
+              <el-form-item label="Country">
+                <el-col :span="18">
+                  <el-input v-model="form.country"></el-input>
                 </el-col>
               </el-form-item>
             </el-form>
@@ -190,7 +183,7 @@
             <span slot="footer" class="dialog-footer">
           <!--取消按钮-->
           <el-button @click="centerDialogVisible = false">Cancel</el-button>
-              <!--提交按钮-->
+          <!--提交按钮-->
           <el-button type="primary" @click="save">Submit</el-button>
         </span>
           </el-dialog>

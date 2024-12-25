@@ -61,10 +61,15 @@
         </div>
       </el-header>
 
-      <>
+      <!--个人主页的核心部分-->
       <div style="text-align: center;height: 100%;padding: 0px;margin: 0px;">
+
+        <!--欢迎字样-->
         <h1 style="font-size: 50px;">{{'Welcome！'+user.username}}</h1>
+
+        <!--个人信息表单-->
         <el-descriptions  title="Personal Info Sheet" :column="2" size="40" border>
+
           <!--Username-->
           <el-descriptions-item>
             <template slot="label">
@@ -73,6 +78,7 @@
             </template>
             {{user.username}}
           </el-descriptions-item>
+
           <!--Telephone-->
           <el-descriptions-item>
             <template slot="label">
@@ -81,6 +87,7 @@
             </template>
             {{user.telephone}}
           </el-descriptions-item>
+
           <!--Country-->
           <el-descriptions-item>
             <template slot="label">
@@ -89,6 +96,7 @@
             </template>
             {{user.country}}
           </el-descriptions-item>
+
           <!--Role-->
           <el-descriptions-item>
             <template slot="label">

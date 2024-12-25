@@ -63,192 +63,194 @@
 
 
 
-      <!--用户表单部分-->
-      <div>
-        <div style="margin-bottom: 10px">
+      <el-main style="height: 100%">
+        <!--用户表单部分-->
+        <div>
+          <div style="margin-bottom: 20px">
 
-          <!--姓名输入搜索框-->
-          <el-input v-model="searchUsername" placeholder="Enter username please" style="width: 200px" suffix-icon="el-icon-search"
-                    @keyup.enter.native="loadPost"></el-input>
+            <!--姓名输入搜索框-->
+            <el-input v-model="searchUsername" placeholder="Enter username please" style="width: 200px" suffix-icon="el-icon-search"
+                      @keyup.enter.native="loadPost"></el-input>
 
-          <!--国家输入搜索框-->
-          <el-input v-model="searchCountry" placeholder="Enter Country please" style="width: 200px" suffix-icon="el-icon-search"
-                    @keyup.enter.native="loadPost"></el-input>
+            <!--国家输入搜索框-->
+            <el-input v-model="searchCountry" placeholder="Enter Country please" style="width: 200px" suffix-icon="el-icon-search"
+                      @keyup.enter.native="loadPost"></el-input>
 
-          <!--搜索按钮-->
-          <el-button type="primary" style="margin-left: 10px" @click="loadPost">Search</el-button>
-          <!--重置按钮-->
-          <el-button type="success" @click="resetParam">Reset</el-button>
-          <!--新增用户按钮-->
-          <el-button type="warning" style="margin-left: 50px" @click="addUser">New</el-button>
-        </div>
+            <!--搜索按钮-->
+            <el-button type="primary" style="margin-left: 10px" @click="loadPost">Search</el-button>
+            <!--重置按钮-->
+            <el-button type="success" @click="resetParam">Reset</el-button>
+            <!--新增用户按钮-->
+            <el-button type="warning" style="margin-left: 50px" @click="addUser">New</el-button>
+          </div>
 
-        <!--表格主体部分-->
-        <el-table
-            :data="tableData"
-            :header-cell-style="{background: '#F2F5FC', color: '#555555', textAlign: 'center'}"
-            border
-            :cell-style="{ textAlign: 'center' }"
-        >
+          <!--表格主体部分-->
+          <el-table
+              :data="tableData"
+              :header-cell-style="{background: '#F2F5FC', color: '#555555', textAlign: 'center'}"
+              border
+              :cell-style="{ textAlign: 'center' }"
+          >
 
-          <!--表头-->
-          <!--Username-->
-          <el-table-column prop="username" label="Username" width="200">
-          </el-table-column>
-          <!--Name-->
-          <el-table-column prop="telephone" label="Telephone" width="200">
-          </el-table-column>
-          <!--Age-->
-          <el-table-column prop="email" label="Email" width="200">
-          </el-table-column>
-          <!--Country-->
-          <el-table-column prop="country" label="Country" width="200">
-          </el-table-column>
-          <!--Role-->
-          <el-table-column prop="role" label="Role" width="150">
-            <!--三种角色类型分别映射成为三种彩色标签-->
-            <template slot-scope="scope">
-              <el-tag
-                  :type="scope.row.role == '0' ? 'danger' : (scope.row.role == '1' ? 'warning' : 'info')"
-                  disable-transitions>{{scope.row.role == '0' ? 'Super Admin' : (scope.row.role == '1' ? 'Admin' : 'User')}}</el-tag>
-            </template>
-          </el-table-column>
+            <!--表头-->
+            <!--Username-->
+            <el-table-column prop="username" label="Username" width="200">
+            </el-table-column>
+            <!--Name-->
+            <el-table-column prop="telephone" label="Telephone" width="200">
+            </el-table-column>
+            <!--Age-->
+            <el-table-column prop="email" label="Email" width="200">
+            </el-table-column>
+            <!--Country-->
+            <el-table-column prop="country" label="Country" width="200">
+            </el-table-column>
+            <!--Role-->
+            <el-table-column prop="role" label="Role" width="150">
+              <!--三种角色类型分别映射成为三种彩色标签-->
+              <template slot-scope="scope">
+                <el-tag
+                    :type="scope.row.role == '0' ? 'danger' : (scope.row.role == '1' ? 'warning' : 'info')"
+                    disable-transitions>{{scope.row.role == '0' ? 'Super Admin' : (scope.row.role == '1' ? 'Admin' : 'User')}}</el-tag>
+              </template>
+            </el-table-column>
 
-          <!--Operate-->
-          <el-table-column prop="operate" label="Operate" width="200">
-            <!--这里的插槽标签用于访问此行的内容-->
-            <template slot-scope="scope">
-              <!--编辑按钮-->
-              <el-button type="success" size="small" @click="editUser(scope.row)">Edit</el-button>
-              <!--删除按钮--> <!--删除确认提示框-->
-              <el-popconfirm title="Delete this user?" @confirm="delUser(scope.row.id)">
-                <el-button slot="reference" size="small" type="danger">Delete</el-button>
-              </el-popconfirm>
-            </template>
-          </el-table-column>
-        </el-table>
+            <!--Operate-->
+            <el-table-column prop="operate" label="Operate" width="200">
+              <!--这里的插槽标签用于访问此行的内容-->
+              <template slot-scope="scope">
+                <!--编辑按钮-->
+                <el-button type="success" size="small" @click="editUser(scope.row)">Edit</el-button>
+                <!--删除按钮--> <!--删除确认提示框-->
+                <el-popconfirm title="Delete this user?" @confirm="delUser(scope.row.id)">
+                  <el-button slot="reference" size="small" type="danger">Delete</el-button>
+                </el-popconfirm>
+              </template>
+            </el-table-column>
+          </el-table>
 
-        <!--分页组件-->
-        <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :page-size="pageSize"
-            :current-page="pageNum"
-            :page-sizes="[5, 10, 20, 50]"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="total">
-        </el-pagination>
+          <!--分页组件-->
+          <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :page-size="pageSize"
+              :current-page="pageNum"
+              :page-sizes="[5, 10, 20, 50]"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="total">
+          </el-pagination>
 
-        <!--点击New按钮后弹出来的表单-->
-        <el-dialog
-            title="User Information Sheet"
-            :visible.sync="centerDialogVisible"
-            width="30%"
-            center>
-          <!--表单中的值绑定到form变量中-->
-          <el-form ref="form" :model="form" label-width="80px">
-            <!--No输入框-->
-            <el-form-item label="Account">
-              <el-col :span="18">
-                <el-input v-model="form.no"></el-input>
-              </el-col>
+          <!--点击New按钮后弹出来的表单-->
+          <el-dialog
+              title="User Information Sheet"
+              :visible.sync="centerDialogVisible"
+              width="30%"
+              center>
+            <!--表单中的值绑定到form变量中-->
+            <el-form ref="form" :model="form" label-width="80px">
+              <!--No输入框-->
+              <el-form-item label="Account">
+                <el-col :span="18">
+                  <el-input v-model="form.no"></el-input>
+                </el-col>
+                <!--Name输入框-->
+              </el-form-item>
+              <el-form-item label="Name">
+                <el-col :span="18">
+                  <el-input v-model="form.name"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Password输入框-->
+              <el-form-item label="Password">
+                <el-col :span="18">
+                  <el-input v-model="form.password"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Age输入框-->
+              <el-form-item label="Age">
+                <el-col :span="18">
+                  <el-input v-model="form.age"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Sex选择输入框-->
+              <el-form-item label="Sex">
+                <el-radio-group v-model="form.sex">
+                  <el-radio label="1">Male</el-radio>
+                  <el-radio label="2">Female</el-radio>
+                </el-radio-group>
+              </el-form-item>
+              <!--Phone输入框-->
+              <el-form-item label="Phone">
+                <el-col :span="18">
+                  <el-input v-model="form.phone"></el-input>
+                </el-col>
+              </el-form-item>
+            </el-form>
+            <!--表单末端部分-->
+            <span slot="footer" class="dialog-footer">
+          <!--取消按钮-->
+          <el-button @click="centerDialogVisible = false">Cancel</el-button>
+              <!--提交按钮-->
+          <el-button type="primary" @click="save">Submit</el-button>
+        </span>
+          </el-dialog>
+
+          <!--点击Edit按钮后弹出来的表单-->
+          <el-dialog
+              title="User Information Edit Sheet"
+              :visible.sync="centerDialogVisible2"
+              width="30%"
+              center>
+            <!--表单的属性部分-->
+            <el-form ref="form" :model="editForm" label-width="80px">
+              <!--No输入框-->
+              <el-form-item label="Account">
+                <el-col :span="18">
+                  <el-input v-model="editForm.no"></el-input>
+                </el-col>
+              </el-form-item>
               <!--Name输入框-->
-            </el-form-item>
-            <el-form-item label="Name">
-              <el-col :span="18">
-                <el-input v-model="form.name"></el-input>
-              </el-col>
-            </el-form-item>
-            <!--Password输入框-->
-            <el-form-item label="Password">
-              <el-col :span="18">
-                <el-input v-model="form.password"></el-input>
-              </el-col>
-            </el-form-item>
-            <!--Age输入框-->
-            <el-form-item label="Age">
-              <el-col :span="18">
-                <el-input v-model="form.age"></el-input>
-              </el-col>
-            </el-form-item>
-            <!--Sex选择输入框-->
-            <el-form-item label="Sex">
-              <el-radio-group v-model="form.sex">
-                <el-radio label="1">Male</el-radio>
-                <el-radio label="2">Female</el-radio>
-              </el-radio-group>
-            </el-form-item>
-            <!--Phone输入框-->
-            <el-form-item label="Phone">
-              <el-col :span="18">
-                <el-input v-model="form.phone"></el-input>
-              </el-col>
-            </el-form-item>
-          </el-form>
-          <!--表单末端部分-->
-          <span slot="footer" class="dialog-footer">
-        <!--取消按钮-->
-        <el-button @click="centerDialogVisible = false">Cancel</el-button>
-            <!--提交按钮-->
-        <el-button type="primary" @click="save">Submit</el-button>
-      </span>
-        </el-dialog>
-
-        <!--点击Edit按钮后弹出来的表单-->
-        <el-dialog
-            title="User Information Edit Sheet"
-            :visible.sync="centerDialogVisible2"
-            width="30%"
-            center>
-          <!--表单的属性部分-->
-          <el-form ref="form" :model="editForm" label-width="80px">
-            <!--No输入框-->
-            <el-form-item label="Account">
-              <el-col :span="18">
-                <el-input v-model="editForm.no"></el-input>
-              </el-col>
-            </el-form-item>
-            <!--Name输入框-->
-            <el-form-item label="Name">
-              <el-col :span="18">
-                <el-input v-model="editForm.name"></el-input>
-              </el-col>
-            </el-form-item>
-            <!--Password输入框-->
-            <el-form-item label="Password">
-              <el-col :span="18">
-                <el-input v-model="editForm.password"></el-input>
-              </el-col>
-            </el-form-item>
-            <!--Age输入框-->
-            <el-form-item label="Age">
-              <el-col :span="18">
-                <el-input v-model="editForm.age"></el-input>
-              </el-col>
-            </el-form-item>
-            <!--Sex选择输入框-->
-            <el-form-item label="Sex">
-              <el-radio-group v-model="editForm.sex">
-                <el-radio label="1">Male</el-radio>
-                <el-radio label="2">Female</el-radio>
-              </el-radio-group>
-            </el-form-item>
-            <!--Phone输入框-->
-            <el-form-item label="Phone">
-              <el-col :span="18">
-                <el-input v-model="editForm.phone"></el-input>
-              </el-col>
-            </el-form-item>
-          </el-form>
-          <!--表单末端部分-->
-          <span slot="footer" class="dialog-footer">
-        <!--取消按钮-->
-        <el-button @click="centerDialogVisible2 = false">Cancel</el-button>
-            <!--提交按钮-->
-        <el-button type="primary" @click="modUser">Submit</el-button>
-  </span>
-        </el-dialog>
-      </div>
+              <el-form-item label="Name">
+                <el-col :span="18">
+                  <el-input v-model="editForm.name"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Password输入框-->
+              <el-form-item label="Password">
+                <el-col :span="18">
+                  <el-input v-model="editForm.password"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Age输入框-->
+              <el-form-item label="Age">
+                <el-col :span="18">
+                  <el-input v-model="editForm.age"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Sex选择输入框-->
+              <el-form-item label="Sex">
+                <el-radio-group v-model="editForm.sex">
+                  <el-radio label="1">Male</el-radio>
+                  <el-radio label="2">Female</el-radio>
+                </el-radio-group>
+              </el-form-item>
+              <!--Phone输入框-->
+              <el-form-item label="Phone">
+                <el-col :span="18">
+                  <el-input v-model="editForm.phone"></el-input>
+                </el-col>
+              </el-form-item>
+            </el-form>
+            <!--表单末端部分-->
+            <span slot="footer" class="dialog-footer">
+          <!--取消按钮-->
+          <el-button @click="centerDialogVisible2 = false">Cancel</el-button>
+              <!--提交按钮-->
+          <el-button type="primary" @click="modUser">Submit</el-button>
+    </span>
+          </el-dialog>
+        </div>
+       </el-main>
     </el-container>
   </el-container>
 </template>
@@ -405,8 +407,8 @@ export default {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,
-              name: this.searchName,
-              sex: this.sex,
+              username: this.searchUsername,
+              country: this.searchCountry,
             },
           })
           .then((res) => {

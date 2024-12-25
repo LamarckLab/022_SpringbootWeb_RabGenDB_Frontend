@@ -17,6 +17,11 @@ const routes = [
         component: () => import('../components/superAdmin/SuperAdminManageUsersComponent.vue'),
     },
     {
+        path: '/SuperAdmin/Authority',
+        name: 'SuperAdminAuthority',
+        component: () => import('../components/superAdmin/SuperAdminManageAuthorityComponent.vue'),
+    },
+    {
         path: '/Admin/Home',
         name: 'AdminHome',
         component: () => import('../components/admin/AdminHomeComponent.vue'),

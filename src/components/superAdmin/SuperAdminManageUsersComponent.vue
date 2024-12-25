@@ -122,7 +122,7 @@
                 <!--编辑按钮-->
                 <el-button type="success" size="small" @click="editUser(scope.row)">Edit</el-button>
                 <!--删除按钮--> <!--删除确认提示框-->
-                <el-popconfirm title="Delete this user?" @confirm="delUser(scope.row.id)">
+                <el-popconfirm title="Delete this user?" @confirm="delUser(scope.row.username)">
                   <el-button slot="reference" size="small" type="danger">Delete</el-button>
                 </el-popconfirm>
               </template>
@@ -375,8 +375,8 @@ export default {
       this.loadPost();
     },
     // Delete按钮绑定的事件，用于删除用户
-    delUser(id){
-      this.$axios.get('http://localhost:9090/del?id='+id);
+    delUser(username){
+      this.$axios.get('http://localhost:9090/del?username='+username);
       this.$message({
         type:'success',
         message:'Delete successfully'

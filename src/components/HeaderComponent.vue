@@ -39,7 +39,6 @@ export default {
         cancelButtonText: 'Cancel',
         type: 'warning',
         center: true, //文字居中显示
-
       })
           .then(() => {
             this.$message({

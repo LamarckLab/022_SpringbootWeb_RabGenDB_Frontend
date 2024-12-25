@@ -42,7 +42,7 @@
           </div>
           <el-dropdown>
             <i class="el-icon-user-solid" style="font-size: 25px"></i>
-            <span></span>
+            <span>{{user.username}}</span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item @click.native="toUser">Personal Info</el-dropdown-item>
               <el-dropdown-item @click.native="logOut">Quit</el-dropdown-item>
@@ -120,6 +120,32 @@ export default {
         this.aside_width = '200px';
         this.collapseIcon = 'el-icon-s-fold';
       }
+    },
+    toUser(){
+      this.$router.push("/SuperAdmin/Home");
+    },
+    logOut(){
+      this.$confirm('Sure to quit?', '', {
+        confirmButtonText: 'Quit',  //确认按钮的文字显示
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+        center: true, //文字居中显示
+      })
+          .then(() => {
+            this.$message({
+              type:'success',
+              message:'Quit successfully'
+            })
+            // 清除 sessionStorage 中的用户信息
+            sessionStorage.removeItem("userInfo"); //  当用户退出时, 清除sessionStorage
+            this.$router.push("/"); // 返回登录页面
+          })
+          .catch(() => {
+            this.$message({
+              type:'info',
+              message:'Cancelled'
+            })
+          })
     },
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))

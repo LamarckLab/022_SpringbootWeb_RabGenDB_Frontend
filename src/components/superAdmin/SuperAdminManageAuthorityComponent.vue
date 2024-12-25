@@ -109,7 +109,7 @@
             </el-table-column>
 
             <!--Operate-->
-            <el-table-column prop="operate" label="Operate" width="300">
+            <el-table-column prop="operate" label="Authority Management" width="300">
               <!--这里的插槽标签用于访问此行的内容-->
               <template slot-scope="scope">
                 <!--编辑按钮-->
@@ -272,7 +272,7 @@ export default {
     },
     // Edit表单中Submit按钮绑定的事件，用于修改用户信息
     modUser(){
-      this.$axios.post('http://localhost:9090/mod', this.editForm);
+      this.$axios.post('http://localhost:9090/modAuthority', this.editForm);
       this.$message({
         message: 'Edit successfully',
         type: 'success',

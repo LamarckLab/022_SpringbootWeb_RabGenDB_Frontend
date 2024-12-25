@@ -1,72 +1,72 @@
 <template>
-  <div style="display: flex;line-height: 60px">
-    <div>
-      <i :class="icon" style="font-size: 25px; cursor: pointer" @click="collapse"></i>  <!--给侧边栏控制按钮添加了点击事件，点击就会触发collapse方法-->
-    </div>
-    <div style="flex:1; text-align: center; font-size: 26px">
-      <span>Welcome to Lamarck's Warehouse Management System</span>
-    </div>
-    <el-dropdown>
-      <i class="el-icon-user-solid" style="font-size: 25px"></i>
-      <span>{{userInfo.name}}</span>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item @click.native="toUser">Personal Info</el-dropdown-item>
-        <el-dropdown-item @click.native="logOut">Quit</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
+  <div style="text-align: center;height: 100%;padding: 0px;margin: 0px;">
+    <h1 style="font-size: 50px;">{{'Welcome！'+user.name}}</h1>
+    <el-descriptions  title="Personal Info Sheet" :column="2" size="40" border>
+      <el-descriptions-item>
+        <template slot="label">
+          <i class="el-icon-s-custom"></i>
+          Account
+        </template>
+        {{user.no}}
+      </el-descriptions-item>
+      <el-descriptions-item>
+        <template slot="label">
+          <i class="el-icon-mobile-phone"></i>
+          Telephone
+        </template>
+        {{user.phone}}
+      </el-descriptions-item>
+      <el-descriptions-item>
+        <template slot="label">
+          <i class="el-icon-location-outline"></i>
+          Gender
+        </template>
+        <el-tag
+            :type="user.sex === '1' ? 'primary' : 'danger'"
+            disable-transitions><i :class="user.sex==1?'el-icon-male':'el-icon-female'"></i>{{user.sex==1?"Male":"Female"}}</el-tag>
+      </el-descriptions-item>
+      <el-descriptions-item>
+        <template slot="label">
+          <i class="el-icon-tickets"></i>
+          Role
+        </template>
+        <el-tag
+            type="success"
+            disable-transitions>{{user.roleId==0?"Super Administrator":(user.roleId==1?"Administrator":"User")}}</el-tag>
+
+      </el-descriptions-item>
+    </el-descriptions>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: "HeaderComponent",
-  props:{
-    icon:String,
-    userInfo: Object,
-  },
-  data(){
-    return{
-      // icon: 'el-icon-s-fold'
+  name: "HomeComponent",
+  data() {
+    return {
+      user:{}
     }
   },
-  methods: {
-    toUser(){
-      this.$router.push("/home"); // 返回登录页面
-    },
-    logOut(){
-      this.$confirm('Sure to quit?', '', {
-        confirmButtonText: 'Quit',  //确认按钮的文字显示
-        cancelButtonText: 'Cancel',
-        type: 'warning',
-        center: true, //文字居中显示
+  computed:{
 
-      })
-          .then(() => {
-            this.$message({
-              type:'success',
-              message:'Quit successfully'
-            })
-            // 清除 sessionStorage 中的用户信息
-            sessionStorage.removeItem("userInfo"); //  当用户退出时, 清除sessionStorage
-            this.$router.push("/"); // 返回登录页面
-          })
-          .catch(() => {
-            this.$message({
-              type:'info',
-              message:'Cancelled'
-            })
-          })
-    },
-    collapse(){
-      this.$emit('doCollapse')  // 会将这个点击事件，提交给父组件的doCollapse响应
+  },
+  methods:{
+    init(){
+      this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     }
   },
   created(){
-    this.$router.push("/home")
+    this.init()
   }
 }
 </script>
 
 <style scoped>
+.el-descriptions{
+  width:90%;
 
+  margin: 0 auto;
+  text-align: center;
+}
 </style>

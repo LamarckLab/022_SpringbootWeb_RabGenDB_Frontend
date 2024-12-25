@@ -31,6 +31,11 @@ const routes = [
         name: 'UserHome',
         component: () => import('../components/user/UserHomeComponent.vue'),
     },
+    {
+        path: '/User/RabiesOverview',
+        name: 'RabiesOverview',
+        component: () => import('../components/user/UserRabiesIntroComponent.vue'),
+    },
 
     {
         path: '/main',

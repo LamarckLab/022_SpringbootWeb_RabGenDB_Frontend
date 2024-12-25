@@ -26,9 +26,9 @@
         </el-menu-item>
 
         <!--导航栏 3-->
-        <el-menu-item index="/Three">
+        <el-menu-item index="/SuperAdmin/Authority">
           <i class="el-icon-s-custom"></i>
-          <span slot="title" style="font-size: 16px">Option Three</span>
+          <span slot="title" style="font-size: 16px">Authority Manage</span>
         </el-menu-item>
       </el-menu>
     </el-aside>
@@ -121,7 +121,7 @@ export default {
   components: {},
   data(){
     return{
-      aside_width: '200px',
+      aside_width: '220px',
       isCollapse: false,
       collapseIcon: 'el-icon-s-fold',
     }
@@ -136,7 +136,7 @@ export default {
         this.collapseIcon = 'el-icon-s-unfold';
       }
       else{
-        this.aside_width = '200px';
+        this.aside_width = '220px';
         this.collapseIcon = 'el-icon-s-fold';
       }
     },

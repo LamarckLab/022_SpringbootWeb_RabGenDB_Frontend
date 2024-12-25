@@ -359,6 +359,11 @@ export default {
       });
       this.centerDialogVisible = false;
       this.loadPost();
+      this.form.username='';
+      this.form.password='';
+      this.form.telephone='';
+      this.form.email='';
+      this.form.country='';
     },
     // Edit按钮绑定的事件，用于读取当前行信息，赋值到Edit表单
     editUser(row){

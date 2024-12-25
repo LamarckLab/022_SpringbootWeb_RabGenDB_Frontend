@@ -173,7 +173,7 @@
 
 
 export default {
-  name: "SuperAdminManageUsersComponent",
+  name: "SuperAdminManageAuthorityComponent",
   components: {},
   data(){
     return{

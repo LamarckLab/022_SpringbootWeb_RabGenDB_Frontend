@@ -1,8 +1,8 @@
 <template>
-  <!--Aside-->
-  <el-container style="height: 100%; border: 1px solid #eee; margin-top: -9px">  <!--整个页面中最大的容器-->
-    <!--Aside部分-->
-    <el-aside :width="aside_width" style="height: 100vh; background-color: rgb(238, 241, 246); margin-left: -9px">  <!--页面中的左侧导航栏-->
+  <!--整个页面中最大的容器-->
+  <el-container style="height: 100%; border: 1px solid #eee; margin-top: -9px">
+    <!--左侧导航栏-->
+    <el-aside :width="aside_width" style="height: 100vh; background-color: rgb(238, 241, 246); margin-left: -9px">
       <el-menu
           background-color="#545c64"
           text-color="#fff"
@@ -11,18 +11,21 @@
           style="height: 100%"
           :collapse="isCollapse"
           :collapse-transition="false"
-          router
-      >
+          router>
+
+        <!--导航栏 1-->
         <el-menu-item index="/One">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Option One</span>
         </el-menu-item>
 
+        <!--导航栏 2-->
         <el-menu-item index="/Two">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">Option two</span>
         </el-menu-item>
 
+        <!--导航栏 3-->
         <el-menu-item index="/Three">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Option Three</span>
@@ -31,15 +34,22 @@
     </el-aside>
 
     <el-container style="height: 100%">  <!--页面右侧的大容器-->
+
       <!--Header部分-->
-      <el-header style="text-align: right; font-size: 12px; border-bottom: darkgray 3px solid">  <!--页面右侧的header-->
+      <el-header style="text-align: right; font-size: 12px; border-bottom: darkgray 3px solid">
         <div style="display: flex;line-height: 60px">
+
+          <!--侧边栏的伸缩按钮以及实现-->
           <div >
-            <i :class="collapseIcon" style="font-size: 25px; cursor: pointer" @click="collapse"></i>  <!--给侧边栏控制按钮添加了点击事件，点击就会触发collapse方法-->
+            <i :class="collapseIcon" style="font-size: 25px; cursor: pointer" @click="collapse"></i>
           </div>
+
+          <!--页面正上方的介绍字体-->
           <div style="flex:1; text-align: center; font-size: 26px">
-            <span>Welcome to RabGenDB</span>
+            <span>RabGenDB HomePage</span>
           </div>
+
+          <!--页面右上角的下拉菜单-->
           <el-dropdown>
             <i class="el-icon-user-solid" style="font-size: 25px"></i>
             <span>{{user.username}}</span>
@@ -51,6 +61,7 @@
         </div>
       </el-header>
 
+      <>
       <div style="text-align: center;height: 100%;padding: 0px;margin: 0px;">
         <h1 style="font-size: 50px;">{{'Welcome！'+user.username}}</h1>
         <el-descriptions  title="Personal Info Sheet" :column="2" size="40" border>

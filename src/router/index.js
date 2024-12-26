@@ -36,37 +36,10 @@ const routes = [
         name: 'RabiesOverview',
         component: () => import('../components/user/UserRabiesIntroComponent.vue'),
     },
-
     {
-        path: '/main',
-        name: 'main',
-        component: () => import('../components/MainComponent'),
-        children:[
-            {
-                path: '/home',
-                name: 'home',
-                meta:{
-                    title:'home'
-                },
-                component: () => import('../components/HomeComponent'),
-            },
-            {
-                path: '/admin',
-                name: 'admin',
-                meta:{
-                    title:'Admin Management'
-                },
-                component: () => import('../components/admin/AdminManageComponent.vue'),
-            },
-            {
-                path: '/User',
-                name: 'user',
-                meta:{
-                    title:'User Management'
-                },
-                component: () => import('../components/user/UserManageComponent.vue'),
-            }
-        ]
+        path: '/User/SearchSequence',
+        name: 'SearchSequence',
+        component: () => import('../components/user/UserSequenceSearchComponent.vue'),
     },
 ]
 

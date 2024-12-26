@@ -25,7 +25,7 @@
         </el-menu-item>
 
         <!--导航栏 3-->
-        <el-menu-item index="/User/Search Sequence">
+        <el-menu-item index="/User/SearchSequence">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Search Sequence</span>
         </el-menu-item>

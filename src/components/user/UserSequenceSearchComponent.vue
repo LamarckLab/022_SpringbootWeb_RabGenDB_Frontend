@@ -66,20 +66,25 @@
         <div>
           <div style="margin-bottom: 20px">
 
-            <!--输入搜索框-->
-            <el-input v-model="searchUsername" placeholder="Enter username please" style="width: 200px" suffix-icon="el-icon-search"
+            <!--Accession精确搜索框-->
+            <el-input v-model="searchAccession" placeholder="Enter accession please" style="width: 200px" suffix-icon="el-icon-search"
                       @keyup.enter.native="loadPost"></el-input>
 
-            <!--国家输入搜索框-->
-            <el-input v-model="searchCountry" placeholder="Enter Country please" style="width: 200px" suffix-icon="el-icon-search"
+            <!--精确搜索按钮-->
+            <el-button type="danger" style="margin-left: 10px; font-weight: bold" @click="loadPost">Precise Search</el-button>
+
+            <!--Collection_country搜索框-->
+            <el-input v-model="searchCountry" placeholder="Enter Collection Country please" style="width: 260px; margin-left: 100px" suffix-icon="el-icon-search"
                       @keyup.enter.native="loadPost"></el-input>
+
+            <!--Host搜索框-->
+            <eel-input v-model="searchHost" placeholder="Enter Host please" style="width: 160px; margin-left: 10px" suffix-icon="el-icon-search"
+                      @keyup.enter.native="loadPost"></eel-input>
 
             <!--搜索按钮-->
             <el-button type="primary" style="margin-left: 10px" @click="loadPost">Search</el-button>
             <!--重置按钮-->
             <el-button type="success" @click="resetParam">Reset</el-button>
-            <!--新增用户按钮-->
-            <el-button type="warning" style="margin-left: 10px" @click="addUser">Create User</el-button>
           </div>
 
           <!--表格主体部分-->

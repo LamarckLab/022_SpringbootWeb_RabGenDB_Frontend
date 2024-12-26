@@ -1,7 +1,7 @@
 <template>
   <el-container style="height: 100%; border: 1px solid #eee; margin-top: -9px">
     <!--左侧导航栏-->
-    <el-aside :width="aside_width" style="height: 100vh; background-color: rgb(238, 241, 246); margin-left: -9px">
+    <el-aside :width="aside_width" style="background-color: rgb(238, 241, 246); margin-left: -9px">
       <el-menu
           background-color="#545c64"
           text-color="#fff"
@@ -44,8 +44,8 @@
           </div>
 
           <!--页面正上方的介绍字体-->
-          <div style="flex:1; text-align: center; font-size: 26px">
-            <span>RABV Genome DataBase</span>
+          <div class="header-style" style="flex:1; text-align: center; font-size: 42px">
+            <span>RABV</span>
           </div>
 
           <!--页面右上角的下拉菜单-->
@@ -59,6 +59,33 @@
           </el-dropdown>
         </div>
       </el-header>
+
+      <div style="padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; margin: 20px;">
+        <h2>About Rabies Virus (RABV)</h2>
+        <p class="paragraph-style">
+          Rabies virus, scientific name <em>Rabies lyssavirus</em>, is a neurotropic virus that causes rabies in animals, including humans.
+          It can cause violence, hydrophobia, and fever. Rabies transmission can also occur through the saliva of animals and less commonly through contact with human saliva.
+          <em>Rabies lyssavirus</em>, like many rhabdoviruses, has an extremely wide host range. In the wild it has been found infecting many mammalian species, while in the laboratory it has been found that birds can be infected, as well as cell cultures from mammals, birds, reptiles, and insects.
+        </p>
+        <p class="paragraph-style">
+          Rabies is reported in more than 150 countries and on all continents except Antarctica. The main burden of disease is reported in Asia and Africa, but some cases have been reported also in Europe in the past 10 years, especially in returning travellers.
+        </p>
+        <div style="text-align: center; margin-top: 40px;">
+          <img src="@/assets/images/RABV-structure.png" alt="RABV Structure" style="max-width: 100%; height: auto; border-radius: 8px;">
+        </div>
+        <h2>Structure of RABV</h2>
+        <p class="paragraph-style">
+          Rhabdoviruses have helical symmetry, so their infectious particles are approximately cylindrical in shape. They are characterized by an extremely broad host spectrum ranging from plants to insects and mammals.  human-infecting viruses more commonly have icosahedral symmetry and take shapes approximating regular polyhedra.
+        </p>
+        <p class="paragraph-style">
+          The rabies genome encodes five proteins: nucleoprotein (N), phosphoprotein (P), matrix protein (M), glycoprotein (G) and polymerase (L). All rhabdoviruses have two major structural components: a helical ribonucleoprotein core (RNP) and a surrounding envelope. In the RNP, genomic RNA is tightly encased by the nucleoprotein. Two other viral proteins, the phosphoprotein and the large protein (L-protein or polymerase) are associated with the RNP. The glycoprotein forms approximately 400 trimeric spikes which are tightly arranged on the surface of the virus. The M protein is associated both with the envelope and the RNP and may be the central protein of rhabdovirus assembly.
+        </p>
+        <p class="paragraph-style">
+          Rabies lyssavirus has a bullet-like shape with a length of about 180 nm and a cross-sectional diameter of about 75 nm. One end is rounded or conical and the other end is planar or concave. The lipoprotein envelope carries knob-like spikes composed of Glycoprotein G. Spikes do not cover the planar end of the virion (virus particle). Beneath the envelope is the membrane or matrix (M) protein layer which may be invaginated at the planar end. The core of the virion consists of helically arranged ribonucleoprotein.
+        </p>
+      </div>
+
+
 
     </el-container>
   </el-container>
@@ -134,4 +161,22 @@ export default {
   margin: 0 auto;
   text-align: center;
 }
+
+.header-style {
+  font-size: 36px; /* 字体大小，略小于之前 */
+  font-weight: 600; /* 半加粗，显得稳重 */
+  color: #333; /* 深灰色字体，正式风格 */
+  text-transform: capitalize; /* 首字母大写，显得更规范 */
+  letter-spacing: 1px; /* 适当的字间距 */
+  padding-bottom: 10px; /* 增加底部空间 */
+  margin-bottom: 20px; /* 增加外边距，与其他元素区分 */
+  font-family: "Times New Roman", Times, serif; /* 正式的字体 */
+}
+
+.paragraph-style{
+  line-height: 1.6;
+  font-size: 16px;
+  color: #333;
+}
+
 </style>

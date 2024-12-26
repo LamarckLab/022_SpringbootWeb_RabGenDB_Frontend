@@ -33,6 +33,33 @@
     </el-aside>
 
     <el-container style="height: 100%">
+
+      <!--Header部分-->
+      <el-header style="text-align: right; font-size: 12px; border-bottom: darkgray 3px solid">
+        <div style="display: flex;line-height: 60px">
+
+          <!--侧边栏的伸缩按钮以及实现-->
+          <div >
+            <i :class="collapseIcon" style="font-size: 25px; cursor: pointer" @click="collapse"></i>
+          </div>
+
+          <!--页面正上方的介绍字体-->
+          <div style="flex:1; text-align: center; font-size: 26px">
+            <span>RABV Genome DataBase</span>
+          </div>
+
+          <!--页面右上角的下拉菜单-->
+          <el-dropdown>
+            <i class="el-icon-user-solid" style="font-size: 25px"></i>
+            <span>{{user.username}}</span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item @click.native="toUser">Personal Info</el-dropdown-item>
+              <el-dropdown-item @click.native="logOut">Quit</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+      </el-header>
+
     </el-container>
   </el-container>
 
@@ -66,7 +93,7 @@ export default {
       }
     },
     toUser(){
-      this.$router.push("/SuperAdmin/Home");
+      this.$router.push("/User/Home");
     },
     logOut(){
       this.$confirm('Sure to quit?', '', {

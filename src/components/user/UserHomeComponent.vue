@@ -141,7 +141,7 @@ export default {
       }
     },
     toUser(){
-      this.$router.push("/SuperAdmin/Home");
+      this.$router.push("/User/Home");
     },
     logOut(){
       this.$confirm('Sure to quit?', '', {

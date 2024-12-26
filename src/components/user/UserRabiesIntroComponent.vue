@@ -71,7 +71,11 @@
           Rabies is reported in more than 150 countries and on all continents except Antarctica. The main burden of disease is reported in Asia and Africa, but some cases have been reported also in Europe in the past 10 years, especially in returning travellers.
         </p>
         <div style="text-align: center; margin-top: 40px;">
-          <img src="@/assets/images/RABV-structure.png" alt="RABV Structure" style="max-width: 100%; height: auto; border-radius: 8px;">
+          <img
+              src="../../assets/images/RABV-structure.png"
+              alt="RABV Structure"
+              style="width: 40%; height: auto; border-radius: 8px;"
+          />
         </div>
         <h2>Structure of RABV</h2>
         <p class="paragraph-style">
@@ -83,6 +87,13 @@
         <p class="paragraph-style">
           Rabies lyssavirus has a bullet-like shape with a length of about 180 nm and a cross-sectional diameter of about 75 nm. One end is rounded or conical and the other end is planar or concave. The lipoprotein envelope carries knob-like spikes composed of Glycoprotein G. Spikes do not cover the planar end of the virion (virus particle). Beneath the envelope is the membrane or matrix (M) protein layer which may be invaginated at the planar end. The core of the virion consists of helically arranged ribonucleoprotein.
         </p>
+        <div style="text-align: center; margin-top: 40px;">
+          <img
+              src="../../assets/images/RABV-genome.png"
+              alt="RABV Structure"
+              style="width: 70%; height: auto; border-radius: 8px;"
+          />
+        </div>
       </div>
 
 

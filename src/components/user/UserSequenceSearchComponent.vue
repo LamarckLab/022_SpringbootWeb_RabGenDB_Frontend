@@ -143,25 +143,9 @@ export default {
       pageNum: 1,
       pageSize: 5,
       total: 0,
-      searchUsername:'',
+      searchAccession:'',
       searchCountry:'',
-      centerDialogVisible: false,
-      centerDialogVisible2: false,
-      form:{
-        username:'',
-        password:'',
-        telephone:'',
-        email:'',
-        country:'',
-        role:'2',
-      },
-      editForm:{
-        username:'',
-        password:'',
-        telephone:'',
-        email:'',
-        country:'',
-      },
+      searchHost:'',
     }
   },
   props:{
@@ -220,54 +204,9 @@ export default {
     },
     // Reset按钮绑定的事件，用于重置参数
     resetParam(){
-      this.searchUsername = '';
+      this.searchAccession = '';
       this.searchCountry = '';
-    },
-    // New按钮绑定的事件，用于弹出新增角色表单
-    addUser(){
-      this.centerDialogVisible = true;
-    },
-    // 新增按钮中Submit绑定的事件，用于创建新用户
-    save(){
-      this.$axios.post('http://localhost:9090/save', this.form);
-      this.$message({
-        message: 'Submit successfully',
-        type: 'success',
-      });
-      this.centerDialogVisible = false;
-      this.loadPost();
-      this.form.username='';
-      this.form.password='';
-      this.form.telephone='';
-      this.form.email='';
-      this.form.country='';
-    },
-    // Edit按钮绑定的事件，用于读取当前行信息，赋值到Edit表单
-    editUser(row){
-      this.editForm.username = row.username;
-      this.editForm.password = row.password;
-      this.editForm.telephone = row.telephone;
-      this.editForm.email = row.email;
-      this.editForm.country = row.country;
-      this.centerDialogVisible2 = true;
-    },
-    // Edit表单中Submit按钮绑定的事件，用于修改用户信息
-    modUser(){
-      this.$axios.post('http://localhost:9090/mod', this.editForm);
-      this.$message({
-        message: 'Edit successfully',
-        type: 'success',
-      });
-      this.centerDialogVisible2  = false;
-      this.loadPost();
-    },
-    // Delete按钮绑定的事件，用于删除用户
-    delUser(username){
-      this.$axios.get('http://localhost:9090/del?username='+username);
-      this.$message({
-        type:'success',
-        message:'Delete successfully'
-      })
+      this.searchHost = '';
     },
     // 分页查询方法
     loadPost() {
@@ -276,8 +215,9 @@ export default {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,
-              username: this.searchUsername,
+              accession: this.searchAccession,
               country: this.searchCountry,
+              refinedHost: this.searchHost,
             },
           })
           .then((res) => {

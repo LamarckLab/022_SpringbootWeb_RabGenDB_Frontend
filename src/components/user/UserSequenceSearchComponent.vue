@@ -211,7 +211,7 @@ export default {
     // 分页查询方法
     loadPost() {
       this.$axios
-          .get('http://localhost:9090/listPage', {
+          .get('http://localhost:9090/listGenomePage', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,

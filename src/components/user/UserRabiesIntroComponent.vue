@@ -90,7 +90,7 @@
         <div style="text-align: center; margin-top: 40px;">
           <img
               src="../../assets/images/RABV-genome.png"
-              alt="RABV Structure"
+              alt="RABV-genome"
               style="width: 70%; height: auto; border-radius: 8px;"
           />
         </div>
@@ -101,7 +101,13 @@
         <p class="paragraph-style">
           The next step after its entry is the transcription of the viral genome by the P-L polymerase (P is an essential cofactor for the L polymerase) in order to make new viral protein. The viral polymerase can only recognize ribonucleoprotein and cannot use free RNA as template. Transcription is regulated by cis-acting sequences on the virus genome and by protein M which is not only essential for virus budding but also regulates the fraction of mRNA production to replication. Later in infection, the activity of the polymerase switches to replication in order to produce full-length positive-strand RNA copies. These complementary RNAs are used as templates to make new negative-strand RNA genomes. They are packaged together with protein N to form ribonucleoprotein which then can form new viruses.
         </p>
-
+        <div style="text-align: center; margin-top: 40px;">
+          <img
+              src="../../assets/images/RABV-map.png"
+              alt="RABV-map"
+              style="width: 70%; height: auto; border-radius: 8px;"
+          />
+        </div>
       </div>
 
 

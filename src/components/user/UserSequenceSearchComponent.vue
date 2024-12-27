@@ -83,6 +83,7 @@
 
             <!--搜索按钮-->
             <el-button type="primary" style="margin-left: 10px" @click="loadPost">FlexSearch</el-button>
+
             <!--重置按钮-->
             <el-button type="success" @click="resetParam">Reset</el-button>
           </div>

@@ -191,11 +191,10 @@ export default {
         type: 'success',
       });
       this.centerDialogVisible = false;
-      this.form.username='';
-      this.form.password='';
-      this.form.telephone='';
-      this.form.email='';
-      this.form.country='';
+      this.form.accession='';
+      this.form.collectionCountry='';
+      this.form.collectionDate='';
+      this.form.rawHost='';
     }
   },
   created(){

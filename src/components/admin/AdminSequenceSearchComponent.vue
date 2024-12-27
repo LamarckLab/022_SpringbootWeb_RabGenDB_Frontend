@@ -310,6 +310,13 @@ export default {
       });
       this.centerDialogVisible  = false;
       this.loadPost();
+    },
+    delSequence(accession){
+      this.$axios.get('http://localhost:9090/delSequence?accession='+accession);
+      this.$message({
+        type:'success',
+        message:'Delete successfully'
+      })
     }
   },
   created(){

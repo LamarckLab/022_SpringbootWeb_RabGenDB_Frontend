@@ -348,7 +348,6 @@ export default {
         type: 'success',
       });
       this.centerDialogVisible = false;
-      this.loadPost();
       this.form.username='';
       this.form.password='';
       this.form.telephone='';

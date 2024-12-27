@@ -184,6 +184,19 @@ export default {
     addSequence(){
       this.centerDialogVisible = true
     },
+    sequenceSubmit(){
+      this.$axios.post('http://localhost:9090/sequenceSubmit', this.form);
+      this.$message({
+        message: 'Submit successfully',
+        type: 'success',
+      });
+      this.centerDialogVisible = false;
+      this.form.username='';
+      this.form.password='';
+      this.form.telephone='';
+      this.form.email='';
+      this.form.country='';
+    }
   },
   created(){
     this.init()

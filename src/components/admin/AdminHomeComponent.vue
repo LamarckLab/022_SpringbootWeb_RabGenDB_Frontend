@@ -20,15 +20,15 @@
         </el-menu-item>
 
         <!--导航栏 2-->
-        <el-menu-item index="/Admin/Manage">
+        <el-menu-item index="/Admin/SequenceSearch">
           <i class="el-icon-user-solid"></i>
-          <span slot="title" style="font-size: 16px">Account Manage</span>
+          <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
         <!--导航栏 3-->
-        <el-menu-item index="/Admin/Authority">
+        <el-menu-item index="/Admin/SequenceCheck">
           <i class="el-icon-s-custom"></i>
-          <span slot="title" style="font-size: 16px">Authority Manage</span>
+          <span slot="title" style="font-size: 16px">Sequence Check</span>
         </el-menu-item>
       </el-menu>
     </el-aside>

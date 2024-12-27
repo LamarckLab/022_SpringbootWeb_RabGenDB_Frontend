@@ -27,6 +27,11 @@ const routes = [
         component: () => import('../components/admin/AdminHomeComponent.vue'),
     },
     {
+        path: '/Admin/SequenceSearch',
+        name: 'AdminSequenceSearch',
+        component: () => import('../components/admin/AdminSequenceSearchComponent.vue'),
+    },
+    {
         path: '/User/Home',
         name: 'UserHome',
         component: () => import('../components/user/UserHomeComponent.vue'),
@@ -38,7 +43,7 @@ const routes = [
     },
     {
         path: '/User/SequenceSearch',
-        name: 'SequenceSearch',
+        name: 'UserSequenceSearch',
         component: () => import('../components/user/UserSequenceSearchComponent.vue'),
     },
     {

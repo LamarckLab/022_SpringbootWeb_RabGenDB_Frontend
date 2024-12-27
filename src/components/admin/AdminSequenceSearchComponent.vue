@@ -6,35 +6,30 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
-          default-active="/User/SequenceSearch"
+          default-active="/Admin/SequenceSearch"
           style="height: 100%"
           :collapse="isCollapse"
           :collapse-transition="false"
           router>
 
         <!--导航栏 1-->
-        <el-menu-item index="/User/Home">
+        <el-menu-item index="/Admin/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
         <!--导航栏 2-->
-        <el-menu-item index="/User/RabiesOverview">
+        <el-menu-item index="/Admin/SequenceSearch">
           <i class="el-icon-user-solid"></i>
-          <span slot="title" style="font-size: 16px">RABV Overview</span>
-        </el-menu-item>
-
-        <!--导航栏 3-->
-        <el-menu-item index="/User/SequenceSearch">
-          <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
-        <!--导航栏 4-->
-        <el-menu-item index="/User/SequenceSubmit">
+        <!--导航栏 3-->
+        <el-menu-item index="/Admin/SequenceCheck">
           <i class="el-icon-s-custom"></i>
-          <span slot="title" style="font-size: 16px">Sequence Submit</span>
+          <span slot="title" style="font-size: 16px">Sequence Check</span>
         </el-menu-item>
+
       </el-menu>
     </el-aside>
 
@@ -139,7 +134,7 @@
 
 <script>
 export default {
-  name: "UserSequenceSearchComponent",
+  name: "AdminSequenceSearchComponent",
   components: {},
   data(){
     return{

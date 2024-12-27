@@ -25,9 +25,15 @@
         </el-menu-item>
 
         <!--导航栏 3-->
-        <el-menu-item index="/User/SearchSequence">
+        <el-menu-item index="/User/SequenceSearch">
           <i class="el-icon-s-custom"></i>
-          <span slot="title" style="font-size: 16px">Search Sequence</span>
+          <span slot="title" style="font-size: 16px">Sequence Search</span>
+        </el-menu-item>
+
+        <!--导航栏 4-->
+        <el-menu-item index="/User/SequenceSubmit">
+          <i class="el-icon-s-custom"></i>
+          <span slot="title" style="font-size: 16px">Sequence Submit</span>
         </el-menu-item>
       </el-menu>
     </el-aside>

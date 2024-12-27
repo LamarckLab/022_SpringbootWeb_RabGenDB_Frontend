@@ -37,8 +37,13 @@ const routes = [
         component: () => import('../components/user/UserRabiesIntroComponent.vue'),
     },
     {
-        path: '/User/SearchSequence',
-        name: 'SearchSequence',
+        path: '/User/SequenceSearch',
+        name: 'SequenceSearch',
+        component: () => import('../components/user/UserSequenceSearchComponent.vue'),
+    },
+    {
+        path: '/User/SequenceSubmit',
+        name: 'SequenceSubmit',
         component: () => import('../components/user/UserSequenceSearchComponent.vue'),
     },
 ]

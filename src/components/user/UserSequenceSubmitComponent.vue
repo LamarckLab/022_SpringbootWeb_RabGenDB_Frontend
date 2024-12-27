@@ -7,7 +7,7 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
-          default-active="/User/Home"
+          default-active="/User/SequenceSubmit"
           style="height: 100%"
           :collapse="isCollapse"
           :collapse-transition="false"
@@ -72,8 +72,71 @@
 
 <script>
 
+
+export default {
+  name: "SuperAdminHomeComponent",
+  components: {},
+  data(){
+    return{
+      aside_width: '220px',
+      isCollapse: false,
+      collapseIcon: 'el-icon-s-fold',
+    }
+  },
+  props:{
+  },
+  methods:{
+    collapse(){
+      this.isCollapse = !this.isCollapse;
+      if(this.isCollapse){
+        this.aside_width = '64px';
+        this.collapseIcon = 'el-icon-s-unfold';
+      }
+      else{
+        this.aside_width = '220px';
+        this.collapseIcon = 'el-icon-s-fold';
+      }
+    },
+    toUser(){
+      this.$router.push("/User/Home");
+    },
+    logOut(){
+      this.$confirm('Sure to quit?', '', {
+        confirmButtonText: 'Quit',  //确认按钮的文字显示
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+        center: true, //文字居中显示
+      })
+          .then(() => {
+            this.$message({
+              type:'success',
+              message:'Quit successfully'
+            })
+            // 清除 sessionStorage 中的用户信息
+            sessionStorage.removeItem("userInfo"); //  当用户退出时, 清除sessionStorage
+            this.$router.push("/"); // 返回登录页面
+          })
+          .catch(() => {
+            this.$message({
+              type:'info',
+              message:'Cancelled'
+            })
+          })
+    },
+    init(){
+      this.user = JSON.parse(sessionStorage.getItem('userInfo'))
+    }
+  },
+  created(){
+    this.init()
+  }
+}
 </script>
 
-<style>
-
+<style  scoped>
+.el-descriptions {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
 </style>

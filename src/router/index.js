@@ -44,7 +44,7 @@ const routes = [
     {
         path: '/User/SequenceSubmit',
         name: 'SequenceSubmit',
-        component: () => import('../components/user/UserSequenceSearchComponent.vue'),
+        component: () => import('../components/user/UserSequenceSubmitComponent.vue'),
     },
 ]
 

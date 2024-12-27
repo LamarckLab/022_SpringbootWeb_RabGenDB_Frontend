@@ -6,7 +6,7 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
-          default-active="/User/SearchSequence"
+          default-active="/User/SequenceSearch"
           style="height: 100%"
           :collapse="isCollapse"
           :collapse-transition="false"

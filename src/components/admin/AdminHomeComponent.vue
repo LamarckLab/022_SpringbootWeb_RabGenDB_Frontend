@@ -2,7 +2,7 @@
   <!--整个页面中最大的容器-->
   <el-container style="height: 100%; border: 1px solid #eee; margin-top: -9px">
     <!--左侧导航栏-->
-    <el-aside :width="aside_width" style="height: 100vh; background-color: rgb(238, 241, 246); margin-left: -9px">
+    <el-aside :width="aside_width" style="height: 1000vh; background-color: rgb(238, 241, 246); margin-left: -9px">
       <el-menu
           background-color="#545c64"
           text-color="#fff"

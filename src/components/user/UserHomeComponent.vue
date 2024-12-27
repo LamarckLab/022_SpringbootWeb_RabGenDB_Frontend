@@ -124,7 +124,7 @@
 
 
 export default {
-  name: "SuperAdminHomeComponent",
+  name: "UserHomeComponent",
   components: {},
   data(){
     return{

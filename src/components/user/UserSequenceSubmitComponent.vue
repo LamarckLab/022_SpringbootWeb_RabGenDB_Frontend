@@ -66,6 +66,20 @@
           </el-dropdown>
         </div>
       </el-header>
+
+      <div style="margin-left: 30px; margin-top: 30px">
+        <el-form :label-position="labelPosition" label-width="80px" :model="submitForm">
+          <el-form-item label="Accession">
+            <el-input v-model="submitForm.accession"></el-input>
+          </el-form-item>
+          <el-form-item label="Collection Country">
+            <el-input v-model="submitForm.collectionCountry"></el-input>
+          </el-form-item>
+          <el-form-item label="Collection Date">
+            <el-input v-model="submitForm.collectionDate"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
     </el-container>
   </el-container>
 </template>
@@ -74,13 +88,19 @@
 
 
 export default {
-  name: "SuperAdminHomeComponent",
+  name: "UserSequenceSubmitComponent",
   components: {},
   data(){
     return{
       aside_width: '220px',
       isCollapse: false,
       collapseIcon: 'el-icon-s-fold',
+      labelPosition: 'top',
+      submitForm: {
+        name: '',
+        region: '',
+        type: '',
+      }
     }
   },
   props:{

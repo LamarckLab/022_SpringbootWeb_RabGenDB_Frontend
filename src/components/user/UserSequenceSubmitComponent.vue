@@ -68,17 +68,51 @@
       </el-header>
 
       <div style="margin-left: 30px; margin-top: 30px">
-        <el-form :label-position="labelPosition" label-width="80px" :model="submitForm">
-          <el-form-item label="Accession">
-            <el-input v-model="submitForm.accession"></el-input>
-          </el-form-item>
-          <el-form-item label="Collection Country">
-            <el-input v-model="submitForm.collectionCountry"></el-input>
-          </el-form-item>
-          <el-form-item label="Collection Date">
-            <el-input v-model="submitForm.collectionDate"></el-input>
-          </el-form-item>
-        </el-form>
+        <!--序列提交按钮-->
+        <el-button type="warning" style="margin-left: 10px" @click="addSequence" >Sequence Submit</el-button>
+
+        <!--点击Sequence Submit按钮后弹出来的表单-->
+        <el-dialog
+            title="Sequence Submit"
+            :visible.sync="centerDialogVisible"
+            width="60%"
+            center>
+          <!--表单中的值绑定到form变量中-->
+          <el-form ref="form" :model="form" label-width="220px">
+            <!--Accession输入框-->
+            <el-form-item label="Accession">
+              <el-col :span="18">
+                <el-input v-model="form.accession"></el-input>
+              </el-col>
+              <!--Collection Country输入框-->
+            </el-form-item>
+            <el-form-item label="Collection Country">
+              <el-col :span="18">
+                <el-input v-model="form.collectionCountry"></el-input>
+              </el-col>
+            </el-form-item>
+            <!--Collection Date输入框-->
+            <el-form-item label="Collection Date">
+              <el-col :span="18">
+                <el-input v-model="form.collectionDate"></el-input>
+              </el-col>
+            </el-form-item>
+            <!--Host输入框-->
+            <el-form-item label="Host">
+              <el-col :span="18">
+                <el-input v-model="form.host"></el-input>
+              </el-col>
+            </el-form-item>
+          </el-form>
+          <!--表单末端部分-->
+          <span slot="footer" class="dialog-footer">
+          <!--取消按钮-->
+          <el-button @click="centerDialogVisible = false">Cancel</el-button>
+            <!--提交按钮-->
+          <el-button type="primary" @click="sequenceSubmit">Submit</el-button>
+        </span>
+        </el-dialog>
+
       </div>
     </el-container>
   </el-container>
@@ -95,12 +129,13 @@ export default {
       aside_width: '220px',
       isCollapse: false,
       collapseIcon: 'el-icon-s-fold',
-      labelPosition: 'top',
-      submitForm: {
-        name: '',
-        region: '',
-        type: '',
-      }
+      centerDialogVisible: false,
+      form:{
+        accession:'',
+        collectionCountry:'',
+        collectionDate:'',
+        host:'',
+      },
     }
   },
   props:{
@@ -145,7 +180,10 @@ export default {
     },
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
-    }
+    },
+    addSequence(){
+      this.centerDialogVisible = true
+    },
   },
   created(){
     this.init()

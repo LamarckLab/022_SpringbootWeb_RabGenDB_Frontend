@@ -100,7 +100,7 @@
             <!--Host输入框-->
             <el-form-item label="Host">
               <el-col :span="18">
-                <el-input v-model="form.host"></el-input>
+                <el-input v-model="form.rawHost"></el-input>
               </el-col>
             </el-form-item>
           </el-form>
@@ -134,7 +134,7 @@ export default {
         accession:'',
         collectionCountry:'',
         collectionDate:'',
-        host:'',
+        rawHost:'',
       },
     }
   },

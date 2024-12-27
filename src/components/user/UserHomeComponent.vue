@@ -1,8 +1,9 @@
 <template>
-  <!--整个页面中最大的容器-->
+  <!--整个页面的大容器-->
   <el-container style="height: 100%; border: 1px solid #eee; margin-top: -9px">
-    <!--左侧导航栏-->
+    <!--侧边栏-->
     <el-aside :width="aside_width" style="height: 100vh; background-color: rgb(238, 241, 246); margin-left: -9px">
+      <!--侧边栏参数-->
       <el-menu
           background-color="#545c64"
           text-color="#fff"
@@ -13,25 +14,25 @@
           :collapse-transition="false"
           router>
 
-        <!--导航栏 1-->
+        <!--Home导航栏-->
         <el-menu-item index="/User/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--导航栏 2-->
+        <!--RABV Overview导航栏-->
         <el-menu-item index="/User/RabiesOverview">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">RABV Overview</span>
         </el-menu-item>
 
-        <!--导航栏 3-->
+        <!--Sequence Search导航栏-->
         <el-menu-item index="/User/SequenceSearch">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
-        <!--导航栏 4-->
+        <!--Sequence Submit导航栏-->
         <el-menu-item index="/User/SequenceSubmit">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Submit</span>
@@ -39,7 +40,7 @@
       </el-menu>
     </el-aside>
 
-    <el-container style="height: 100%">  <!--页面右侧的大容器-->
+    <el-container style="height: 100%">  <!--页面右侧大容器-->
 
       <!--Header部分-->
       <el-header style="text-align: right; font-size: 12px; border-bottom: darkgray 3px solid">

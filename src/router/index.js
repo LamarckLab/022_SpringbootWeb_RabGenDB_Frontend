@@ -34,7 +34,7 @@ const routes = [
     {
         path: '/User/RabiesOverview',
         name: 'RabiesOverview',
-        component: () => import('../components/user/UserRabiesIntroComponent.vue'),
+        component: () => import('../components/user/UserRabiesOverviewComponent.vue'),
     },
     {
         path: '/User/SequenceSearch',

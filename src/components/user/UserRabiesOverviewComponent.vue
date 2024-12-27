@@ -1,6 +1,7 @@
 <template>
+  <!--整个页面的大容器-->
   <el-container style="height: 100%; border: 1px solid #eee; margin-top: -9px">
-    <!--左侧导航栏-->
+    <!--导航栏-->
     <el-aside :width="aside_width" style="background-color: rgb(238, 241, 246); margin-left: -9px">
       <el-menu
           background-color="#545c64"
@@ -12,25 +13,25 @@
           :collapse-transition="false"
           router>
 
-        <!--导航栏 1-->
+        <!--Home导航栏-->
         <el-menu-item index="/User/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--导航栏 2-->
+        <!--RABV Overview导航栏-->
         <el-menu-item index="/User/RabiesOverview">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">RABV Overview</span>
         </el-menu-item>
 
-        <!--导航栏 3-->
+        <!--Sequence Search导航栏-->
         <el-menu-item index="/User/SequenceSearch">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
-        <!--导航栏 4-->
+        <!--Sequence Submit导航栏-->
         <el-menu-item index="/User/SequenceSubmit">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Submit</span>
@@ -127,7 +128,7 @@
 
 
 export default {
-  name: "SuperAdminHomeComponent",
+  name: "UserRabiesOverviewComponent",
   components: {},
   data(){
     return{

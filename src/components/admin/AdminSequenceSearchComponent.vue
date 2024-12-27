@@ -101,16 +101,28 @@
             <el-table-column prop="accession" label="Accession" width="240">
             </el-table-column>
             <!--Name-->
-            <el-table-column prop="collectionCountry" label="Collection Country" width="240">
+            <el-table-column prop="collectionCountry" label="Collection Country" width="200">
             </el-table-column>
             <!--Age-->
-            <el-table-column prop="collectionDate" label="Collection Date" width="240">
+            <el-table-column prop="collectionDate" label="Collection Date" width="200">
             </el-table-column>
             <!--Country-->
-            <el-table-column prop="rawHost" label="Raw Host" width="240">
+            <el-table-column prop="rawHost" label="Raw Host" width="200">
             </el-table-column>
             <!--Role-->
-            <el-table-column prop="refinedHost" label="Refined Host" width="240">
+            <el-table-column prop="refinedHost" label="Refined Host" width="200">
+            </el-table-column>
+            <!--Operate-->
+            <el-table-column prop="operate" label="Operate" width="200">
+              <!--这里的插槽标签用于访问此行的内容-->
+              <template slot-scope="scope">
+                <!--编辑按钮-->
+                <el-button type="success" size="small" @click="editSequence(scope.row)">Edit</el-button>
+                <!--删除按钮--> <!--删除确认提示框-->
+                <el-popconfirm title="Delete this sequence?" @confirm="delSequence(scope.row.accession)">
+                  <el-button slot="reference" size="small" type="danger">Delete</el-button>
+                </el-popconfirm>
+              </template>
             </el-table-column>
           </el-table>
 
@@ -125,6 +137,53 @@
               :total="total">
           </el-pagination>
 
+          <!--点击Edit按钮后弹出来的表单-->
+          <el-dialog
+              title="Sequence Information Edit Sheet"
+              :visible.sync="centerDialogVisible"
+              width="50%"
+              center>
+            <!--表单的属性部分-->
+            <el-form ref="form" :model="editForm" label-width="200px">
+              <!--Accession输入框-->
+              <el-form-item label="Accession :">
+                <el-col :span="18">
+                  <span>{{this.editForm.accession}}</span>
+                </el-col>
+              </el-form-item>
+              <!--Collection Country输入框-->
+              <el-form-item label="Collection Country">
+                <el-col :span="18">
+                  <el-input v-model="editForm.collectionCountry"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Collection Date输入框-->
+              <el-form-item label="Collection Date">
+                <el-col :span="18">
+                  <el-input v-model="editForm.collectionDate"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Raw Host输入框-->
+              <el-form-item label="Raw Host">
+                <el-col :span="18">
+                  <el-input v-model="editForm.rawHost"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Refined Host输入框-->
+              <el-form-item label="Refined Host">
+                <el-col :span="18">
+                  <el-input v-model="editForm.refinedHost"></el-input>
+                </el-col>
+              </el-form-item>
+            </el-form>
+            <!--表单末端部分-->
+            <span slot="footer" class="dialog-footer">
+          <!--取消按钮-->
+          <el-button @click="centerDialogVisible = false">Cancel</el-button>
+              <!--提交按钮-->
+          <el-button type="primary" @click="modSequence">Submit</el-button>
+    </span>
+          </el-dialog>
 
         </div>
       </el-main>
@@ -148,6 +207,14 @@ export default {
       searchAccession:'',
       searchCountry:'',
       searchHost:'',
+      centerDialogVisible: false,
+      editForm:{
+        accession:'',
+        collectionCountry:'',
+        collectionDate:'',
+        rawHost:'',
+        refinedHost:'',
+      }
     }
   },
   props:{
@@ -227,6 +294,23 @@ export default {
             this.total = res.data.total;
           });
     },
+    editSequence(row){
+      this.editForm.accession = row.accession;
+      this.editForm.collectionCountry = row.collectionCountry;
+      this.editForm.collectionDate = row.collectionDate;
+      this.editForm.rawHost = row.rawHost;
+      this.editForm.refinedHost = row.refinedHost;
+      this.centerDialogVisible = true
+    },
+    modSequence(){
+      this.$axios.post('http://localhost:9090/modSequence', this.editForm);
+      this.$message({
+        message: 'Edit successfully',
+        type: 'success',
+      });
+      this.centerDialogVisible  = false;
+      this.loadPost();
+    }
   },
   created(){
     this.init()

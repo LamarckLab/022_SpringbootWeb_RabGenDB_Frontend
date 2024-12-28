@@ -1,4 +1,5 @@
 <template>
+  <!--页面中的大容器-->
   <el-container style="height: 100%; border: 1px solid #eee; margin-top: -9px">
     <!--左侧导航栏-->
     <el-aside :width="aside_width" style="height: 100vh; background-color: rgb(238, 241, 246); margin-left: -9px">
@@ -12,19 +13,19 @@
           :collapse-transition="false"
           router>
 
-        <!--导航栏 1-->
+        <!--管理员Home页-->
         <el-menu-item index="/Admin/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--导航栏 2-->
+        <!--序列搜索-->
         <el-menu-item index="/Admin/SequenceSearch">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
-        <!--导航栏 3-->
+        <!--新序列核查-->
         <el-menu-item index="/Admin/SequenceCheck">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Check</span>
@@ -65,29 +66,6 @@
       <el-main style="height: 100%">
         <!--序列表单部分-->
         <div>
-          <div style="margin-bottom: 20px">
-
-            <!--Accession精确搜索框-->
-            <el-input v-model="searchAccession" placeholder="Enter accession please" style="width: 200px" suffix-icon="el-icon-search"
-                      @keyup.enter.native="loadPost"></el-input>
-
-            <!--精确搜索按钮-->
-            <el-button type="danger" style="margin-left: 10px; font-weight: bold" @click="loadPost">Precise Search</el-button>
-
-            <!--Collection_country模糊搜索框-->
-            <el-input v-model="searchCountry" placeholder="Enter Collection Country please" style="width: 260px; margin-left: 100px" suffix-icon="el-icon-search"
-                      @keyup.enter.native="loadPost"></el-input>
-
-            <!--Host模糊搜索框-->
-            <el-input v-model="searchHost" placeholder="Enter Host please" style="width: 160px; margin-left: 10px" suffix-icon="el-icon-search"
-                      @keyup.enter.native="loadPost"></el-input>
-
-            <!--搜索按钮-->
-            <el-button type="primary" style="margin-left: 10px" @click="loadPost">FlexSearch</el-button>
-
-            <!--重置按钮-->
-            <el-button type="success" @click="resetParam">Reset</el-button>
-          </div>
 
           <!--表格主体部分-->
           <el-table
@@ -145,9 +123,6 @@ export default {
       pageNum: 1,
       pageSize: 5,
       total: 0,
-      searchAccession:'',
-      searchCountry:'',
-      searchHost:'',
     }
   },
   props:{
@@ -204,22 +179,13 @@ export default {
       this.pageNum = val;
       this.loadPost();
     },
-    // Reset按钮绑定的事件，用于重置参数
-    resetParam(){
-      this.searchAccession = '';
-      this.searchCountry = '';
-      this.searchHost = '';
-    },
     // 分页查询方法
     loadPost() {
       this.$axios
-          .get('http://localhost:9090/listGenomePage', {
+          .get('http://localhost:9090/listGenomeTempPage', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,
-              accession: this.searchAccession,
-              country: this.searchCountry,
-              refinedHost: this.searchHost,
             },
           })
           .then((res) => {

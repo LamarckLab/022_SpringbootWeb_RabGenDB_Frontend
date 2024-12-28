@@ -11,7 +11,7 @@
           <!--Username输入框-->
           <el-form-item label="Username" prop="username">
             <el-input style="width: 200px" type="text" v-model="loginForm.username"
-                      autocomplete="off" size="small"></el-input>
+                      autocomplete="off" size="small" @keyup.enter.native="confirm"></el-input>
           </el-form-item>
 
           <!--Password输入框-->

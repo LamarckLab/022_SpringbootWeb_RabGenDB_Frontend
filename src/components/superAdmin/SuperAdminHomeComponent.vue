@@ -1,5 +1,5 @@
 <template>
-  <!--整个页面中最大的容器-->
+  <!--整个页面的大容器-->
   <el-container style="height: 100%; border: 1px solid #eee; margin-top: -9px">
     <!--左侧导航栏-->
     <el-aside :width="aside_width" style="height: 100vh; background-color: rgb(238, 241, 246); margin-left: -9px">
@@ -13,19 +13,19 @@
           :collapse-transition="false"
           router>
 
-        <!--导航栏 1-->
+        <!--超管Home-->
         <el-menu-item index="/SuperAdmin/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--导航栏 2-->
+        <!--用户信息管理-->
         <el-menu-item index="/SuperAdmin/Manage">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">Account Manage</span>
         </el-menu-item>
 
-        <!--导航栏 3-->
+        <!--用户权限管理-->
         <el-menu-item index="/SuperAdmin/Authority">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Authority Manage</span>

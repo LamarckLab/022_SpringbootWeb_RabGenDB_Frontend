@@ -175,25 +175,25 @@
           center>
         <!--表单中的值绑定到form1变量中-->
         <el-form ref="form" :model="form1" label-width="220px">
-          <!--Accession输入框-->
+          <!--Accession浏览框-->
           <el-form-item label="Accession :">
             <el-col :span="18">
               <span>{{form1.accession}}</span>
             </el-col>
-            <!--Collection Country输入框-->
+            <!--Collection Country浏览框-->
           </el-form-item>
           <el-form-item label="Collection Country :">
             <el-col :span="18">
               <span>{{form1.collectionCountry}}</span>
             </el-col>
           </el-form-item>
-          <!--Collection Date输入框-->
+          <!--Collection Date浏览框-->
           <el-form-item label="Collection Date :">
             <el-col :span="18">
               <span>{{form1.collectionDate}}</span>
             </el-col>
           </el-form-item>
-          <!--RawHost输入框-->
+          <!--RawHost浏览框-->
           <el-form-item label="Raw Host :">
             <el-col :span="18">
               <span>{{form1.rawHost}}</span>

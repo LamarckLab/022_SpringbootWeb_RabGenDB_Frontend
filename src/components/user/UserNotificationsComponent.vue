@@ -99,6 +99,14 @@
           <!--Raw Host-->
           <el-table-column prop="rawHost" label="Raw Host" width="240">
           </el-table-column>
+          <!--Operate-->
+          <el-table-column prop="operate" label="Operate" width="200">
+            <!--这里的插槽标签用于访问此行的内容-->
+            <template slot-scope="scope">
+              <!--查看按钮-->
+              <el-button type="primary" size="medium" @click="viewSequence(scope.row)">View</el-button>
+            </template>
+          </el-table-column>
         </el-table>
       </div>
 
@@ -131,7 +139,7 @@
       </div>
 
 
-      <!--这个部分是以及通过的申请-->
+      <!--这个部分是已经通过的申请-->
       <div style="margin-top: 50px">
         <span style="margin-left: 30px; font-weight: bold; font-size: 20px">Accepted application</span>
         <div style="margin-top: 15px"></div>
@@ -158,6 +166,47 @@
         </el-table>
       </div>
 
+
+      <!--点击Waiting for Check部分的View按钮后弹出来的表单-->
+      <el-dialog
+          title="Sequence Info"
+          :visible.sync="centerDialogVisible1"
+          width="40%"
+          center>
+        <!--表单中的值绑定到form1变量中-->
+        <el-form ref="form" :model="form1" label-width="220px">
+          <!--Accession输入框-->
+          <el-form-item label="Accession :">
+            <el-col :span="18">
+              <span>{{form1.accession}}</span>
+            </el-col>
+            <!--Collection Country输入框-->
+          </el-form-item>
+          <el-form-item label="Collection Country :">
+            <el-col :span="18">
+              <span>{{form1.collectionCountry}}</span>
+            </el-col>
+          </el-form-item>
+          <!--Collection Date输入框-->
+          <el-form-item label="Collection Date :">
+            <el-col :span="18">
+              <span>{{form1.collectionDate}}</span>
+            </el-col>
+          </el-form-item>
+          <!--RawHost输入框-->
+          <el-form-item label="Raw Host :">
+            <el-col :span="18">
+              <span>{{form1.rawHost}}</span>
+            </el-col>
+          </el-form-item>
+        </el-form>
+        <!--表单末端部分-->
+        <span slot="footer" class="dialog-footer">
+          <!--取消按钮-->
+          <el-button @click="centerDialogVisible1 = false">Cancel</el-button>
+        </span>
+      </el-dialog>
+
     </el-container>
   </el-container>
 </template>
@@ -177,7 +226,13 @@ export default {
       tableData1: [],
       tableData2: [],
       tableData3: [],
-
+      centerDialogVisible1: false,
+      form1:{
+        accession:'',
+        collectionCountry:'',
+        collectionDate:'',
+        rawHost:'',
+      },
     }
   },
   methods:{
@@ -225,7 +280,7 @@ export default {
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     },
-    // Waiting for check
+    // 等待检查的序列申请
     waitingForCheck(){
       this.$axios
           .get('http://localhost:9090/sequenceWaitingForCheck', {
@@ -240,7 +295,7 @@ export default {
             this.total = res.data.total;
           });
     },
-    // Rejected Applications
+    // 被打回的序列申请
     rejectedApplications(){
       this.$axios
           .get('http://localhost:9090/rejectedApplications', {
@@ -255,7 +310,7 @@ export default {
             this.total = res.data.total;
           });
     },
-    // Accepted Applications
+    // 已经通过的序列申请
     acceptedApplications(){
       this.$axios
           .get('http://localhost:9090/acceptedApplications', {
@@ -269,6 +324,13 @@ export default {
             this.tableData3 = res.data.data;
             this.total = res.data.total;
           });
+    },
+    viewSequence(row){
+      this.form1.accession = row.accession;
+      this.form1.collectionCountry = row.collectionCountry;
+      this.form1.collectionDate = row.collectionDate;
+      this.form1.rawHost = row.rawHost;
+      this.centerDialogVisible1 = true;
     }
   },
   created(){

@@ -81,10 +81,10 @@
             center>
           <!--表单中的值绑定到form变量中-->
           <el-form ref="form" :model="form" label-width="220px">
-            <!--Username展示框-->
-            <el-form-item label="Username :">
+            <!--Username输入框-->
+            <el-form-item label="Username">
               <el-col :span="18">
-                <span>{{user.username}}</span>
+                <el-input v-model="form.username"></el-input>
               </el-col>
             </el-form-item>
             <!--Accession输入框-->
@@ -139,12 +139,14 @@ export default {
       isCollapse: false,
       collapseIcon: 'el-icon-s-fold',
       centerDialogVisible: false,
-      // 表单中的四个属性
+      // 表单中的六个属性
       form:{
         accession:'',
         collectionCountry:'',
         collectionDate:'',
         rawHost:'',
+        username: '',
+        isSubmit:'1',
       },
     }
   },
@@ -200,7 +202,7 @@ export default {
     },
     // 提交表单时, 点击submit后触发的事件
     sequenceSubmit(){
-      this.$axios.post('http://localhost:9090/sequenceSubmit', this.form);
+      this.$axios.post('http://localhost:9090/sequenceSave', this.form);
       this.$message({
         message: 'Submit successfully',
         type: 'success',
@@ -210,6 +212,7 @@ export default {
       this.form.collectionCountry='';
       this.form.collectionDate='';
       this.form.rawHost='';
+      this.form.username = '';
     }
   },
   created(){

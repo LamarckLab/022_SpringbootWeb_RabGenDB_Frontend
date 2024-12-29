@@ -56,6 +56,11 @@ const routes = [
         name: 'SequenceSubmit',
         component: () => import('../components/user/UserSequenceSubmitComponent.vue'),
     },
+    {
+        path: '/User/Notifications',
+        name: 'UserNotifications',
+        component: () => import('../components/user/UserNotificationsComponent.vue'),
+    },
 ]
 
 const router = new VueRouter(

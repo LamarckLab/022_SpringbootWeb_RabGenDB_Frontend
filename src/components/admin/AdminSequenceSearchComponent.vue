@@ -1,4 +1,5 @@
 <template>
+  <!--整个页面的大容器-->
   <el-container style="height: 100%; border: 1px solid #eee; margin-top: -9px">
     <!--左侧导航栏-->
     <el-aside :width="aside_width" style="height: 100vh; background-color: rgb(238, 241, 246); margin-left: -9px">
@@ -12,24 +13,23 @@
           :collapse-transition="false"
           router>
 
-        <!--导航栏 1-->
+        <!--管理员Home页-->
         <el-menu-item index="/Admin/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--导航栏 2-->
+        <!--序列搜索-->
         <el-menu-item index="/Admin/SequenceSearch">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
-        <!--导航栏 3-->
+        <!--新序列核查-->
         <el-menu-item index="/Admin/SequenceCheck">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Check</span>
         </el-menu-item>
-
       </el-menu>
     </el-aside>
 
@@ -67,23 +67,23 @@
         <div>
           <div style="margin-bottom: 20px">
 
-            <!--Accession精确搜索框-->
+            <!--Accession精确搜索输入框-->
             <el-input v-model="searchAccession" placeholder="Enter accession please" style="width: 200px" suffix-icon="el-icon-search"
-                      @keyup.enter.native="loadPost"></el-input>
+                      @keyup.enter.native="preciseSearch"></el-input>
 
             <!--精确搜索按钮-->
-            <el-button type="danger" style="margin-left: 10px; font-weight: bold" @click="loadPost">Precise Search</el-button>
+            <el-button type="danger" style="margin-left: 10px; font-weight: bold" @click="preciseSearch">Precise Search</el-button>
 
-            <!--Collection_country模糊搜索框-->
+            <!--Collection_country模糊搜索输入框-->
             <el-input v-model="searchCountry" placeholder="Enter Collection Country please" style="width: 260px; margin-left: 100px" suffix-icon="el-icon-search"
-                      @keyup.enter.native="loadPost"></el-input>
+                      @keyup.enter.native="flexSearch"></el-input>
 
-            <!--Host模糊搜索框-->
+            <!--Host模糊搜索输入框-->
             <el-input v-model="searchHost" placeholder="Enter Host please" style="width: 160px; margin-left: 10px" suffix-icon="el-icon-search"
-                      @keyup.enter.native="loadPost"></el-input>
+                      @keyup.enter.native="flexSearch"></el-input>
 
-            <!--搜索按钮-->
-            <el-button type="primary" style="margin-left: 10px" @click="loadPost">FlexSearch</el-button>
+            <!--模糊搜索按钮-->
+            <el-button type="primary" style="margin-left: 10px" @click="flexSearch">FlexSearch</el-button>
 
             <!--重置按钮-->
             <el-button type="success" @click="resetParam">Reset</el-button>
@@ -97,32 +97,20 @@
               :cell-style="{ textAlign: 'center' }"
           >
             <!--表头-->
-            <!--Username-->
+            <!--Accession-->
             <el-table-column prop="accession" label="Accession" width="240">
             </el-table-column>
-            <!--Name-->
-            <el-table-column prop="collectionCountry" label="Collection Country" width="200">
+            <!--Collection Country-->
+            <el-table-column prop="collectionCountry" label="Collection Country" width="240">
             </el-table-column>
-            <!--Age-->
-            <el-table-column prop="collectionDate" label="Collection Date" width="200">
+            <!--Collection Date-->
+            <el-table-column prop="collectionDate" label="Collection Date" width="240">
             </el-table-column>
-            <!--Country-->
-            <el-table-column prop="rawHost" label="Raw Host" width="200">
+            <!--Raw Host-->
+            <el-table-column prop="rawHost" label="Raw Host" width="240">
             </el-table-column>
-            <!--Role-->
-            <el-table-column prop="refinedHost" label="Refined Host" width="200">
-            </el-table-column>
-            <!--Operate-->
-            <el-table-column prop="operate" label="Operate" width="200">
-              <!--这里的插槽标签用于访问此行的内容-->
-              <template slot-scope="scope">
-                <!--编辑按钮-->
-                <el-button type="success" size="small" @click="editSequence(scope.row)">Edit</el-button>
-                <!--删除按钮--> <!--删除确认提示框-->
-                <el-popconfirm title="Delete this sequence?" @confirm="delSequence(scope.row.accession)">
-                  <el-button slot="reference" size="small" type="danger">Delete</el-button>
-                </el-popconfirm>
-              </template>
+            <!--Refined Host-->
+            <el-table-column prop="refinedHost" label="Refined Host" width="240">
             </el-table-column>
           </el-table>
 
@@ -136,54 +124,6 @@
               layout="total, sizes, prev, pager, next, jumper"
               :total="total">
           </el-pagination>
-
-          <!--点击Edit按钮后弹出来的表单-->
-          <el-dialog
-              title="Sequence Information Edit Sheet"
-              :visible.sync="centerDialogVisible"
-              width="50%"
-              center>
-            <!--表单的属性部分-->
-            <el-form ref="form" :model="editForm" label-width="200px">
-              <!--Accession输入框-->
-              <el-form-item label="Accession :">
-                <el-col :span="18">
-                  <span>{{this.editForm.accession}}</span>
-                </el-col>
-              </el-form-item>
-              <!--Collection Country输入框-->
-              <el-form-item label="Collection Country">
-                <el-col :span="18">
-                  <el-input v-model="editForm.collectionCountry"></el-input>
-                </el-col>
-              </el-form-item>
-              <!--Collection Date输入框-->
-              <el-form-item label="Collection Date">
-                <el-col :span="18">
-                  <el-input v-model="editForm.collectionDate"></el-input>
-                </el-col>
-              </el-form-item>
-              <!--Raw Host输入框-->
-              <el-form-item label="Raw Host">
-                <el-col :span="18">
-                  <el-input v-model="editForm.rawHost"></el-input>
-                </el-col>
-              </el-form-item>
-              <!--Refined Host输入框-->
-              <el-form-item label="Refined Host">
-                <el-col :span="18">
-                  <el-input v-model="editForm.refinedHost"></el-input>
-                </el-col>
-              </el-form-item>
-            </el-form>
-            <!--表单末端部分-->
-            <span slot="footer" class="dialog-footer">
-          <!--取消按钮-->
-          <el-button @click="centerDialogVisible = false">Cancel</el-button>
-              <!--提交按钮-->
-          <el-button type="primary" @click="modSequence">Submit</el-button>
-    </span>
-          </el-dialog>
 
         </div>
       </el-main>
@@ -207,84 +147,90 @@ export default {
       searchAccession:'',
       searchCountry:'',
       searchHost:'',
-      centerDialogVisible: false,
-      editForm:{
-        accession:'',
-        collectionCountry:'',
-        collectionDate:'',
-        rawHost:'',
-        refinedHost:'',
-      }
     }
   },
-  props:{
-  },
-  methods:{
-    collapse(){
+  methods: {
+    // 侧边栏的伸缩方法
+    collapse() {
       this.isCollapse = !this.isCollapse;
-      if(this.isCollapse){
+      if (this.isCollapse) {
         this.aside_width = '64px';
         this.collapseIcon = 'el-icon-s-unfold';
-      }
-      else{
+      } else {
         this.aside_width = '220px';
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
-    toUser(){
-      this.$router.push("/User/Home");
+    // 跳转到home页的方法
+    toUser() {
+      this.$router.push("/Admin/Home");
     },
-    logOut(){
+    // 退出登录的方法
+    logOut() {
       this.$confirm('Sure to quit?', '', {
-        confirmButtonText: 'Quit',  //确认按钮的文字显示
+        confirmButtonText: 'Quit',
         cancelButtonText: 'Cancel',
         type: 'warning',
-        center: true, //文字居中显示
+        center: true,
       })
           .then(() => {
             this.$message({
-              type:'success',
-              message:'Quit successfully'
+              type: 'success',
+              message: 'Quit successfully'
             })
-            // 清除 sessionStorage 中的用户信息
-            sessionStorage.removeItem("userInfo"); //  当用户退出时, 清除sessionStorage
-            this.$router.push("/"); // 返回登录页面
+            sessionStorage.removeItem("userInfo");
+            this.$router.push("/");
           })
           .catch(() => {
             this.$message({
-              type:'info',
-              message:'Cancelled'
+              type: 'info',
+              message: 'Cancelled'
             })
           })
     },
-    init(){
+    // 初次加载页面时会调用的一个方法
+    init() {
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     },
     // 分页器监听页面尺寸
     handleSizeChange(val) {
       this.pageSize = val;
       this.pageNum = 1;
-      this.loadPost();
+      this.flexSearch();
     },
     // 分页器监听页码
     handleCurrentChange(val) {
       this.pageNum = val;
-      this.loadPost();
+      this.flexSearch();
     },
     // Reset按钮绑定的事件，用于重置参数
-    resetParam(){
+    resetParam() {
       this.searchAccession = '';
       this.searchCountry = '';
       this.searchHost = '';
     },
-    // 分页查询方法
-    loadPost() {
+    // 根据Accession进行精确搜索的方法
+    preciseSearch() {
       this.$axios
-          .get('http://localhost:9090/listGenomePage', {
+          .get('http://localhost:9090/genomePreciseSearchPage', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,
               accession: this.searchAccession,
+            },
+          })
+          .then((res) => {
+            this.tableData = res.data.data;
+            this.total = res.data.total;
+          });
+    },
+    // 根据Collection Country和Host进行模糊搜索的方法
+    flexSearch() {
+      this.$axios
+          .get('http://localhost:9090/genomeFlexSearchPage', {
+            params: {
+              pageNum: this.pageNum,
+              pageSize: this.pageSize,
               country: this.searchCountry,
               refinedHost: this.searchHost,
             },
@@ -293,45 +239,17 @@ export default {
             this.tableData = res.data.data;
             this.total = res.data.total;
           });
-    },
-    editSequence(row){
-      this.editForm.accession = row.accession;
-      this.editForm.collectionCountry = row.collectionCountry;
-      this.editForm.collectionDate = row.collectionDate;
-      this.editForm.rawHost = row.rawHost;
-      this.editForm.refinedHost = row.refinedHost;
-      this.centerDialogVisible = true
-    },
-    modSequence(){
-      this.$axios.post('http://localhost:9090/modSequence', this.editForm);
-      this.$message({
-        message: 'Edit successfully',
-        type: 'success',
-      });
-      this.centerDialogVisible  = false;
-      this.loadPost();
-    },
-    delSequence(accession){
-      this.$axios.get('http://localhost:9090/delSequence?accession='+accession);
-      this.$message({
-        type:'success',
-        message:'Delete successfully'
-      })
     }
   },
-  created(){
-    this.init()
+  created() {
+    this.init();
   },
   beforeMount() {
-    this.loadPost()
+    this.flexSearch();
   }
 }
 </script>
 
 <style>
-.el-descriptions {
-  width: 90%;
-  margin: 0 auto;
-  text-align: center;
-}
+
 </style>

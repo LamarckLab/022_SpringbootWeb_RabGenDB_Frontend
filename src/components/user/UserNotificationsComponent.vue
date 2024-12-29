@@ -104,7 +104,7 @@
             <!--这里的插槽标签用于访问此行的内容-->
             <template slot-scope="scope">
               <!--查看按钮-->
-              <el-button type="primary" size="medium" @click="viewSequence(scope.row)">View</el-button>
+              <el-button type="success" size="medium" @click="viewSequence(scope.row)">View</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -134,6 +134,14 @@
           </el-table-column>
           <!--Raw Host-->
           <el-table-column prop="rawHost" label="Raw Host" width="240">
+          </el-table-column>
+          <!--Operate-->
+          <el-table-column prop="operate" label="Operate" width="200">
+            <!--这里的插槽标签用于访问此行的内容-->
+            <template slot-scope="scope">
+              <!--编辑按钮-->
+              <el-button type="primary" size="medium" @click="editSequence(scope.row)">Edit</el-button>
+            </template>
           </el-table-column>
         </el-table>
       </div>
@@ -207,6 +215,58 @@
         </span>
       </el-dialog>
 
+      <!--点击Rejected applications部分的Edit按钮后弹出来的表单-->
+      <el-dialog
+          title="Sequence Info"
+          :visible.sync="centerDialogVisible2"
+          width="40%"
+          center>
+        <!--表单中的值绑定到form2变量中-->
+        <el-form ref="form" :model="form2" label-width="220px">
+          <!--Accession浏览框-->
+          <el-form-item label="Accession :">
+            <el-col :span="18">
+              <span>{{form2.accession}}</span>
+            </el-col>
+            <!--Collection Country浏览框-->
+          </el-form-item>
+          <el-form-item label="Collection Country :">
+            <el-col :span="18">
+              <span>{{form2.collectionCountry}}</span>
+            </el-col>
+          </el-form-item>
+          <!--Collection Date浏览框-->
+          <el-form-item label="Collection Date :">
+            <el-col :span="18">
+              <span>{{form2.collectionDate}}</span>
+            </el-col>
+          </el-form-item>
+          <!--RawHost浏览框-->
+          <el-form-item label="Raw Host :">
+            <el-col :span="18">
+              <span>{{form2.rawHost}}</span>
+            </el-col>
+          </el-form-item>
+          <!--RefinedHost浏览框-->
+          <el-form-item label="Refined Host :">
+            <el-col :span="18">
+              <span>{{form2.refinedHost}}</span>
+            </el-col>
+          </el-form-item>
+          <!--Message浏览框-->
+          <el-form-item label="Message :">
+            <el-col :span="18">
+              <span>{{form2.message}}</span>
+            </el-col>
+          </el-form-item>
+        </el-form>
+        <!--表单末端部分-->
+        <span slot="footer" class="dialog-footer">
+          <!--取消按钮-->
+          <el-button @click="centerDialogVisible2 = false">Cancel</el-button>
+        </span>
+      </el-dialog>
+
     </el-container>
   </el-container>
 </template>
@@ -227,11 +287,20 @@ export default {
       tableData2: [],
       tableData3: [],
       centerDialogVisible1: false,
+      centerDialogVisible2: false,
       form1:{
         accession:'',
         collectionCountry:'',
         collectionDate:'',
         rawHost:'',
+      },
+      form2:{
+        accession:'',
+        collectionCountry:'',
+        collectionDate:'',
+        rawHost:'',
+        refinedHost:'',
+        message:'',
       },
     }
   },
@@ -331,6 +400,15 @@ export default {
       this.form1.collectionDate = row.collectionDate;
       this.form1.rawHost = row.rawHost;
       this.centerDialogVisible1 = true;
+    },
+    editSequence(row){
+      this.form2.accession = row.accession;
+      this.form2.collectionCountry = row.collectionCountry;
+      this.form2.collectionDate = row.collectionDate;
+      this.form2.rawHost = row.rawHost;
+      this.form2.refinedHost = row.refinedHost;
+      this.form2.message = row.message;
+      this.centerDialogVisible2 = true;
     }
   },
   created(){

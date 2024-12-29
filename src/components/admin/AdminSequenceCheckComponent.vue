@@ -112,7 +112,7 @@
               :total="total">
           </el-pagination>
 
-          <!--点击Sequence Submit按钮后弹出来的表单-->
+          <!--点击Submit按钮后弹出来的表单-->
           <el-dialog
               title="Sequence Check"
               :visible.sync="centerDialogVisible"
@@ -149,8 +149,10 @@
             <span slot="footer" class="dialog-footer">
           <!--取消按钮-->
           <el-button @click="centerDialogVisible = false">Cancel</el-button>
-              <!--提交按钮-->
-          <el-button type="primary" @click="sequenceSubmit">Submit</el-button>
+          <!--打回按钮-->
+          <el-button type="danger" @click="sequenceReject">Reject</el-button>
+          <!--通过按钮-->
+          <el-button type="success" @click="sequenceAccept">Accept</el-button>
         </span>
           </el-dialog>
 
@@ -240,7 +242,7 @@ export default {
     // 分页查询方法
     loadPost() {
       this.$axios
-          .get('http://localhost:9090/listGenomeTempPage', {
+          .get('http://localhost:9090/listGenomePage', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,

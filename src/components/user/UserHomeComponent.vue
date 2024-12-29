@@ -136,6 +136,7 @@ export default {
   props:{
   },
   methods:{
+    // 侧边栏实现伸缩的方法
     collapse(){
       this.isCollapse = !this.isCollapse;
       if(this.isCollapse){
@@ -147,9 +148,11 @@ export default {
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
+    // 跳转到home页的方法
     toUser(){
       this.$router.push("/User/Home");
     },
+    // 退出到登录页的方法
     logOut(){
       this.$confirm('Sure to quit?', '', {
         confirmButtonText: 'Quit',  //确认按钮的文字显示
@@ -173,6 +176,7 @@ export default {
             })
           })
     },
+    // 初次加载界面的时候, 读取登录用户的userInfo
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     }

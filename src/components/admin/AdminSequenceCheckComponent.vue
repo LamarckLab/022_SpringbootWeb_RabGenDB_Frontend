@@ -75,20 +75,29 @@
               :cell-style="{ textAlign: 'center' }"
           >
             <!--表头-->
-            <!--Username-->
-            <el-table-column prop="accession" label="Accession" width="240">
+            <!--Accession-->
+            <el-table-column prop="accession" label="Accession" width="200">
             </el-table-column>
-            <!--Name-->
-            <el-table-column prop="collectionCountry" label="Collection Country" width="240">
+            <!--Collection Country-->
+            <el-table-column prop="collectionCountry" label="Collection Country" width="200">
             </el-table-column>
-            <!--Age-->
-            <el-table-column prop="collectionDate" label="Collection Date" width="240">
+            <!--Collection Date-->
+            <el-table-column prop="collectionDate" label="Collection Date" width="200">
             </el-table-column>
-            <!--Country-->
-            <el-table-column prop="rawHost" label="Raw Host" width="240">
+            <!--Raw Host-->
+            <el-table-column prop="rawHost" label="Raw Host" width="200">
             </el-table-column>
-            <!--Role-->
-            <el-table-column prop="refinedHost" label="Refined Host" width="240">
+            <!--Refined Host-->
+            <el-table-column prop="refinedHost" label="Refined Host" width="200">
+            </el-table-column>
+
+            <!--Operate-->
+            <el-table-column prop="operate" label="Operate" width="200">
+              <!--这里的插槽标签用于访问此行的内容-->
+              <template slot-scope="scope">
+                <!--审核序列按钮-->
+                <el-button type="primary" size="small" @click="checkSequence(scope.row)">Check</el-button>
+              </template>
             </el-table-column>
           </el-table>
 
@@ -102,6 +111,48 @@
               layout="total, sizes, prev, pager, next, jumper"
               :total="total">
           </el-pagination>
+
+          <!--点击Sequence Submit按钮后弹出来的表单-->
+          <el-dialog
+              title="Sequence Check"
+              :visible.sync="centerDialogVisible"
+              width="60%"
+              center>
+            <!--表单中的值绑定到form变量中-->
+            <el-form ref="form" :model="form" label-width="220px">
+              <!--Accession输入框-->
+              <el-form-item label="Accession">
+                <el-col :span="18">
+                  <el-input v-model="form.accession"></el-input>
+                </el-col>
+                <!--Collection Country输入框-->
+              </el-form-item>
+              <el-form-item label="Collection Country">
+                <el-col :span="18">
+                  <el-input v-model="form.collectionCountry"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Collection Date输入框-->
+              <el-form-item label="Collection Date">
+                <el-col :span="18">
+                  <el-input v-model="form.collectionDate"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Host输入框-->
+              <el-form-item label="Host">
+                <el-col :span="18">
+                  <el-input v-model="form.rawHost"></el-input>
+                </el-col>
+              </el-form-item>
+            </el-form>
+            <!--表单末端部分-->
+            <span slot="footer" class="dialog-footer">
+          <!--取消按钮-->
+          <el-button @click="centerDialogVisible = false">Cancel</el-button>
+              <!--提交按钮-->
+          <el-button type="primary" @click="sequenceSubmit">Submit</el-button>
+        </span>
+          </el-dialog>
 
 
         </div>
@@ -123,6 +174,13 @@ export default {
       pageNum: 1,
       pageSize: 5,
       total: 0,
+      centerDialogVisible: false,
+      form:{
+        accession:'',
+        collectionCountry:'',
+        collectionDate:'',
+        rawHost:'',
+      },
     }
   },
   props:{
@@ -193,6 +251,13 @@ export default {
             this.total = res.data.total;
           });
     },
+    checkSequence(row){
+      this.form.accession = row.accession;
+      this.form.collectionCountry = row.collectionCountry;
+      this.form.collectionDate = row.collectionDate;
+      this.form.rawHost = row.rawHost;
+      this.centerDialogVisible = true;
+    }
   },
   created(){
     this.init()

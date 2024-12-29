@@ -78,7 +78,7 @@
                       @keyup.enter.native="loadPost"></el-input>
 
             <!--精确搜索按钮-->
-            <el-button type="danger" style="margin-left: 10px; font-weight: bold" @click="loadPost">Precise Search</el-button>
+            <el-button type="danger" style="margin-left: 10px; font-weight: bold" @click="preciseSearch">Precise Search</el-button>
 
             <!--Collection_country模糊搜索框-->
             <el-input v-model="searchCountry" placeholder="Enter Collection Country please" style="width: 260px; margin-left: 100px" suffix-icon="el-icon-search"
@@ -233,6 +233,20 @@ export default {
             this.total = res.data.total;
           });
     },
+    preciseSearch(){
+      this.$axios
+          .get('http://localhost:9090/genomePreciseSearch', {
+            params: {
+              pageNum: this.pageNum,
+              pageSize: this.pageSize,
+              accession: this.searchAccession,
+            },
+          })
+          .then((res) => {
+            this.tableData = res.data.data;
+            this.total = res.data.total;
+          });
+    }
   },
   created(){
     this.init()

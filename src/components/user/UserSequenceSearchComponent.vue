@@ -1,4 +1,5 @@
 <template>
+  <!--整个页面的大容器-->
   <el-container style="height: 100%; border: 1px solid #eee; margin-top: -9px">
     <!--左侧导航栏-->
     <el-aside :width="aside_width" style="height: 100vh; background-color: rgb(238, 241, 246); margin-left: -9px">
@@ -12,25 +13,25 @@
           :collapse-transition="false"
           router>
 
-        <!--导航栏 1-->
+        <!--User Home页-->
         <el-menu-item index="/User/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--导航栏 2-->
+        <!--User RABV Overview页-->
         <el-menu-item index="/User/RabiesOverview">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">RABV Overview</span>
         </el-menu-item>
 
-        <!--导航栏 3-->
+        <!--User Sequence Search页-->
         <el-menu-item index="/User/SequenceSearch">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
-        <!--导航栏 4-->
+        <!--User Sequence Submit页-->
         <el-menu-item index="/User/SequenceSubmit">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Submit</span>
@@ -87,7 +88,7 @@
             <el-input v-model="searchHost" placeholder="Enter Host please" style="width: 160px; margin-left: 10px" suffix-icon="el-icon-search"
                       @keyup.enter.native="loadPost"></el-input>
 
-            <!--搜索按钮-->
+            <!--模糊搜索按钮-->
             <el-button type="primary" style="margin-left: 10px" @click="loadPost">FlexSearch</el-button>
 
             <!--重置按钮-->
@@ -102,19 +103,19 @@
               :cell-style="{ textAlign: 'center' }"
           >
             <!--表头-->
-            <!--Username-->
+            <!--Accession-->
             <el-table-column prop="accession" label="Accession" width="240">
             </el-table-column>
-            <!--Name-->
+            <!--Collection Country-->
             <el-table-column prop="collectionCountry" label="Collection Country" width="240">
             </el-table-column>
-            <!--Age-->
+            <!--Collection Date-->
             <el-table-column prop="collectionDate" label="Collection Date" width="240">
             </el-table-column>
-            <!--Country-->
+            <!--Raw Host-->
             <el-table-column prop="rawHost" label="Raw Host" width="240">
             </el-table-column>
-            <!--Role-->
+            <!--Refined Host-->
             <el-table-column prop="refinedHost" label="Refined Host" width="240">
             </el-table-column>
           </el-table>

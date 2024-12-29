@@ -13,25 +13,25 @@
           :collapse-transition="false"
           router>
 
-        <!--User Home页-->
+        <!--User Home栏-->
         <el-menu-item index="/User/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--User RABV Overview页-->
+        <!--User RABV Overview栏-->
         <el-menu-item index="/User/RabiesOverview">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">RABV Overview</span>
         </el-menu-item>
 
-        <!--User Sequence Search页-->
+        <!--User Sequence Search栏-->
         <el-menu-item index="/User/SequenceSearch">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
-        <!--User Sequence Submit页-->
+        <!--User Sequence Submit栏-->
         <el-menu-item index="/User/SequenceSubmit">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Submit</span>
@@ -73,18 +73,18 @@
         <div>
           <div style="margin-bottom: 20px">
 
-            <!--Accession精确搜索框-->
+            <!--Accession精确搜索输入框-->
             <el-input v-model="searchAccession" placeholder="Enter accession please" style="width: 200px" suffix-icon="el-icon-search"
                       @keyup.enter.native="preciseSearch"></el-input>
 
             <!--精确搜索按钮-->
             <el-button type="danger" style="margin-left: 10px; font-weight: bold" @click="preciseSearch">Precise Search</el-button>
 
-            <!--Collection_country模糊搜索框-->
+            <!--Collection_country模糊搜索输入框-->
             <el-input v-model="searchCountry" placeholder="Enter Collection Country please" style="width: 260px; margin-left: 100px" suffix-icon="el-icon-search"
                       @keyup.enter.native="flexSearch"></el-input>
 
-            <!--Host模糊搜索框-->
+            <!--Host模糊搜索输入框-->
             <el-input v-model="searchHost" placeholder="Enter Host please" style="width: 160px; margin-left: 10px" suffix-icon="el-icon-search"
                       @keyup.enter.native="flexSearch"></el-input>
 
@@ -131,7 +131,6 @@
               :total="total">
           </el-pagination>
 
-
         </div>
       </el-main>
     </el-container>
@@ -156,9 +155,8 @@ export default {
       searchHost:'',
     }
   },
-  props:{
-  },
   methods:{
+    // 侧边栏的伸缩方法
     collapse(){
       this.isCollapse = !this.isCollapse;
       if(this.isCollapse){
@@ -170,24 +168,25 @@ export default {
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
+    // 跳转到home页的方法
     toUser(){
       this.$router.push("/User/Home");
     },
+    // 退出登录的方法
     logOut(){
       this.$confirm('Sure to quit?', '', {
-        confirmButtonText: 'Quit',  //确认按钮的文字显示
+        confirmButtonText: 'Quit',
         cancelButtonText: 'Cancel',
         type: 'warning',
-        center: true, //文字居中显示
+        center: true,
       })
           .then(() => {
             this.$message({
               type:'success',
               message:'Quit successfully'
             })
-            // 清除 sessionStorage 中的用户信息
-            sessionStorage.removeItem("userInfo"); //  当用户退出时, 清除sessionStorage
-            this.$router.push("/"); // 返回登录页面
+            sessionStorage.removeItem("userInfo");
+            this.$router.push("/");
           })
           .catch(() => {
             this.$message({
@@ -196,6 +195,7 @@ export default {
             })
           })
     },
+    // 初次加载页面时会调用的一个方法
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     },
@@ -216,6 +216,7 @@ export default {
       this.searchCountry = '';
       this.searchHost = '';
     },
+    // 根据Accession进行精确搜索的方法
     preciseSearch(){
       this.$axios
           .get('http://localhost:9090/genomePreciseSearchPage', {
@@ -230,6 +231,7 @@ export default {
             this.total = res.data.total;
           });
     },
+    // 根据Collection Country和Host进行模糊搜索的方法
     flexSearch(){
       this.$axios
           .get('http://localhost:9090/genomeFlexSearchPage', {
@@ -256,9 +258,5 @@ export default {
 </script>
 
 <style>
-.el-descriptions {
-  width: 90%;
-  margin: 0 auto;
-  text-align: center;
-}
+
 </style>

@@ -105,7 +105,7 @@
 
       <!--这个部分是被打回的申请-->
       <div style="margin-top: 50px">
-        <span style="margin-left: 30px; font-weight: bold; font-size: 20px">Rejected application</span>
+        <span style="margin-left: 30px; font-weight: bold; font-size: 20px">Rejected applications</span>
         <div style="margin-top: 15px"></div>
         <!--表格主体部分-->
         <el-table
@@ -239,6 +239,21 @@ export default {
             this.tableData1 = res.data.data;
             this.total = res.data.total;
           });
+    },
+    // Rejected Applications
+    rejectedApplications(){
+      this.$axios
+          .get('http://localhost:9090/rejectedApplications', {
+            params: {
+              pageNum: this.pageNum,
+              pageSize: this.pageSize,
+              username: JSON.parse(sessionStorage.getItem('userInfo')).username,
+            },
+          })
+          .then((res) => {
+            this.tableData2 = res.data.data;
+            this.total = res.data.total;
+          });
     }
   },
   created(){
@@ -246,6 +261,7 @@ export default {
   },
   beforeMount() {
     this.waitingForCheck();
+    this.rejectedApplications()
   }
 }
 </script>

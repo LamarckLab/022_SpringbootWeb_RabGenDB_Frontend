@@ -13,25 +13,25 @@
           :collapse-transition="false"
           router>
 
-        <!--导航栏 1-->
+        <!--home导航栏-->
         <el-menu-item index="/User/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--导航栏 2-->
+        <!--RABV Overview导航栏-->
         <el-menu-item index="/User/RabiesOverview">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">RABV Overview</span>
         </el-menu-item>
 
-        <!--导航栏 3-->
+        <!--Sequence Search导航栏-->
         <el-menu-item index="/User/SequenceSearch">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
-        <!--导航栏 4-->
+        <!--Sequence Submit导航栏-->
         <el-menu-item index="/User/SequenceSubmit">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Submit</span>
@@ -39,7 +39,8 @@
       </el-menu>
     </el-aside>
 
-    <el-container style="height: 100%">  <!--页面右侧的大容器-->
+    <!--页面右侧的大容器-->
+    <el-container style="height: 100%">
 
       <!--Header部分-->
       <el-header style="text-align: right; font-size: 12px; border-bottom: darkgray 3px solid">
@@ -68,6 +69,7 @@
       </el-header>
 
       <div style="margin-left: 30px; margin-top: 30px">
+
         <!--序列提交按钮-->
         <el-button type="warning" style="margin-left: 10px" @click="addSequence" >Sequence Submit</el-button>
 
@@ -124,12 +126,14 @@
 export default {
   name: "UserSequenceSubmitComponent",
   components: {},
+
   data(){
     return{
       aside_width: '220px',
       isCollapse: false,
       collapseIcon: 'el-icon-s-fold',
       centerDialogVisible: false,
+      // 表单中的四个属性
       form:{
         accession:'',
         collectionCountry:'',
@@ -138,9 +142,9 @@ export default {
       },
     }
   },
-  props:{
-  },
+
   methods:{
+    // 实现侧边栏伸缩的方法
     collapse(){
       this.isCollapse = !this.isCollapse;
       if(this.isCollapse){
@@ -152,9 +156,11 @@ export default {
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
+    // 跳转到用户home页
     toUser(){
       this.$router.push("/User/Home");
     },
+    // 跳转到登录页
     logOut(){
       this.$confirm('Sure to quit?', '', {
         confirmButtonText: 'Quit',  //确认按钮的文字显示
@@ -178,12 +184,15 @@ export default {
             })
           })
     },
+    // 初次加载页面的时候, 把登录用户的信息加载到user中
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     },
+    // 点击Sequence Submit按钮后触发的事件
     addSequence(){
       this.centerDialogVisible = true
     },
+    // 提交表单是, 点击submit后触发的事件
     sequenceSubmit(){
       this.$axios.post('http://localhost:9090/sequenceSubmit', this.form);
       this.$message({

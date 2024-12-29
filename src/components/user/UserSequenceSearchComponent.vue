@@ -75,21 +75,21 @@
 
             <!--Accession精确搜索框-->
             <el-input v-model="searchAccession" placeholder="Enter accession please" style="width: 200px" suffix-icon="el-icon-search"
-                      @keyup.enter.native="loadPost"></el-input>
+                      @keyup.enter.native="preciseSearch"></el-input>
 
             <!--精确搜索按钮-->
             <el-button type="danger" style="margin-left: 10px; font-weight: bold" @click="preciseSearch">Precise Search</el-button>
 
             <!--Collection_country模糊搜索框-->
             <el-input v-model="searchCountry" placeholder="Enter Collection Country please" style="width: 260px; margin-left: 100px" suffix-icon="el-icon-search"
-                      @keyup.enter.native="loadPost"></el-input>
+                      @keyup.enter.native="flexSearch"></el-input>
 
             <!--Host模糊搜索框-->
             <el-input v-model="searchHost" placeholder="Enter Host please" style="width: 160px; margin-left: 10px" suffix-icon="el-icon-search"
-                      @keyup.enter.native="loadPost"></el-input>
+                      @keyup.enter.native="flexSearch"></el-input>
 
             <!--模糊搜索按钮-->
-            <el-button type="primary" style="margin-left: 10px" @click="loadPost">FlexSearch</el-button>
+            <el-button type="primary" style="margin-left: 10px" @click="flexSearch">FlexSearch</el-button>
 
             <!--重置按钮-->
             <el-button type="success" @click="resetParam">Reset</el-button>
@@ -203,12 +203,12 @@ export default {
     handleSizeChange(val) {
       this.pageSize = val;
       this.pageNum = 1;
-      this.loadPost();
+      this.flexSearch();
     },
     // 分页器监听页码
     handleCurrentChange(val) {
       this.pageNum = val;
-      this.loadPost();
+      this.flexSearch();
     },
     // Reset按钮绑定的事件，用于重置参数
     resetParam(){
@@ -216,16 +216,13 @@ export default {
       this.searchCountry = '';
       this.searchHost = '';
     },
-    // 分页查询方法
-    loadPost() {
+    preciseSearch(){
       this.$axios
-          .get('http://localhost:9090/listGenomePage', {
+          .get('http://localhost:9090/genomePreciseSearchPage', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,
               accession: this.searchAccession,
-              country: this.searchCountry,
-              refinedHost: this.searchHost,
             },
           })
           .then((res) => {
@@ -233,13 +230,14 @@ export default {
             this.total = res.data.total;
           });
     },
-    preciseSearch(){
+    flexSearch(){
       this.$axios
-          .get('http://localhost:9090/genomePreciseSearch', {
+          .get('http://localhost:9090/genomeFlexSearchPage', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,
-              accession: this.searchAccession,
+              country: this.searchCountry,
+              refinedHost: this.searchHost,
             },
           })
           .then((res) => {
@@ -249,10 +247,10 @@ export default {
     }
   },
   created(){
-    this.init()
+    this.init();
   },
   beforeMount() {
-    this.loadPost()
+    this.flexSearch();
   }
 }
 </script>

@@ -81,13 +81,19 @@
             center>
           <!--表单中的值绑定到form变量中-->
           <el-form ref="form" :model="form" label-width="220px">
+            <!--Username展示框-->
+            <el-form-item label="Username :">
+              <el-col :span="18">
+                <span>{{user.username}}</span>
+              </el-col>
+            </el-form-item>
             <!--Accession输入框-->
             <el-form-item label="Accession">
               <el-col :span="18">
                 <el-input v-model="form.accession"></el-input>
               </el-col>
-              <!--Collection Country输入框-->
             </el-form-item>
+            <!--Collection Country输入框-->
             <el-form-item label="Collection Country">
               <el-col :span="18">
                 <el-input v-model="form.collectionCountry"></el-input>
@@ -192,7 +198,7 @@ export default {
     addSequence(){
       this.centerDialogVisible = true
     },
-    // 提交表单是, 点击submit后触发的事件
+    // 提交表单时, 点击submit后触发的事件
     sequenceSubmit(){
       this.$axios.post('http://localhost:9090/sequenceSubmit', this.form);
       this.$message({

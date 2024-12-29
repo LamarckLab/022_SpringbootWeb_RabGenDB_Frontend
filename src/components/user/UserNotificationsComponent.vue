@@ -254,6 +254,21 @@ export default {
             this.tableData2 = res.data.data;
             this.total = res.data.total;
           });
+    },
+    // Accepted Applications
+    acceptedApplications(){
+      this.$axios
+          .get('http://localhost:9090/acceptedApplications', {
+            params: {
+              pageNum: this.pageNum,
+              pageSize: this.pageSize,
+              username: JSON.parse(sessionStorage.getItem('userInfo')).username,
+            },
+          })
+          .then((res) => {
+            this.tableData3 = res.data.data;
+            this.total = res.data.total;
+          });
     }
   },
   created(){
@@ -261,7 +276,8 @@ export default {
   },
   beforeMount() {
     this.waitingForCheck();
-    this.rejectedApplications()
+    this.rejectedApplications();
+    this.acceptedApplications();
   }
 }
 </script>

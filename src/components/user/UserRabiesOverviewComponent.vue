@@ -67,6 +67,7 @@
         </div>
       </el-header>
 
+      <!--RABV的简介部分-->
       <div style="padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; margin: 20px;">
         <h2>Rabies Virus (RABV)</h2>
         <p class="paragraph-style">
@@ -117,8 +118,6 @@
         </div>
       </div>
 
-
-
     </el-container>
   </el-container>
 
@@ -137,9 +136,8 @@ export default {
       collapseIcon: 'el-icon-s-fold',
     }
   },
-  props:{
-  },
   methods:{
+    // 侧边栏实现伸缩功能的方法
     collapse(){
       this.isCollapse = !this.isCollapse;
       if(this.isCollapse){
@@ -151,9 +149,11 @@ export default {
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
+    // 跳转到home页的方法
     toUser(){
       this.$router.push("/User/Home");
     },
+    // 跳转到登录页的方法
     logOut(){
       this.$confirm('Sure to quit?', '', {
         confirmButtonText: 'Quit',  //确认按钮的文字显示
@@ -177,6 +177,7 @@ export default {
             })
           })
     },
+    // 加载页面时, 将登录用户的信息加载的userInfo
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     }

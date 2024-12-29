@@ -37,6 +37,12 @@
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Submit</span>
         </el-menu-item>
+
+        <!--Notifications导航栏-->
+        <el-menu-item index="/User/Notifications">
+          <i class="el-icon-s-custom"></i>
+          <span slot="title" style="font-size: 16px">Notifications</span>
+        </el-menu-item>
       </el-menu>
     </el-aside>
 

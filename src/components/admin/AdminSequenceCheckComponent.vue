@@ -291,11 +291,19 @@ export default {
     sequenceAccept(){
       this.$axios.post('http://localhost:9090/sequenceAccept', this.form);
       this.$message({
-        message: 'Edit successfully',
+        message: 'Accept successfully',
         type: 'success',
       });
       this.centerDialogVisible  = false;
     },
+    sequenceReject(){
+      this.$axios.post('http://localhost:9090/sequenceReject', this.form);
+      this.$message({
+        message: 'Reject successfully',
+        type: 'success',
+      });
+      this.centerDialogVisible  = false;
+    }
   },
   created(){
     this.init()

@@ -76,23 +76,26 @@
           >
             <!--表头-->
             <!--Accession-->
-            <el-table-column prop="accession" label="Accession" width="200">
+            <el-table-column prop="accession" label="Accession" width="180">
             </el-table-column>
             <!--Collection Country-->
-            <el-table-column prop="collectionCountry" label="Collection Country" width="200">
+            <el-table-column prop="collectionCountry" label="Collection Country" width="180">
             </el-table-column>
             <!--Collection Date-->
-            <el-table-column prop="collectionDate" label="Collection Date" width="200">
+            <el-table-column prop="collectionDate" label="Collection Date" width="160">
             </el-table-column>
             <!--Raw Host-->
-            <el-table-column prop="rawHost" label="Raw Host" width="200">
+            <el-table-column prop="rawHost" label="Raw Host" width="180">
             </el-table-column>
             <!--Refined Host-->
-            <el-table-column prop="refinedHost" label="Refined Host" width="200">
+            <el-table-column prop="refinedHost" label="Refined Host" width="180">
+            </el-table-column>
+            <!--Username-->
+            <el-table-column prop="username" label="Username" width="160">
             </el-table-column>
 
             <!--Operate-->
-            <el-table-column prop="operate" label="Operate" width="200">
+            <el-table-column prop="operate" label="Operate" width="120">
               <!--这里的插槽标签用于访问此行的内容-->
               <template slot-scope="scope">
                 <!--审核序列按钮-->
@@ -120,13 +123,19 @@
               center>
             <!--表单中的值绑定到form变量中-->
             <el-form ref="form" :model="form" label-width="220px">
+              <!--Username浏览框-->
+              <el-form-item label="Username :">
+                <el-col :span="18">
+                  <span>{{form.username}}</span>
+                </el-col>
+              </el-form-item>
               <!--Accession输入框-->
               <el-form-item label="Accession">
                 <el-col :span="18">
                   <el-input v-model="form.accession"></el-input>
                 </el-col>
-                <!--Collection Country输入框-->
               </el-form-item>
+              <!--Collection Country输入框-->
               <el-form-item label="Collection Country">
                 <el-col :span="18">
                   <el-input v-model="form.collectionCountry"></el-input>
@@ -139,9 +148,21 @@
                 </el-col>
               </el-form-item>
               <!--Host输入框-->
-              <el-form-item label="Host">
+              <el-form-item label="Raw Host">
                 <el-col :span="18">
                   <el-input v-model="form.rawHost"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Refined Host输入框-->
+              <el-form-item label="Refined Host">
+                <el-col :span="18">
+                  <el-input v-model="form.refinedHost"></el-input>
+                </el-col>
+              </el-form-item>
+              <!--Message输入框-->
+              <el-form-item label="Message">
+                <el-col :span="18">
+                  <el-input v-model="form.message"></el-input>
                 </el-col>
               </el-form-item>
             </el-form>
@@ -178,10 +199,13 @@ export default {
       total: 0,
       centerDialogVisible: false,
       form:{
+        username:'',
         accession:'',
         collectionCountry:'',
         collectionDate:'',
         rawHost:'',
+        refinedHost:'',
+        message:'',
       },
     }
   },
@@ -254,10 +278,12 @@ export default {
           });
     },
     checkSequence(row){
+      this.form.username = row.username;
       this.form.accession = row.accession;
       this.form.collectionCountry = row.collectionCountry;
       this.form.collectionDate = row.collectionDate;
       this.form.rawHost = row.rawHost;
+      this.form.refinedHost = row.refinedHost;
       this.centerDialogVisible = true;
     }
   },

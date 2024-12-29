@@ -8,7 +8,7 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
-          default-active="/User/Home"
+          default-active="/User/Notifications"
           style="height: 100%"
           :collapse="isCollapse"
           :collapse-transition="false"
@@ -73,11 +73,94 @@
           </el-dropdown>
         </div>
       </el-header>
+
+
+      <!--这个部分是用户提交的新序列申请-->
+      <div style="margin-top: 20px">
+        <span style="margin-left: 30px; font-weight: bold; font-size: 20px">Waiting for check</span>
+        <div style="margin-top: 15px"></div>
+        <!--表格主体部分-->
+        <el-table
+            :data="tableData1"
+            :header-cell-style="{background: '#F2F5FC', color: '#555555', textAlign: 'center'}"
+            border
+            :cell-style="{ textAlign: 'center' }"
+        >
+          <!--表头-->
+          <!--Accession-->
+          <el-table-column prop="accession" label="Accession" width="240">
+          </el-table-column>
+          <!--Collection Country-->
+          <el-table-column prop="collectionCountry" label="Collection Country" width="240">
+          </el-table-column>
+          <!--Collection Date-->
+          <el-table-column prop="collectionDate" label="Collection Date" width="240">
+          </el-table-column>
+          <!--Raw Host-->
+          <el-table-column prop="rawHost" label="Raw Host" width="240">
+          </el-table-column>
+        </el-table>
+      </div>
+
+
+      <!--这个部分是被打回的申请-->
+      <div style="margin-top: 50px">
+        <span style="margin-left: 30px; font-weight: bold; font-size: 20px">Rejected application</span>
+        <div style="margin-top: 15px"></div>
+        <!--表格主体部分-->
+        <el-table
+            :data="tableData2"
+            :header-cell-style="{background: '#F2F5FC', color: '#555555', textAlign: 'center'}"
+            border
+            :cell-style="{ textAlign: 'center' }"
+        >
+          <!--表头-->
+          <!--Accession-->
+          <el-table-column prop="accession" label="Accession" width="240">
+          </el-table-column>
+          <!--Collection Country-->
+          <el-table-column prop="collectionCountry" label="Collection Country" width="240">
+          </el-table-column>
+          <!--Collection Date-->
+          <el-table-column prop="collectionDate" label="Collection Date" width="240">
+          </el-table-column>
+          <!--Raw Host-->
+          <el-table-column prop="rawHost" label="Raw Host" width="240">
+          </el-table-column>
+        </el-table>
+      </div>
+
+
+      <!--这个部分是以及通过的申请-->
+      <div style="margin-top: 50px">
+        <span style="margin-left: 30px; font-weight: bold; font-size: 20px">Accepted application</span>
+        <div style="margin-top: 15px"></div>
+        <!--表格主体部分-->
+        <el-table
+            :data="tableData3"
+            :header-cell-style="{background: '#F2F5FC', color: '#555555', textAlign: 'center'}"
+            border
+            :cell-style="{ textAlign: 'center' }"
+        >
+          <!--表头-->
+          <!--Accession-->
+          <el-table-column prop="accession" label="Accession" width="240">
+          </el-table-column>
+          <!--Collection Country-->
+          <el-table-column prop="collectionCountry" label="Collection Country" width="240">
+          </el-table-column>
+          <!--Collection Date-->
+          <el-table-column prop="collectionDate" label="Collection Date" width="240">
+          </el-table-column>
+          <!--Raw Host-->
+          <el-table-column prop="rawHost" label="Raw Host" width="240">
+          </el-table-column>
+        </el-table>
+      </div>
+
     </el-container>
   </el-container>
 </template>
-
-
 
 
 <script>
@@ -91,6 +174,10 @@ export default {
       aside_width: '220px',
       isCollapse: false,
       collapseIcon: 'el-icon-s-fold',
+      tableData1: [],
+      tableData2: [],
+      tableData3: [],
+
     }
   },
   methods:{
@@ -137,10 +224,28 @@ export default {
     // 初次加载界面的时候, 读取登录用户的userInfo
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
+    },
+    // Waiting for check
+    waitingForCheck(){
+      this.$axios
+          .get('http://localhost:9090/sequenceWaitingForCheck', {
+            params: {
+              pageNum: this.pageNum,
+              pageSize: this.pageSize,
+              username: JSON.parse(sessionStorage.getItem('userInfo')).username,
+            },
+          })
+          .then((res) => {
+            this.tableData1 = res.data.data;
+            this.total = res.data.total;
+          });
     }
   },
   created(){
     this.init()
+  },
+  beforeMount() {
+    this.waitingForCheck();
   }
 }
 </script>

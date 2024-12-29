@@ -115,7 +115,7 @@
               :total="total">
           </el-pagination>
 
-          <!--点击Submit按钮后弹出来的表单-->
+          <!--点击Check按钮后弹出来的表单-->
           <el-dialog
               title="Sequence Check"
               :visible.sync="centerDialogVisible"
@@ -206,6 +206,7 @@ export default {
         rawHost:'',
         refinedHost:'',
         message:'',
+        isSubmit:'',
       },
     }
   },
@@ -284,8 +285,17 @@ export default {
       this.form.collectionDate = row.collectionDate;
       this.form.rawHost = row.rawHost;
       this.form.refinedHost = row.refinedHost;
+      this.form.isSubmit = row.isSubmit;
       this.centerDialogVisible = true;
-    }
+    },
+    sequenceAccept(){
+      this.$axios.post('http://localhost:9090/sequenceAccept', this.form);
+      this.$message({
+        message: 'Edit successfully',
+        type: 'success',
+      });
+      this.centerDialogVisible  = false;
+    },
   },
   created(){
     this.init()

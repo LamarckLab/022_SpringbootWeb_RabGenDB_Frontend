@@ -13,19 +13,19 @@
           :collapse-transition="false"
           router>
 
-        <!--管理员Home页-->
+        <!--Admin Home导航栏-->
         <el-menu-item index="/Admin/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--序列搜索-->
+        <!--Admin Sequence Search导航栏-->
         <el-menu-item index="/Admin/SequenceSearch">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
-        <!--新序列核查-->
+        <!--Admin Sequence Check导航栏-->
         <el-menu-item index="/Admin/SequenceCheck">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Check</span>
@@ -74,7 +74,7 @@
             <!--精确搜索按钮-->
             <el-button type="danger" style="margin-left: 10px; font-weight: bold" @click="preciseSearch">Precise Search</el-button>
 
-            <!--Collection_country模糊搜索输入框-->
+            <!--Collection Country模糊搜索输入框-->
             <el-input v-model="searchCountry" placeholder="Enter Collection Country please" style="width: 260px; margin-left: 100px" suffix-icon="el-icon-search"
                       @keyup.enter.native="flexSearch"></el-input>
 
@@ -134,7 +134,6 @@
 <script>
 export default {
   name: "AdminSequenceSearchComponent",
-  components: {},
   data(){
     return{
       aside_width: '220px',
@@ -161,11 +160,11 @@ export default {
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
-    // 跳转到home页的方法
+    // 跳转到Admin home页
     toUser() {
       this.$router.push("/Admin/Home");
     },
-    // 退出登录的方法
+    // 跳转到登录页
     logOut() {
       this.$confirm('Sure to quit?', '', {
         confirmButtonText: 'Quit',
@@ -188,7 +187,7 @@ export default {
             })
           })
     },
-    // 初次加载页面时会调用的一个方法
+    // 初次加载页面时, 将会话存储中的userInfo加载到user变量中
     init() {
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     },

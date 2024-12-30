@@ -13,19 +13,19 @@
           :collapse-transition="false"
           router>
 
-        <!--管理员Home页-->
+        <!--Admin Home导航栏-->
         <el-menu-item index="/Admin/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--序列搜索-->
+        <!--Admin Sequence Search导航栏-->
         <el-menu-item index="/Admin/SequenceSearch">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
-        <!--新序列核查-->
+        <!--Admin Sequence Check导航栏-->
         <el-menu-item index="/Admin/SequenceCheck">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Check</span>
@@ -147,7 +147,7 @@
                   <el-input v-model="form.collectionDate"></el-input>
                 </el-col>
               </el-form-item>
-              <!--Host输入框-->
+              <!--Raw Host输入框-->
               <el-form-item label="Raw Host">
                 <el-col :span="18">
                   <el-input v-model="form.rawHost"></el-input>
@@ -187,7 +187,7 @@
 <script>
 export default {
   name: "UserSequenceSearchComponent",
-  components: {},
+
   data(){
     return{
       aside_width: '220px',
@@ -210,9 +210,9 @@ export default {
       },
     }
   },
-  props:{
-  },
+
   methods:{
+    // 实现导航栏伸缩功能
     collapse(){
       this.isCollapse = !this.isCollapse;
       if(this.isCollapse){
@@ -224,9 +224,11 @@ export default {
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
+    // 跳转到管理员home页
     toUser(){
       this.$router.push("/User/Home");
     },
+    // 跳转到登录页
     logOut(){
       this.$confirm('Sure to quit?', '', {
         confirmButtonText: 'Quit',  //确认按钮的文字显示
@@ -250,6 +252,7 @@ export default {
             })
           })
     },
+    // 初次加载页面时, 将会话存储中userInfo加载到user变量中
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     },
@@ -278,6 +281,7 @@ export default {
             this.total = res.data.total;
           });
     },
+    // 点击check按钮后, 会调用的方法
     checkSequence(row){
       this.form.username = row.username;
       this.form.accession = row.accession;
@@ -288,6 +292,7 @@ export default {
       this.form.isSubmit = row.isSubmit;
       this.centerDialogVisible = true;
     },
+    // 在check表单中, 点击accept按钮后, 会调用的方法
     sequenceAccept(){
       this.$axios.post('http://localhost:9090/sequenceAccept', this.form);
       this.$message({
@@ -296,6 +301,7 @@ export default {
       });
       this.centerDialogVisible  = false;
     },
+    // 在check表单中, 点击reject按钮后, 会调用的方法
     sequenceReject(){
       this.$axios.post('http://localhost:9090/sequenceReject', this.form);
       this.$message({

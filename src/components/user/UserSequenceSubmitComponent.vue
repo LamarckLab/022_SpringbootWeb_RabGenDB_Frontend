@@ -216,7 +216,6 @@ export default {
       this.form.collectionCountry='';
       this.form.collectionDate='';
       this.form.rawHost='';
-      this.form.username = '';
     }
   },
   created(){

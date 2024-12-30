@@ -96,11 +96,11 @@
             <!--Username-->
             <el-table-column prop="username" label="Username" width="200">
             </el-table-column>
-            <!--Name-->
+            <!--Telephone-->
             <el-table-column prop="telephone" label="Telephone" width="200">
             </el-table-column>
-            <!--Age-->
-            <el-table-column prop="email" label="Email" width="200">
+            <!--Email-->
+            <el-table-column prop="email" label="Email" width="260">
             </el-table-column>
             <!--Country-->
             <el-table-column prop="country" label="Country" width="200">

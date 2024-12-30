@@ -2,7 +2,7 @@
   <!--整个页面的大容器-->
   <el-container style="height: 100%; border: 1px solid #eee; margin-top: -9px">
     <!--侧边栏-->
-    <el-aside :width="aside_width" style="height: 100vh; background-color: rgb(238, 241, 246); margin-left: -9px">
+    <el-aside :width="aside_width" style="background-color: rgb(238, 241, 246); margin-left: -9px">
       <!--侧边栏参数-->
       <el-menu
           background-color="#545c64"
@@ -112,7 +112,7 @@
 
 
       <!--这个部分是被打回的申请-->
-      <div style="margin-top: 50px">
+      <div style="margin-top: 110px">
         <span style="margin-left: 30px; font-weight: bold; font-size: 20px">Rejected applications</span>
         <div style="margin-top: 15px"></div>
         <!--表格主体部分-->
@@ -148,7 +148,7 @@
 
 
       <!--这个部分是已经通过的申请-->
-      <div style="margin-top: 50px">
+      <div style="margin-top: 110px">
         <span style="margin-left: 30px; font-weight: bold; font-size: 20px">Accepted application</span>
         <div style="margin-top: 15px"></div>
         <!--表格主体部分-->
@@ -179,7 +179,7 @@
       <el-dialog
           title="Sequence Info"
           :visible.sync="centerDialogVisible1"
-          width="40%"
+          width="60%"
           center>
         <!--表单中的值绑定到form1变量中-->
         <el-form ref="form" :model="form1" label-width="220px">
@@ -219,7 +219,7 @@
       <el-dialog
           title="Sequence Info"
           :visible.sync="centerDialogVisible2"
-          width="40%"
+          width="60%"
           center>
         <!--表单中的值绑定到form2变量中-->
         <el-form ref="form" :model="form2" label-width="220px">
@@ -288,6 +288,7 @@ export default {
       tableData1: [],
       tableData2: [],
       tableData3: [],
+      pageSize:100,
       centerDialogVisible1: false,
       centerDialogVisible2: false,
       form1:{

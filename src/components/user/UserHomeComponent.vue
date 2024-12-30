@@ -14,7 +14,7 @@
           :collapse-transition="false"
           router>
 
-        <!--Home导航栏-->
+        <!--管理员Home导航栏-->
         <el-menu-item index="/User/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
@@ -131,15 +131,12 @@
 
 export default {
   name: "UserHomeComponent",
-  components: {},
   data(){
     return{
       aside_width: '220px',
       isCollapse: false,
       collapseIcon: 'el-icon-s-fold',
     }
-  },
-  props:{
   },
   methods:{
     // 侧边栏实现伸缩的方法
@@ -182,7 +179,7 @@ export default {
             })
           })
     },
-    // 初次加载界面的时候, 读取登录用户的userInfo
+    // 初次加载界面的时候, 将会话存储中的userInfo加载到user变量中
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     }

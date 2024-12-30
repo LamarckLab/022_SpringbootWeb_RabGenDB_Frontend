@@ -13,19 +13,19 @@
           :collapse-transition="false"
           router>
 
-        <!--导航栏 1-->
+        <!--超管home-->
         <el-menu-item index="/SuperAdmin/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--导航栏 2-->
+        <!--用户信息管理-->
         <el-menu-item index="/SuperAdmin/Manage">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">User Info Manage</span>
         </el-menu-item>
 
-        <!--导航栏 3-->
+        <!--用户权限管理-->
         <el-menu-item index="/SuperAdmin/Authority">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Authority Manage</span>
@@ -40,7 +40,7 @@
         <div style="display: flex;line-height: 60px">
 
           <!--侧边栏的伸缩按钮以及实现-->
-          <div >
+          <div>
             <i :class="collapseIcon" style="font-size: 25px; cursor: pointer" @click="collapse"></i>
           </div>
 
@@ -60,7 +60,6 @@
           </el-dropdown>
         </div>
       </el-header>
-
 
 
       <el-main style="height: 100%">
@@ -161,7 +160,7 @@
           <el-button @click="centerDialogVisible = false">Cancel</el-button>
               <!--提交按钮-->
           <el-button type="primary" @click="modUser">Submit</el-button>
-    </span>
+            </span>
           </el-dialog>
         </div>
       </el-main>
@@ -174,7 +173,6 @@
 
 export default {
   name: "SuperAdminManageAuthorityComponent",
-  components: {},
   data(){
     return{
       aside_width: '220px',
@@ -197,9 +195,9 @@ export default {
       },
     }
   },
-  props:{
-  },
+
   methods:{
+    // 实现功能栏伸缩功能
     collapse(){
       this.isCollapse = !this.isCollapse;
       if(this.isCollapse){
@@ -211,9 +209,11 @@ export default {
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
+    // 跳转到超管home页
     toUser(){
       this.$router.push("/SuperAdmin/Home");
     },
+    // 跳转到登录页
     logOut(){
       this.$confirm('Sure to quit?', '', {
         confirmButtonText: 'Quit',  //确认按钮的文字显示
@@ -237,6 +237,7 @@ export default {
             })
           })
     },
+    // 首次加载页面时, 将会话存储中userInfo加载到user变量中
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     },
@@ -255,10 +256,6 @@ export default {
     resetParam(){
       this.searchUsername = '';
       this.searchCountry = '';
-    },
-    // New按钮绑定的事件，用于弹出新增角色表单
-    addUser(){
-      this.centerDialogVisible = true;
     },
     // Edit按钮绑定的事件，用于读取当前行信息，赋值到Edit表单
     editUser(row){

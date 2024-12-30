@@ -134,7 +134,6 @@
 
 export default {
   name: "UserRabiesOverviewComponent",
-  components: {},
   data(){
     return{
       aside_width: '220px',
@@ -143,7 +142,7 @@ export default {
     }
   },
   methods:{
-    // 侧边栏实现伸缩功能的方法
+    // 导航栏实现伸缩功能的方法
     collapse(){
       this.isCollapse = !this.isCollapse;
       if(this.isCollapse){
@@ -183,7 +182,7 @@ export default {
             })
           })
     },
-    // 加载页面时, 将登录用户的信息加载的userInfo
+    // 加载页面时, 将会话存储中的userInfo加载到user中
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     }

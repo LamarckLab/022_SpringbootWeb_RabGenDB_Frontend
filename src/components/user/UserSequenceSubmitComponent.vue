@@ -90,7 +90,7 @@
             <!--Username输入框-->
             <el-form-item label="Username">
               <el-col :span="18">
-                <el-input v-model="form.username"></el-input>
+                <span>{{user.username}}</span>
               </el-col>
             </el-form-item>
             <!--Accession输入框-->
@@ -149,7 +149,7 @@ export default {
         collectionCountry:'',
         collectionDate:'',
         rawHost:'',
-        username: '',
+        username: JSON.parse(sessionStorage.getItem('userInfo')).username,
         isSubmit:'1',
       },
     }

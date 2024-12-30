@@ -246,7 +246,6 @@
 
 export default {
   name: "SuperAdminManageUsersComponent",
-  components: {},
   data(){
     return{
       aside_width: '220px',
@@ -277,9 +276,9 @@ export default {
       },
     }
   },
-  props:{
-  },
+
   methods:{
+    // 实现导航栏伸缩功能的方法
     collapse(){
       this.isCollapse = !this.isCollapse;
       if(this.isCollapse){
@@ -291,9 +290,11 @@ export default {
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
+    // 跳转到超管的home页
     toUser(){
       this.$router.push("/SuperAdmin/Home");
     },
+    // 跳转到登录页
     logOut(){
       this.$confirm('Sure to quit?', '', {
         confirmButtonText: 'Quit',  //确认按钮的文字显示
@@ -317,6 +318,7 @@ export default {
             })
           })
     },
+    // 首次加载页面的时候, 把会话存储中的userInfo保存到user变量中
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     },
@@ -354,7 +356,7 @@ export default {
       this.form.email='';
       this.form.country='';
     },
-    // Edit按钮绑定的事件，用于读取当前行信息，赋值到Edit表单
+    // Edit按钮绑定的事件, 用于读取当前行信息, 赋值到Edit表单, 弹出信息编辑表单
     editUser(row){
       this.editForm.username = row.username;
       this.editForm.password = row.password;

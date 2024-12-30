@@ -22,7 +22,7 @@
         <!--用户信息管理-->
         <el-menu-item index="/SuperAdmin/Manage">
           <i class="el-icon-user-solid"></i>
-          <span slot="title" style="font-size: 16px">Account Manage</span>
+          <span slot="title" style="font-size: 16px">User Info Manage</span>
         </el-menu-item>
 
         <!--用户权限管理-->
@@ -118,7 +118,6 @@
 
 export default {
   name: "SuperAdminHomeComponent",
-  components: {},
   data(){
     return{
       aside_width: '220px',
@@ -126,8 +125,7 @@ export default {
       collapseIcon: 'el-icon-s-fold',
     }
   },
-  props:{
-  },
+  // 导航栏伸缩功能实现
   methods:{
     collapse(){
       this.isCollapse = !this.isCollapse;
@@ -140,9 +138,11 @@ export default {
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
+    // 跳转到个人信息页
     toUser(){
       this.$router.push("/SuperAdmin/Home");
     },
+    // 跳转到登录页面
     logOut(){
       this.$confirm('Sure to quit?', '', {
         confirmButtonText: 'Quit',  //确认按钮的文字显示
@@ -166,6 +166,7 @@ export default {
             })
           })
     },
+    // 初次加载页面时, 把会话存储中的userInfo信息加载到user中
     init(){
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     }

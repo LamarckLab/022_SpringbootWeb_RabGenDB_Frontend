@@ -22,7 +22,7 @@
         <!--导航栏 2-->
         <el-menu-item index="/SuperAdmin/Manage">
           <i class="el-icon-user-solid"></i>
-          <span slot="title" style="font-size: 16px">Account Manage</span>
+          <span slot="title" style="font-size: 16px">User Info Manage</span>
         </el-menu-item>
 
         <!--导航栏 3-->

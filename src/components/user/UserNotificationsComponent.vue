@@ -232,31 +232,31 @@
           </el-form-item>
           <el-form-item label="Collection Country :">
             <el-col :span="18">
-              <span>{{form2.collectionCountry}}</span>
+              <el-input v-model="form2.collectionCountry"></el-input>
             </el-col>
           </el-form-item>
           <!--Collection Date浏览框-->
           <el-form-item label="Collection Date :">
             <el-col :span="18">
-              <span>{{form2.collectionDate}}</span>
+              <el-input v-model="form2.collectionDate"></el-input>
             </el-col>
           </el-form-item>
           <!--RawHost浏览框-->
           <el-form-item label="Raw Host :">
             <el-col :span="18">
-              <span>{{form2.rawHost}}</span>
+              <el-input v-model="form2.rawHost"></el-input>
             </el-col>
           </el-form-item>
           <!--RefinedHost浏览框-->
           <el-form-item label="Refined Host :">
             <el-col :span="18">
-              <span>{{form2.refinedHost}}</span>
+              <el-input v-model="form2.refinedHost"></el-input>
             </el-col>
           </el-form-item>
           <!--Message浏览框-->
           <el-form-item label="Message :">
             <el-col :span="18">
-              <span>{{form2.message}}</span>
+              <el-input v-model="form2.message"></el-input>
             </el-col>
           </el-form-item>
         </el-form>
@@ -264,6 +264,8 @@
         <span slot="footer" class="dialog-footer">
           <!--取消按钮-->
           <el-button @click="centerDialogVisible2 = false">Cancel</el-button>
+          <!--提交按钮-->
+          <el-button type="primary" @click="reSubmit">Submit</el-button>
         </span>
       </el-dialog>
 
@@ -301,6 +303,7 @@ export default {
         rawHost:'',
         refinedHost:'',
         message:'',
+        username: JSON.parse(sessionStorage.getItem('userInfo')).username,
       },
     }
   },
@@ -393,6 +396,20 @@ export default {
             this.tableData3 = res.data.data;
             this.total = res.data.total;
           });
+    },
+    // 提交被打回的序列时, 执行该方法
+    reSubmit(){
+      this.$axios.post('http://localhost:9090/reSubmit', this.form2);
+      this.$message({
+        message: 'Submit successfully',
+        type: 'success',
+      });
+      this.centerDialogVisible2 = false;
+      this.form.accession='';
+      this.form.collectionCountry='';
+      this.form.collectionDate='';
+      this.form.rawHost='';
+      this.form.username = '';
     },
     viewSequence(row){
       this.form1.accession = row.accession;

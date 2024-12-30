@@ -79,7 +79,7 @@
             <el-table-column prop="accession" label="Accession" width="180">
             </el-table-column>
             <!--Collection Country-->
-            <el-table-column prop="collectionCountry" label="Collection Country" width="180">
+            <el-table-column prop="collectionCountry" label="Collection Country" width="240">
             </el-table-column>
             <!--Collection Date-->
             <el-table-column prop="collectionDate" label="Collection Date" width="160">
@@ -290,6 +290,7 @@ export default {
       this.form.rawHost = row.rawHost;
       this.form.refinedHost = row.refinedHost;
       this.form.isSubmit = row.isSubmit;
+      this.form.message = row.message;
       this.centerDialogVisible = true;
     },
     // 在check表单中, 点击accept按钮后, 会调用的方法

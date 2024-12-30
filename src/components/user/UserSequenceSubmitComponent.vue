@@ -137,7 +137,6 @@
 
 export default {
   name: "UserSequenceSubmitComponent",
-  components: {},
 
   data(){
     return{
@@ -145,7 +144,6 @@ export default {
       isCollapse: false,
       collapseIcon: 'el-icon-s-fold',
       centerDialogVisible: false,
-      // 表单中的六个属性
       form:{
         accession:'',
         collectionCountry:'',

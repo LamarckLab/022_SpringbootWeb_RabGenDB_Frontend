@@ -146,7 +146,7 @@
 <script>
 export default {
   name: "UserSequenceSearchComponent",
-  components: {},
+
   data(){
     return{
       aside_width: '220px',
@@ -161,6 +161,7 @@ export default {
       searchHost:'',
     }
   },
+
   methods:{
     // 侧边栏的伸缩方法
     collapse(){

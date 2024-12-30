@@ -13,19 +13,19 @@
           :collapse-transition="false"
           router>
 
-        <!--导航栏 1-->
+        <!--Admin Home导航栏-->
         <el-menu-item index="/Admin/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
         </el-menu-item>
 
-        <!--导航栏 2-->
+        <!--Admin Sequence Search导航栏-->
         <el-menu-item index="/Admin/SequenceSearch">
           <i class="el-icon-user-solid"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
-        <!--导航栏 3-->
+        <!--Admin Sequence Check导航栏-->
         <el-menu-item index="/Admin/SequenceCheck">
           <i class="el-icon-s-custom"></i>
           <span slot="title" style="font-size: 16px">Sequence Check</span>
@@ -118,7 +118,7 @@
 
 export default {
   name: "AdminHomeComponent",
-  components: {},
+
   data() {
     return {
       aside_width: '220px',
@@ -126,8 +126,9 @@ export default {
       collapseIcon: 'el-icon-s-fold',
     }
   },
-  props: {},
+
   methods: {
+    // 导航栏伸缩功能的实现
     collapse() {
       this.isCollapse = !this.isCollapse;
       if (this.isCollapse) {
@@ -138,9 +139,11 @@ export default {
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
+    // 跳转到管理员home页
     toUser() {
       this.$router.push("/Admin/Home");
     },
+    // 跳转到登录页
     logOut() {
       this.$confirm('Sure to quit?', '', {
         confirmButtonText: 'Quit',  //确认按钮的文字显示
@@ -164,6 +167,7 @@ export default {
             })
           })
     },
+    // 首次加载页面的时候, 将会话存储中的userInfo加载到user变量中
     init() {
       this.user = JSON.parse(sessionStorage.getItem('userInfo'))
     }

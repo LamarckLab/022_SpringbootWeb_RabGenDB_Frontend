@@ -121,9 +121,8 @@
           </el-descriptions-item>
         </el-descriptions>
 
-        <br><br><br><br><br><br>
         <!--欢迎字样-->
-        <h1 style="font-size: 50px; color: #dddddd">{{ 'Welcome！' + user.username }}</h1>
+        <h1 style="font-size: 50px; color: #dddddd; margin-top: 240px">{{'Welcome！'+user.username}}</h1>
       </div>
     </el-container>
   </el-container>
@@ -210,7 +209,7 @@ export default {
 
 /* 新增的背景样式，记得把图片路径改成你自己的位置 */
 .user-home-main {
-  background: url("@/assets/images/user-home.png") no-repeat center center;
+  background: url("@/assets/images/home.png") no-repeat center center;
   background-size: cover;
   /* 可以根据布局需要调整高度，示例中假设Header高度约60px */
   min-height: calc(100vh - 60px);

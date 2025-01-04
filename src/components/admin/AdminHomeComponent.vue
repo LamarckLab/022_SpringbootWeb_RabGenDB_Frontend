@@ -62,10 +62,7 @@
       </el-header>
 
       <!--个人主页的核心部分-->
-      <div style="text-align: center;height: 100%;padding: 0px;margin: 0px;">
-
-        <!--欢迎字样-->
-        <h1 style="font-size: 50px;">{{'Welcome！'+user.username}}</h1>
+      <div class="admin-home-main" style="text-align: center;height: 100%;padding: 0px;margin: 0px;">
 
         <!--个人信息表单-->
         <el-descriptions  title="Personal Info Sheet" :column="2" size="40" border>
@@ -108,6 +105,10 @@
                 disable-transitions>{{user.role==0?"Super Administrator":(user.role==1?"Administrator":"User")}}</el-tag>
           </el-descriptions-item>
         </el-descriptions>
+
+        <!--欢迎字样-->
+        <h1 style="font-size: 50px; color: #dddddd; margin-top: 240px">{{'Welcome！'+user.username}}</h1>
+
       </div>
     </el-container>
   </el-container>
@@ -179,9 +180,28 @@ export default {
 </script>
 
 <style scoped>
+/* 原有的样式 */
 .el-descriptions {
   width: 90%;
-  margin: 0 auto;
-  text-align: center;
+  margin: 40px auto;
+  background-color: rgba(255, 255, 255, 0.5); /* 半透明白色背景 */
+  border-radius: 8px; /* 如果想让四角稍微圆一点就加这个 */
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);  /* 毛玻璃效果 */
+  border: 1px solid rgba(255,255,255,0.3);
+  font-size: 16px;
+  color: #333;
+  line-height: 1.8;  /* 行高 */
+  text-align: left;  /* 文本对齐 */
+  letter-spacing: 1px;  /* 字符间距 */
 }
+
+/* 新增的背景样式，记得把图片路径改成你自己的位置 */
+.admin-home-main {
+  background: url("@/assets/images/home.png") no-repeat center center;
+  background-size: cover;
+  /* 可以根据布局需要调整高度，示例中假设Header高度约60px */
+  min-height: calc(100vh - 60px);
+}
+
 </style>

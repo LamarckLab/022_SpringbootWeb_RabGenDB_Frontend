@@ -46,7 +46,7 @@
 
           <!--页面正上方的介绍字体-->
           <div style="flex:1; text-align: center; font-size: 26px">
-            <span>RABV Genome DataBase</span>
+            <span style="font-weight: bold; font-size: 32px;font-family: 'Calibri';">RABV Genome DataBase</span>
           </div>
 
           <!--页面右上角的下拉菜单-->

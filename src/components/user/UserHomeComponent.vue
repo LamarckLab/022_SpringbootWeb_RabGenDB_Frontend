@@ -12,7 +12,8 @@
           style="height: 100%"
           :collapse="isCollapse"
           :collapse-transition="false"
-          router>
+          router
+      >
 
         <!--管理员Home导航栏-->
         <el-menu-item index="/User/Home">
@@ -50,10 +51,9 @@
 
       <!--Header部分-->
       <el-header style="text-align: right; font-size: 12px; border-bottom: darkgray 3px solid">
-        <div style="display: flex;line-height: 60px">
-
+        <div style="display: flex; line-height: 60px">
           <!--侧边栏的伸缩按钮以及实现-->
-          <div >
+          <div>
             <i :class="collapseIcon" style="font-size: 25px; cursor: pointer" @click="collapse"></i>
           </div>
 
@@ -65,7 +65,7 @@
           <!--页面右上角的下拉菜单-->
           <el-dropdown>
             <i class="el-icon-user-solid" style="font-size: 25px"></i>
-            <span>{{user.username}}</span>
+            <span>{{ user.username }}</span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item @click.native="toUser">Personal Info</el-dropdown-item>
               <el-dropdown-item @click.native="logOut">Quit</el-dropdown-item>
@@ -74,22 +74,20 @@
         </div>
       </el-header>
 
-      <!--个人主页的核心部分-->
-      <div style="text-align: center;height: 100%;padding: 0px; margin: 0px;">
+      <!--个人主页的核心部分，给这个div加一个class来控制背景-->
+      <div class="user-home-main" style="text-align: center; height: 100%; padding: 0px; margin: 0px;">
 
-        <!--欢迎字样-->
-        <h1 style="font-size: 50px;">{{'Welcome！'+user.username}}</h1>
+        <br>
 
         <!--个人信息表单-->
-        <el-descriptions  title="Personal Info Sheet" :column="2" size="40" border>
--
+        <el-descriptions title="Personal Info Sheet" :column="2" size="40" border>
           <!--Username-->
           <el-descriptions-item>
             <template slot="label">
               <i class="el-icon-s-custom"></i>
               Username
             </template>
-            {{user.username}}
+            {{ user.username }}
           </el-descriptions-item>
 
           <!--Telephone-->
@@ -98,7 +96,7 @@
               <i class="el-icon-mobile-phone"></i>
               Telephone
             </template>
-            {{user.telephone}}
+            {{ user.telephone }}
           </el-descriptions-item>
 
           <!--Country-->
@@ -107,7 +105,7 @@
               <i class="el-icon-location-outline"></i>
               Country
             </template>
-            {{user.country}}
+            {{ user.country }}
           </el-descriptions-item>
 
           <!--Role-->
@@ -118,45 +116,50 @@
             </template>
             <el-tag
                 type="success"
-                disable-transitions>{{user.role==0?"Super Administrator":(user.role==1?"Administrator":"User")}}</el-tag>
+                disable-transitions
+            >
+              {{ user.role == 0 ? "Super Administrator" : (user.role == 1 ? "Administrator" : "User") }}
+            </el-tag>
           </el-descriptions-item>
         </el-descriptions>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <!--欢迎字样-->
+        <h1 style="font-size: 50px; color: #dddddd">{{ 'Welcome！' + user.username }}</h1>
       </div>
     </el-container>
   </el-container>
 </template>
 
 <script>
-
-
 export default {
   name: "UserHomeComponent",
-  data(){
-    return{
+  data() {
+    return {
       aside_width: '220px',
       isCollapse: false,
       collapseIcon: 'el-icon-s-fold',
+      user: {}   // 用来接收 sessionStorage 中的用户信息
     }
   },
-  methods:{
+  methods: {
     // 侧边栏实现伸缩的方法
-    collapse(){
+    collapse() {
       this.isCollapse = !this.isCollapse;
-      if(this.isCollapse){
+      if (this.isCollapse) {
         this.aside_width = '64px';
         this.collapseIcon = 'el-icon-s-unfold';
-      }
-      else{
+      } else {
         this.aside_width = '220px';
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
     // 跳转到home页的方法
-    toUser(){
+    toUser() {
       this.$router.push("/User/Home");
     },
     // 退出到登录页的方法
-    logOut(){
+    logOut() {
       this.$confirm('Sure to quit?', '', {
         confirmButtonText: 'Quit',  //确认按钮的文字显示
         cancelButtonText: 'Cancel',
@@ -169,7 +172,7 @@ export default {
               message:'Quit successfully'
             })
             // 清除 sessionStorage 中的用户信息
-            sessionStorage.removeItem("userInfo"); //  当用户退出时, 清除sessionStorage
+            sessionStorage.removeItem("userInfo"); // 当用户退出时, 清除sessionStorage
             this.$router.push("/"); // 返回登录页面
           })
           .catch(() => {
@@ -180,20 +183,37 @@ export default {
           })
     },
     // 初次加载界面的时候, 将会话存储中的userInfo加载到user变量中
-    init(){
-      this.user = JSON.parse(sessionStorage.getItem('userInfo'))
+    init() {
+      this.user = JSON.parse(sessionStorage.getItem('userInfo')) || {}
     }
   },
-  created(){
+  created() {
     this.init()
   }
 }
 </script>
 
-<style  scoped>
+<style scoped>
+/* 原有的样式 */
 .el-descriptions {
   width: 90%;
   margin: 0 auto;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.5); /* 半透明白色背景 */
+  border-radius: 8px; /* 如果想让四角稍微圆一点就加这个 */
 }
+
+.el-descriptions-item{
+  background-color: rgba(255, 255, 255, 0.5); /* 半透明白色背景 */
+  border-radius: 8px; /* 如果想让四角稍微圆一点就加这个 */
+}
+
+/* 新增的背景样式，记得把图片路径改成你自己的位置 */
+.user-home-main {
+  background: url("@/assets/images/user-home.png") no-repeat center center;
+  background-size: cover;
+  /* 可以根据布局需要调整高度，示例中假设Header高度约60px */
+  min-height: calc(100vh - 60px);
+}
+
 </style>

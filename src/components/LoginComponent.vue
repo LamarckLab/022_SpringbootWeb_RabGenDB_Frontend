@@ -99,7 +99,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .loginBody {
   position: absolute;
   width: 100%;
@@ -133,7 +133,7 @@ export default {
   z-index: 1; /* 确保表单内容在蒙版之上 */
 }
 .login-title {
-  margin: 20px 0;
+  margin: 20px;
   text-align: center;
 }
 .login-content {

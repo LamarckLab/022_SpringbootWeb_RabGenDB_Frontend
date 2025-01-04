@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       imgwrap: [
-        {url: require("../assets/images/background-login2.png")},
+        {url: require("../assets/images/home.png")},
         {url: require("../assets/images/home.png")},
         {url: require("../assets/images/home.png")},
         {url: require("../assets/images/home.png")},

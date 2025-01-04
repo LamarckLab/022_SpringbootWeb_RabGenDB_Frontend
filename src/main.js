@@ -7,6 +7,7 @@ import App from './App.vue'
 // 引入了Element UI组件库
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import locale from 'element-ui/lib/locale/lang/en'
 
 // 引入路由表
 import VueRouter from "vue-router";
@@ -21,7 +22,7 @@ axios.defaults.baseURL = "http://127.0.0.1:9090";
 Vue.config.productionTip = false
 
 // 注册Element UI组件库到Vue实例中，使得整个项目都可以使用 Element UI 的组件
-Vue.use(ElementUI);
+Vue.use(ElementUI, {locale});
 
 Vue.use(VueRouter);
 

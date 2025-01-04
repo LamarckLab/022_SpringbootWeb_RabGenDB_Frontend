@@ -21,13 +21,13 @@
 
         <!--Admin Sequence Search导航栏-->
         <el-menu-item index="/Admin/SequenceSearch">
-          <i class="el-icon-user-solid"></i>
+          <i class="el-icon-search"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
         <!--Admin Sequence Check导航栏-->
         <el-menu-item index="/Admin/SequenceCheck">
-          <i class="el-icon-s-custom"></i>
+          <i class="el-icon-view"></i>
           <span slot="title" style="font-size: 16px">Sequence Check</span>
         </el-menu-item>
 

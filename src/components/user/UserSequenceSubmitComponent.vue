@@ -74,10 +74,36 @@
         </div>
       </el-header>
 
+
+      <!--RABV的简介部分-->
+      <div style="padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; margin: 20px;">
+        <h2>**** Sequence Submission Guidelines ****</h2>
+
+        <p class="paragraph-style">
+          1. When uploading a sequence, you are required to provide the following sample information: accession, collection country, collection date, and host.
+          If the sequence does not have an officially provided accession, this field can be left blank.
+        </p>
+        <p class="paragraph-style">
+          2 .After a sequence is uploaded, it will be reviewed by the administrator.
+          Sequences that pass the review will be added to RabGenDB and you will be notified in the Notifications section.
+          During the review process, the administrator will classify the submitted host into one of the following Refined Host categories:
+          <strong><em>Bats</em></strong>, <strong><em>Bovidae</em></strong>, <strong><em>Canidae</em></strong>, <strong><em>Feliformia</em></strong>, <strong><em>Mustelidae and Mephitidae</em></strong>, <strong><em>Primates</em></strong>, <strong><em>Procyonidae</em></strong> or 'others'.
+        </p>
+        <p class="paragraph-style">
+          3. If there are errors in the submitted sequence information, the administrator will reject your submission and provide the reason for rejection.
+          You may modify the previous submission and resubmit it.
+        </p>
+
+      </div>
+
       <div style="margin-left: 30px; margin-top: 30px">
 
         <!--序列提交按钮-->
-        <el-button type="warning" style="margin-left: 10px" @click="addSequence" >Sequence Submit</el-button>
+        <div style="text-align: center;">
+          <el-button type="success" style="margin-top: 10px; font-size: 20px; font-weight: bold; color: floralwhite" @click="addSequence">
+            Sequence Submit
+          </el-button>
+        </div>
 
         <!--点击Sequence Submit按钮后弹出来的表单-->
         <el-dialog
@@ -229,5 +255,11 @@ export default {
   width: 90%;
   margin: 0 auto;
   text-align: center;
+}
+
+.paragraph-style{
+  line-height: 1.6;
+  font-size: 16px;
+  color: #333;
 }
 </style>

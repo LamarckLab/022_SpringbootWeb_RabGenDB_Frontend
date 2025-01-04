@@ -149,7 +149,7 @@
 
       <!--这个部分是已经通过的申请-->
       <div style="margin-top: 110px">
-        <span style="margin-left: 30px; font-weight: bold; font-size: 20px">Accepted application</span>
+        <span style="margin-left: 30px; font-weight: bold; font-size: 20px">Accepted applications</span>
         <div style="margin-top: 15px"></div>
         <!--表格主体部分-->
         <el-table

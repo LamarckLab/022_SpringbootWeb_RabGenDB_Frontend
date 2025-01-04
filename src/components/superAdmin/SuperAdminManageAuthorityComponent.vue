@@ -13,7 +13,7 @@
           :collapse-transition="false"
           router>
 
-        <!--超管home-->
+        <!--超管Home-->
         <el-menu-item index="/SuperAdmin/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
@@ -21,13 +21,13 @@
 
         <!--用户信息管理-->
         <el-menu-item index="/SuperAdmin/Manage">
-          <i class="el-icon-user-solid"></i>
+          <i class="el-icon-setting"></i>
           <span slot="title" style="font-size: 16px">User Info Manage</span>
         </el-menu-item>
 
         <!--用户权限管理-->
         <el-menu-item index="/SuperAdmin/Authority">
-          <i class="el-icon-s-custom"></i>
+          <i class="el-icon-view"></i>
           <span slot="title" style="font-size: 16px">Authority Manage</span>
         </el-menu-item>
       </el-menu>

@@ -13,7 +13,7 @@
           :collapse-transition="false"
           router>
 
-        <!--Home导航栏-->
+        <!--管理员Home导航栏-->
         <el-menu-item index="/User/Home">
           <i class="el-icon-s-home"></i>
           <span slot="title" style="font-size: 16px">Home</span>
@@ -21,25 +21,25 @@
 
         <!--RABV Overview导航栏-->
         <el-menu-item index="/User/RabiesOverview">
-          <i class="el-icon-user-solid"></i>
+          <i class="el-icon-info"></i>
           <span slot="title" style="font-size: 16px">RABV Overview</span>
         </el-menu-item>
 
         <!--Sequence Search导航栏-->
         <el-menu-item index="/User/SequenceSearch">
-          <i class="el-icon-s-custom"></i>
+          <i class="el-icon-search"></i>
           <span slot="title" style="font-size: 16px">Sequence Search</span>
         </el-menu-item>
 
         <!--Sequence Submit导航栏-->
         <el-menu-item index="/User/SequenceSubmit">
-          <i class="el-icon-s-custom"></i>
+          <i class="el-icon-upload"></i>
           <span slot="title" style="font-size: 16px">Sequence Submit</span>
         </el-menu-item>
 
         <!--Notifications导航栏-->
         <el-menu-item index="/User/Notifications">
-          <i class="el-icon-s-custom"></i>
+          <i class="el-icon-bell"></i>
           <span slot="title" style="font-size: 16px">Notifications</span>
         </el-menu-item>
       </el-menu>

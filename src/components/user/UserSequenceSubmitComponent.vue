@@ -232,7 +232,7 @@ export default {
     },
     // 提交表单时, 点击submit后触发的事件
     sequenceSubmit(){
-      this.$axios.post('http://localhost:9090/sequenceSave', this.form);
+      this.$axios.post('/sequenceSave', this.form);
       this.$message({
         message: 'Submit successfully',
         type: 'success',

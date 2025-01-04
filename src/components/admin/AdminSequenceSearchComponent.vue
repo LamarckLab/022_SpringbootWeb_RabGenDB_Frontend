@@ -211,7 +211,7 @@ export default {
     // 根据Accession进行精确搜索的方法
     preciseSearch() {
       this.$axios
-          .get('http://localhost:9090/genomePreciseSearchPage', {
+          .get('/genomePreciseSearchPage', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,
@@ -226,7 +226,7 @@ export default {
     // 根据Collection Country和Host进行模糊搜索的方法
     flexSearch() {
       this.$axios
-          .get('http://localhost:9090/genomeFlexSearchPage', {
+          .get('/genomeFlexSearchPage', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,

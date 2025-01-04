@@ -269,7 +269,7 @@ export default {
     },
     // Edit表单中Submit按钮绑定的事件，用于修改用户信息
     modUser(){
-      this.$axios.post('http://localhost:9090/modAuthority', this.editForm);
+      this.$axios.post('/modAuthority', this.editForm);
       this.$message({
         message: 'Edit successfully',
         type: 'success',
@@ -280,7 +280,7 @@ export default {
     // 分页查询方法
     loadPost() {
       this.$axios
-          .get('http://localhost:9090/listPage', {
+          .get('/listPage', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,

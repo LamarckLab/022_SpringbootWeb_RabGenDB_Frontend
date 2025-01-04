@@ -270,7 +270,7 @@ export default {
     // 分页查询方法
     loadPost() {
       this.$axios
-          .get('http://localhost:9090/listGenomePage', {
+          .get('/listGenomePage', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,
@@ -295,7 +295,7 @@ export default {
     },
     // 在check表单中, 点击accept按钮后, 会调用的方法
     sequenceAccept(){
-      this.$axios.post('http://localhost:9090/sequenceAccept', this.form);
+      this.$axios.post('/sequenceAccept', this.form);
       this.$message({
         message: 'Accept successfully',
         type: 'success',
@@ -304,7 +304,7 @@ export default {
     },
     // 在check表单中, 点击reject按钮后, 会调用的方法
     sequenceReject(){
-      this.$axios.post('http://localhost:9090/sequenceReject', this.form);
+      this.$axios.post('/sequenceReject', this.form);
       this.$message({
         message: 'Reject successfully',
         type: 'success',

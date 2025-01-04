@@ -15,6 +15,7 @@ import router from './router';
 // 引入Axios
 import axios from "axios";
 Vue.prototype.$axios=axios;
+axios.defaults.baseURL = "http://192.168.1.112:9090";
 
 // 关闭生产环境的提示
 Vue.config.productionTip = false

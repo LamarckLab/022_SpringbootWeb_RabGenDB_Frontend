@@ -356,7 +356,7 @@ export default {
     // 等待检查的序列申请
     waitingForCheck(){
       this.$axios
-          .get('http://localhost:9090/sequenceWaitingForCheck', {
+          .get('/sequenceWaitingForCheck', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,
@@ -371,7 +371,7 @@ export default {
     // 被打回的序列申请
     rejectedApplications(){
       this.$axios
-          .get('http://localhost:9090/rejectedApplications', {
+          .get('/rejectedApplications', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,
@@ -386,7 +386,7 @@ export default {
     // 已经通过的序列申请
     acceptedApplications(){
       this.$axios
-          .get('http://localhost:9090/acceptedApplications', {
+          .get('/acceptedApplications', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,
@@ -400,7 +400,7 @@ export default {
     },
     // 提交被打回的序列时, 执行该方法
     reSubmit(){
-      this.$axios.post('http://localhost:9090/reSubmit', this.form2);
+      this.$axios.post('/reSubmit', this.form2);
       this.$message({
         message: 'Submit successfully',
         type: 'success',

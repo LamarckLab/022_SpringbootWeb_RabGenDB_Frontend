@@ -344,7 +344,7 @@ export default {
     },
     // 新增按钮中Submit绑定的事件，用于创建新用户
     save(){
-      this.$axios.post('http://localhost:9090/save', this.form);
+      this.$axios.post('/save', this.form);
       this.$message({
         message: 'Submit successfully',
         type: 'success',
@@ -367,7 +367,7 @@ export default {
     },
     // Edit表单中Submit按钮绑定的事件，用于修改用户信息
     modUser(){
-      this.$axios.post('http://localhost:9090/mod', this.editForm);
+      this.$axios.post('/mod', this.editForm);
       this.$message({
         message: 'Edit successfully',
         type: 'success',
@@ -377,7 +377,7 @@ export default {
     },
     // Delete按钮绑定的事件，用于删除用户
     delUser(username){
-      this.$axios.get('http://localhost:9090/del?username='+username);
+      this.$axios.get('/del?username='+username);
       this.$message({
         type:'success',
         message:'Delete successfully'
@@ -386,7 +386,7 @@ export default {
     // 分页查询方法
     loadPost() {
       this.$axios
-          .get('http://localhost:9090/listPage', {
+          .get('/listPage', {
             params: {
               pageNum: this.pageNum,
               pageSize: this.pageSize,

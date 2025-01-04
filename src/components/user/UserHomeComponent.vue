@@ -77,8 +77,6 @@
       <!--个人主页的核心部分，给这个div加一个class来控制背景-->
       <div class="user-home-main" style="text-align: center; height: 100%; padding: 0px; margin: 0px;">
 
-        <br>
-
         <!--个人信息表单-->
         <el-descriptions title="Personal Info Sheet" :column="2" size="40" border>
           <!--Username-->
@@ -123,7 +121,7 @@
           </el-descriptions-item>
         </el-descriptions>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br>
         <!--欢迎字样-->
         <h1 style="font-size: 50px; color: #dddddd">{{ 'Welcome！' + user.username }}</h1>
       </div>
@@ -197,15 +195,17 @@ export default {
 /* 原有的样式 */
 .el-descriptions {
   width: 90%;
-  margin: 0 auto;
-  text-align: center;
+  margin: 40px auto;
   background-color: rgba(255, 255, 255, 0.5); /* 半透明白色背景 */
   border-radius: 8px; /* 如果想让四角稍微圆一点就加这个 */
-}
-
-.el-descriptions-item{
-  background-color: rgba(255, 255, 255, 0.5); /* 半透明白色背景 */
-  border-radius: 8px; /* 如果想让四角稍微圆一点就加这个 */
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);  /* 毛玻璃效果 */
+  border: 1px solid rgba(255,255,255,0.3);
+  font-size: 16px;
+  color: #333;
+  line-height: 1.8;  /* 行高 */
+  text-align: left;  /* 文本对齐 */
+  letter-spacing: 1px;  /* 字符间距 */
 }
 
 /* 新增的背景样式，记得把图片路径改成你自己的位置 */

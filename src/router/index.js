@@ -61,11 +61,6 @@ const routes = [
         name: 'UserNotifications',
         component: () => import('../components/user/UserNotificationsComponent.vue'),
     },
-    {
-        path: '/Test',
-        name: 'Test',
-        component: () => import('../components/TestComponent.vue'),
-    },
 ]
 
 const router = new VueRouter(

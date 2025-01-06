@@ -67,7 +67,7 @@
             <i class="el-icon-user-solid" style="font-size: 25px"></i>
             <span>{{user.username}}</span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item @click.native="toUser">Personal Info</el-dropdown-item>
+              <el-dropdown-item @click.native="toInfoSetting">Info Setting</el-dropdown-item>
               <el-dropdown-item @click.native="logOut">Quit</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -194,9 +194,8 @@ export default {
         this.collapseIcon = 'el-icon-s-fold';
       }
     },
-    // 跳转到用户home页
-    toUser(){
-      this.$router.push("/User/Home");
+    toInfoSetting(){
+      this.$router.push("/User/InfoSetting");
     },
     // 跳转到登录页
     logOut(){

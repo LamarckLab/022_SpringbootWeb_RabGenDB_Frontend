@@ -2,12 +2,11 @@
   <div class="infoSettingBody">
     <div class="infoSettingDiv">
       <div class="infoSetting-content">
-        <h2 class="infoSetting-title" style="font-size: 30px; margin-left: 130px">Personal &nbsp;Info &nbsp;Setting &nbsp; Sheet</h2>
+        <h2 class="infoSetting-title" style="font-size: 30px; margin-left: 20px">Personal &nbsp;Info &nbsp;Setting &nbsp; Sheet</h2>
         <br>
 
         <!--登录页面的表单-->
-        <el-form :model="loginForm" label-width="100px"
-                 :rules="rules" ref="loginForm">
+        <el-form label-width="100px">
 
           <!--Username展示框-->
           <el-form-item style="font-weight: bold" label="Username :">
@@ -46,12 +45,12 @@
 
           <!--提交按钮-->
           <el-form-item style="margin-left: 55px">
-            <el-button type="primary" @click="confirm" :disabled="confirm_disabled" style="font-weight: bold; font-size: 16px">Submit</el-button>
+            <el-button type="primary" @click="editUser" style="font-weight: bold; font-size: 16px">Submit</el-button>
           </el-form-item>
 
           <!--注册按钮按钮-->
           <el-form-item style="margin-left: 200px; margin-top: -5px">
-            <el-button type="info" size="small" @click="backToHome" :disabled="confirm_disabled" style="font-weight: bold">Back to Home</el-button>
+            <el-button type="info" size="small" @click="backToHome" style="font-weight: bold">Back to Home</el-button>
           </el-form-item>
 
         </el-form>
@@ -78,6 +77,9 @@ export default {
   methods:{
     backToHome(){
       this.$router.push("/SuperAdmin/Home");
+    },
+    editUser(){
+
     },
   },
 }
@@ -110,7 +112,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 800px;
+  width: 650px;
   height: 550px;
   background: rgba(255, 255, 255, 0.75); /* 添加透明背景以便表单可见 */
   border-radius: 10%;

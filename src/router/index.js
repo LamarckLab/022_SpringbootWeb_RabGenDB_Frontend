@@ -24,7 +24,7 @@ const routes = [
     {
         path: '/SuperAdmin/InfoSetting',
         name: 'SuperAdminInfoSetting',
-        component: () => import('../components/superAdmin/SuperAminInfoSettingComponent.vue'),
+        component: () => import('../components/superAdmin/SuperAdminInfoSettingComponent.vue'),
     },
     {
         path: '/Admin/Home',

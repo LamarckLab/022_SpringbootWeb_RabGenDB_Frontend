@@ -63,7 +63,7 @@
 <script>
 
 export default {
-  name: "LoginComponent",
+  name: "UserInfoSettingComponent",
   data(){
     return{
       username: '',
@@ -75,7 +75,7 @@ export default {
   },
   methods:{
     backToHome(){
-      this.$router.push("/SuperAdmin/Home");
+      this.$router.push("/User/Home");
     },
     modUser(){
       this.$axios.post('/mod', {

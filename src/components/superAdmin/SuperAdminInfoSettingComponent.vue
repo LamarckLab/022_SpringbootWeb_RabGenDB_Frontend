@@ -63,7 +63,7 @@
 <script>
 
 export default {
-  name: "LoginComponent",
+  name: "SuperAdminInfoSettingComponent",
   data(){
     return{
         username: '',

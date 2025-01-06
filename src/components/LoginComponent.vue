@@ -27,7 +27,7 @@
 
           <!--注册按钮按钮-->
           <el-form-item style="margin-left: 230px; margin-top: -5px">
-            <el-button type="info" size="small" @click="ToSignUp" :disabled="confirm_disabled" style="font-weight: bold">Sign Up</el-button>
+            <el-button type="info" size="small" @click="signUp" :disabled="confirm_disabled" style="font-weight: bold">Sign Up</el-button>
           </el-form-item>
 
         </el-form>
@@ -100,6 +100,29 @@ export default {
         }
       });
     },
+    signUp(){
+      // 对表单进行检验
+      this.$refs.loginForm.validate((valid) => {
+        if (valid) {
+          // 校验通过, 就不允许重复提交
+          this.confirm_disabled = true;
+          // 向Controller中的login接口发送请求
+          axios.post("/save", {
+            username: this.loginForm.username,
+            password: this.loginForm.password,
+          })
+          this.$message({
+            message: 'SignUp successfully',
+            type: 'success',
+          });
+          this.loginForm.username = '';
+          this.loginForm.password = '';
+          this.confirm_disabled = false;
+        } else {
+          this.$message.error("Please complete the form");
+        }
+      });
+    }
   }
 }
 </script>

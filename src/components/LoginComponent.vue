@@ -21,8 +21,13 @@
           </el-form-item>
 
           <!--提交按钮-->
-          <el-form-item style="margin-left: 60px">
-            <el-button type="primary" @click="confirm" :disabled="confirm_disabled">Submit</el-button>
+          <el-form-item style="margin-left: 55px">
+            <el-button type="primary" @click="confirm" :disabled="confirm_disabled" style="font-weight: bold; font-size: 16px">Sign in</el-button>
+          </el-form-item>
+
+          <!--注册按钮按钮-->
+          <el-form-item style="margin-left: 230px; margin-top: -5px">
+            <el-button type="info" size="small" @click="ToSignUp" :disabled="confirm_disabled" style="font-weight: bold">Sign Up</el-button>
           </el-form-item>
 
         </el-form>

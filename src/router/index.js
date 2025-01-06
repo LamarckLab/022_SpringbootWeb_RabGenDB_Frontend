@@ -22,6 +22,11 @@ const routes = [
         component: () => import('../components/superAdmin/SuperAdminManageAuthorityComponent.vue'),
     },
     {
+        path: '/SuperAdmin/InfoSetting',
+        name: 'SuperAdminInfoSetting',
+        component: () => import('../components/superAdmin/SuperAminInfoSettingComponent.vue'),
+    },
+    {
         path: '/Admin/Home',
         name: 'AdminHome',
         component: () => import('../components/admin/AdminHomeComponent.vue'),
@@ -61,6 +66,7 @@ const routes = [
         name: 'UserNotifications',
         component: () => import('../components/user/UserNotificationsComponent.vue'),
     },
+
 ]
 
 const router = new VueRouter(

@@ -45,7 +45,7 @@
 
           <!--提交按钮-->
           <el-form-item style="margin-left: 55px">
-            <el-button type="primary" @click="editUser" style="font-weight: bold; font-size: 18px; margin-left: 80px">Submit</el-button>
+            <el-button type="primary" @click="modUser" style="font-weight: bold; font-size: 18px; margin-left: 80px">Submit</el-button>
           </el-form-item>
 
           <!--注册按钮按钮-->
@@ -78,8 +78,19 @@ export default {
     backToHome(){
       this.$router.push("/SuperAdmin/Home");
     },
-    editUser(){
-
+    modUser(){
+      this.$axios.post('/mod', {
+        username: this.username,
+        password: this.password,
+        telephone: this.telephone,
+        email: this.email,
+        country: this.country,
+      });
+      this.$message({
+        message: 'Edit successfully',
+        type: 'success',
+      });
+      this.$router.push("/SuperAdmin/Home");
     },
     getInfo(){
       this.username = JSON.parse(sessionStorage.getItem('userInfo')).username;
@@ -87,7 +98,7 @@ export default {
       this.telephone = JSON.parse(sessionStorage.getItem('userInfo')).telephone;
       this.email = JSON.parse(sessionStorage.getItem('userInfo')).email;
       this.country = JSON.parse(sessionStorage.getItem('userInfo')).country;
-    }
+    },
   },
   beforeMount() {
     this.getInfo();
@@ -124,7 +135,7 @@ export default {
   transform: translate(-50%, -50%);
   width: 650px;
   height: 550px;
-  background: rgba(255, 255, 255, 0.75); /* 添加透明背景以便表单可见 */
+  background: rgba(255, 255, 255, 0.6); /* 添加透明背景以便表单可见 */
   border-radius: 10%;
   z-index: 1; /* 确保表单内容在蒙版之上 */
 }

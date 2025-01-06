@@ -110,6 +110,7 @@ export default {
           axios.post("/save", {
             username: this.loginForm.username,
             password: this.loginForm.password,
+            role: 2,
           })
           this.$message({
             message: 'SignUp successfully',

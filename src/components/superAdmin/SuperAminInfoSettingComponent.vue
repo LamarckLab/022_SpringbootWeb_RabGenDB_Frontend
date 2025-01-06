@@ -90,7 +90,7 @@ export default {
         message: 'Edit successfully',
         type: 'success',
       });
-      this.$router.push("/SuperAdmin/Home");
+      this.$router.push("/");
     },
     getInfo(){
       this.username = JSON.parse(sessionStorage.getItem('userInfo')).username;

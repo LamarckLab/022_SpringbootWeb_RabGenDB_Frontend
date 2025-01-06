@@ -11,35 +11,35 @@
           <!--Username展示框-->
           <el-form-item style="font-weight: bold" label="Username :">
             <el-col :span="18">
-              <span style="font-size: 16px">{{this.username}}</span>
+              <span style="font-size: 16px">{{username}}</span>
             </el-col>
           </el-form-item>
 
           <!--Password输入框-->
           <el-form-item style="font-weight: bold" label="Password">
             <el-col :span="18">
-              <el-input v-model="this.password"></el-input>
+              <el-input v-model="password"></el-input>
             </el-col>
           </el-form-item>
 
           <!--Telephone输入框-->
           <el-form-item style="font-weight: bold" label="Telephone">
             <el-col :span="18">
-              <el-input v-model="this.telephone"></el-input>
+              <el-input v-model="telephone"></el-input>
             </el-col>
           </el-form-item>
 
           <!--Email输入框-->
           <el-form-item style="font-weight: bold" label="Email">
             <el-col :span="18">
-              <el-input v-model="this.email"></el-input>
+              <el-input v-model="email"></el-input>
             </el-col>
           </el-form-item>
 
           <!--Country输入框-->
           <el-form-item style="font-weight: bold" label="Country">
             <el-col :span="18">
-              <el-input v-model="this.country"></el-input>
+              <el-input v-model="country"></el-input>
             </el-col>
           </el-form-item>
 
@@ -67,11 +67,11 @@ export default {
   name: "LoginComponent",
   data(){
     return{
-      username: JSON.parse(sessionStorage.getItem('userInfo')).username,
-      password: JSON.parse(sessionStorage.getItem('userInfo')).password,
-      telephone: JSON.parse(sessionStorage.getItem('userInfo')).telephone,
-      email: JSON.parse(sessionStorage.getItem('userInfo')).email,
-      country: JSON.parse(sessionStorage.getItem('userInfo')).country,
+        username: '',
+        password: '',
+        telephone: '',
+        email: '',
+        country: '',
     }
   },
   methods:{
@@ -81,7 +81,17 @@ export default {
     editUser(){
 
     },
+    getInfo(){
+      this.username = JSON.parse(sessionStorage.getItem('userInfo')).username;
+      this.password = JSON.parse(sessionStorage.getItem('userInfo')).password;
+      this.telephone = JSON.parse(sessionStorage.getItem('userInfo')).telephone;
+      this.email = JSON.parse(sessionStorage.getItem('userInfo')).email;
+      this.country = JSON.parse(sessionStorage.getItem('userInfo')).country;
+    }
   },
+  beforeMount() {
+    this.getInfo();
+  }
 }
 </script>
 

@@ -42,6 +42,11 @@ const routes = [
         component: () => import('../components/admin/AdminSequenceCheckComponent.vue'),
     },
     {
+        path: '/Admin/InfoSetting',
+        name: 'AdminInfoSetting',
+        component: () => import('../components/admin/AdminInfoSettingComponent.vue'),
+    },
+    {
         path: '/User/Home',
         name: 'UserHome',
         component: () => import('../components/user/UserHomeComponent.vue'),

@@ -196,7 +196,7 @@
               center>
             <!--表单的属性部分-->
             <el-form ref="form" :model="editForm" label-width="100px">
-              <!--Username输入框-->
+              <!--Username展示框-->
               <el-form-item label="Username :">
                 <el-col :span="18">
                   <span>{{this.editForm.username}}</span>

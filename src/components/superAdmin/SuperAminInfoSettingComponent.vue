@@ -2,7 +2,7 @@
   <div class="infoSettingBody">
     <div class="infoSettingDiv">
       <div class="infoSetting-content">
-        <h2 class="infoSetting-title" style="font-size: 30px; margin-left: 20px">Personal &nbsp;Info &nbsp;Setting &nbsp; Sheet</h2>
+        <h2 class="infoSetting-title" style="font-size: 30px; margin-left: 20px">Personal Info Setting Sheet</h2>
         <br>
 
         <!--登录页面的表单-->
@@ -45,12 +45,12 @@
 
           <!--提交按钮-->
           <el-form-item style="margin-left: 55px">
-            <el-button type="primary" @click="editUser" style="font-weight: bold; font-size: 16px">Submit</el-button>
+            <el-button type="primary" @click="editUser" style="font-weight: bold; font-size: 18px; margin-left: 80px">Submit</el-button>
           </el-form-item>
 
           <!--注册按钮按钮-->
           <el-form-item style="margin-left: 200px; margin-top: -5px">
-            <el-button type="info" size="small" @click="backToHome" style="font-weight: bold">Back to Home</el-button>
+            <el-button type="info" size="small" @click="backToHome" style="font-weight: bold; margin-left: 140px">Back to Home</el-button>
           </el-form-item>
 
         </el-form>

@@ -54,7 +54,7 @@
             <i class="el-icon-user-solid" style="font-size: 25px"></i>
             <span>{{user.username}}</span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item @click.native="toUser">Personal Info</el-dropdown-item>
+              <el-dropdown-item @click.native="toInfoSetting">Personal Info</el-dropdown-item>
               <el-dropdown-item @click.native="logOut">Quit</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -291,8 +291,8 @@ export default {
       }
     },
     // 跳转到超管的home页
-    toUser(){
-      this.$router.push("/SuperAdmin/Home");
+    toInfoSetting(){
+      this.$router.push("/SuperAdmin/InfoSetting");
     },
     // 跳转到登录页
     logOut(){

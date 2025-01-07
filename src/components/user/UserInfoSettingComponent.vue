@@ -89,7 +89,10 @@ export default {
         message: 'Edit successfully',
         type: 'success',
       });
-      this.$router.push("/");
+      // 使用 setTimeout 实现 2 秒的延迟跳转
+      setTimeout(() => {
+        this.$router.push("/");
+      }, 500); // 2000 毫秒 = 2 秒
     },
     getInfo(){
       this.username = JSON.parse(sessionStorage.getItem('userInfo')).username;

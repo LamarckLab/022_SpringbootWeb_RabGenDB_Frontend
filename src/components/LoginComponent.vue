@@ -116,8 +116,6 @@ export default {
             message: 'SignUp successfully',
             type: 'success',
           });
-          this.loginForm.username = '';
-          this.loginForm.password = '';
           this.confirm_disabled = false;
         } else {
           this.$message.error("Please complete the form");

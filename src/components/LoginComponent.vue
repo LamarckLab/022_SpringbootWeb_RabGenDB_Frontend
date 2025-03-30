@@ -20,12 +20,12 @@
                       show-password autocomplete="off" size="small" @keyup.enter.native="confirm"></el-input>
           </el-form-item>
 
-          <!--提交按钮-->
+          <!--登录按钮-->
           <el-form-item style="margin-left: 55px">
             <el-button type="primary" @click="confirm" :disabled="confirm_disabled" style="font-weight: bold; font-size: 16px">Sign in</el-button>
           </el-form-item>
 
-          <!--注册按钮按钮-->
+          <!--注册按钮-->
           <el-form-item style="margin-left: 230px; margin-top: -5px">
             <el-button type="info" size="small" @click="signUp" :disabled="confirm_disabled" style="font-weight: bold">Sign Up</el-button>
           </el-form-item>

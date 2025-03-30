@@ -154,7 +154,7 @@ export default {
       collapseIcon: 'el-icon-s-fold',
       tableData: [],
       pageNum: 1,
-      pageSize: 5,
+      pageSize: 10,
       total: 0,
       searchAccession:'',
       searchCountry:'',
